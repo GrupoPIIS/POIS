@@ -1,0 +1,14 @@
+<!--http://bootsnip.com/snippets/featured/admin-lists-panel -->
+<div class="row">
+	<div class="panel-body">
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="poi in pois">
+				<a href="#/edit/{{poi.id}}">{{poi.nombre}}</a>
+				<div class="pull-right action-buttons">
+					<a ng-click="edit(book.id"><span ng-class="glyphicon glyphicon-pencil"></span></a>
+					<a ng-click="remove(book.id)" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

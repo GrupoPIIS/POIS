@@ -1,0 +1,34 @@
+<!-- http://bootsnipp.com/snippets/featured/required-field-styling-with-tooltip -->
+<h1>{{$parent.settings.pageTitle}}</h1>
+
+<p ng-show="$parent.settings.success" class="alert alert-success">{{$parent.settings.success}}</p>
+
+<div class="required-field-block">
+	<input type="text" placeholder="loc" ng-model="poi.loc" class="form-control">
+	<div class="required-icon">
+		<div class="text">*</div>
+	</div>
+</div>
+
+<div class="required-field-block">
+	<input type="text" placeholder="nombre" ng-model="poi.nombre" class="form-control">
+	<div class="required-icon">
+		<div class="text">*</div>
+	</div>
+</div>
+
+<div class="required-field-block">
+	<input type="text" placeholder="desc" ng-model="poi.desc" class="form-control">
+	<div class="required-icon">
+		<div class="text">*</div>
+	</div>
+</div>
+
+<div class="required-field-block">
+	<textarea rows="6" class="form-control" ng-model="poi.lema" placeholder="lema"></textarea>
+	<div class="required-icon">
+		<div class="text">*</div>
+	</div>
+</div>
+
+<button class="btn btn-primary" ng-click="submit($parent.book)">{{$parent.settings.action}}</button>
