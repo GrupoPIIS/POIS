@@ -15,7 +15,7 @@ class Usuarios_controller extends CI_Controller{
 	}
 
 	//Lista un usuario en concreto. Se pasa el id por parametro.
-	function getUsuario(){
+	function getUser(){
 		$data['id'] = $this->uri->segment(4);
 		if(!$data['id']){
 			$data['usuarios'] = $this->usuarios_model->getUsers();
