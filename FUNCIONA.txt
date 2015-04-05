@@ -43,3 +43,32 @@ Ruta -> http://localhost/POIS/pois/pois_controller
 - 	listar en mapa -> http://localhost/POIS/mapa
 
 -	http://localhost/POIS/api devuelve un json con todos los pois
+
+En esta versión funciona V4:
+Ruta -> http://localhost/pruebaVistaControlador/login_controller/
+	-	Lleva a un formulario para iniciar la sesión.
+	-	La sesión que haya abierta, si la hay, se cierra antes de nada.
+	-	Realiza la select en la base de datos (login_model) y se queda con la fila del usuario.
+	-	Inicia una session (incluir librería session) $this->session->set_userdata($usuario); Contiene los datos del usuario excepto la contraseña. Se meten los datos en el array usuario así : 'id_usuario'=> $data['usuarios']->result()[0]->id_usuario, ...
+		*	Me ha llevado un buen rato descubrir como meter y leer los datos de session
+	-	En poi_controller he añadido la función getPoiUser(), que manda al modelo el id del usuario con sesión abierta para listar solo sus POIs.
+	-	Ya que están guardados los datos del user en la sesión, hay un nuevo formulario de nuevo poi (form_new y form_new_admin).
+		+	El form_new no contiene el campo para seleccionar el usuario del nuevo poi, ya que será el. Se recoje de la sesión abierta.
+		+	El form_new_admin contiene el campo para seleccionar usuario.
+			Queda por hacer:
+			-	Un combobox con los usuario activos, excepto el admin.
+		+	He modificado el insert de pois_model para que recoja el valor del usuario del poi de la sesión o del form.
+	-	Nuevo formulario para el login.
+
+En esta versión funciona V5:
+	-	Para restringir los accesos a ciertas páginas hay que añadir esta variable al session: 
+		$info_usuario=array('habilitado' =>TRUE)
+		$this->session->set_userdata($info_usuario);
+	-	En los controladores con acceso restringido a login hay que añadir:
+			!isset($this->session->userdata['habilitado'])?   
+	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
+
+	   		Si es al administrador 
+
+	   		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
+	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
