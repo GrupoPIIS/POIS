@@ -1,0 +1,43 @@
+Ruta -> http://localhost/pruebaVistaControlador/usuarios/usuarios_controller
+
+En esta versión funciona V1:
+-	/newuser -> lleva al formulario para crear un nuevo usuario
+- 	/updateuser/id_user -> lleva al formulario para modificar un usuario ya creado
+-	/deleteuser/id_user -> borra el usuario de la BD
+- 	listar -> http://localhost/pruebaVistaControlador/usuarios/usuarios_controller
+
+Ruta -> http://localhost/pruebaVistaControlador/mapa
+
+En esta versión funciona V2:
+-	listar pois y mostrarlos en el mapa -> http://localhost/pruebaVistaControlador/mapa
+	-	no funciona el último POI de la lista
+	-	no muestra el cartel con texto al pinchar sobre el POI
+
+En esta versión funciona V3:
+Ruta -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
+-	/newcategory -> lleva al formulario para crear una nueva categoría
+- 	/updatecategory/id_cat -> lleva al formulario para modificar una categoría ya creada. No se puede actualizar la 0 (default).
+		*Problema inicial -> no se podían crear categorías con más de una palabra porque no hacía bien la comprobación en los pasos por parámetro para otras funciones. Se ha modificaco la base de datos añadiendo una nueva columna id.
+		Queda por hacer:
+		- que acceda solo el Admin.
+		- cascade con tabla id_poi_id_cat
+-	/deletecategory/id_cat -> borra la categoria. No se puede actualizar la 0 (default).
+		Queda por hacer:
+		- que acceda solo el Admin.
+		- que haga un delete cascade con la tabla id_poi_id_cat
+- 	listar (no muestra la default) -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
+
+Ruta -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
+-	/newpoi -> lleva al formulario para crear un nuevo poi
+		Queda por hacer:
+		- que el usuario sea el de la sesión.
+		- que al insertarlo se inserte por defecto en id_poi_id_cat con la default.
+		- elegir las categorías que quiere. Para eso hay que hacer un checbox y insertar en id_poi_id_cat.
+- 	/updatepoi/id_poi -> lleva al formulario para modificar un poi ya creado.
+		Queda por hacer:
+		- elegir las categorías que quiere. Para eso hay que hacer un checbox y insertar en id_poi_id_cat.
+-	/deletepoi/id_poi -> borra el poi.
+		Queda por hacer:
+		- que haga un delete cascade con la tabla id_poi_id_cat
+- 	listar -> http://localhost/pruebaVistaControlador/pois/pois_controller
+- 	listar en mapa -> http://localhost/pruebaVistaControlador/mapa
