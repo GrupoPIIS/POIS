@@ -1,21 +1,21 @@
-Ruta -> http://localhost/pruebaVistaControlador/usuarios/usuarios_controller
+Ruta -> http://localhost/POIS/usuarios/usuarios_controller
 
 En esta versión funciona V1:
 -	/newuser -> lleva al formulario para crear un nuevo usuario
 - 	/updateuser/id_user -> lleva al formulario para modificar un usuario ya creado
 -	/deleteuser/id_user -> borra el usuario de la BD
-- 	listar -> http://localhost/pruebaVistaControlador/usuarios/usuarios_controller
+- 	listar -> http://localhost/POIS/usuarios/usuarios_controller
 
-Ruta -> http://localhost/pruebaVistaControlador/mapa
+Ruta -> http://localhost/POIS/mapa
 
 En esta versión funciona V2:
--	listar pois y mostrarlos en el mapa -> http://localhost/pruebaVistaControlador/mapa
+-	listar pois y mostrarlos en el mapa -> http://localhost/POIS/mapa
 	-	no funciona el último POI de la lista
 	-	no muestra el cartel con texto al pinchar sobre el POI
 
 En esta versión funciona V3:
-Ruta -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
--	/newcategory -> lleva al formulario para crear una nueva categoría
+Ruta -> http://localhost/POIS/categorias/categorias_controller
+-	/http://localhost/POIS/categorias/categorias_controller/newcategory-> lleva al formulario para crear una nueva categoría
 - 	/updatecategory/id_cat -> lleva al formulario para modificar una categoría ya creada. No se puede actualizar la 0 (default).
 		*Problema inicial -> no se podían crear categorías con más de una palabra porque no hacía bien la comprobación en los pasos por parámetro para otras funciones. Se ha modificaco la base de datos añadiendo una nueva columna id.
 		Queda por hacer:
@@ -27,7 +27,7 @@ Ruta -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
 		- que haga un delete cascade con la tabla id_poi_id_cat
 - 	listar (no muestra la default) -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
 
-Ruta -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
+Ruta -> http://localhost/POIS/pois/pois_controller
 -	/newpoi -> lleva al formulario para crear un nuevo poi
 		Queda por hacer:
 		- que el usuario sea el de la sesión.
@@ -39,5 +39,7 @@ Ruta -> http://localhost/pruebaVistaControlador/categorias/categorias_controller
 -	/deletepoi/id_poi -> borra el poi.
 		Queda por hacer:
 		- que haga un delete cascade con la tabla id_poi_id_cat
-- 	listar -> http://localhost/pruebaVistaControlador/pois/pois_controller
-- 	listar en mapa -> http://localhost/pruebaVistaControlador/mapa
+- 	listar -> http://localhost/POIS/pois/pois_controller
+- 	listar en mapa -> http://localhost/POIS/mapa
+
+-	http://localhost/POIS/api devuelve un json con todos los pois
