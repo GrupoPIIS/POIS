@@ -6,6 +6,8 @@ class Usuarios_controller extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('usuarios_model');
+		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
+	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
 	}
 
 	//Lista todos los usuarios

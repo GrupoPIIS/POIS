@@ -6,6 +6,8 @@ class Pois_controller extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('pois_model');
+		!isset($this->session->userdata['habilitado'])?   
+	   die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>')   :   '';
 	}
 
 	//Lista todos los pois
@@ -24,10 +26,20 @@ class Pois_controller extends CI_Controller{
 		}
 		$this->load->view('pois/pois', $data);
 	}
+
+	//Lista los pois del usuario con la sesion abierta
+	function getPoiUser(){
+		$id_usuario = $this->session->userdata('id_usuario');
+		$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
+		$this->load->view('pois/pois', $data);
+	}
 	
 	//Lleva a la vista con el formulario para rellenar los datos de un nuevo poi.
 	function newPoi(){
-		$this->load->view('pois/form_new');
+		if($this->session->userdata('rol') == 0)
+			$this->load->view('pois/form_new_admin');
+		else
+			$this->load->view('pois/form_new');
 	}
 
 	//Almacena los datos del formulario (newPoi()) en un array para pasarselos al modelo y añadirlo a la BD.

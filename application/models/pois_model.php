@@ -23,15 +23,29 @@ class Pois_model extends CI_Model{
 		else return NULL;
 	}
 
+	//Hace un SELECT * FROM pois WHERE id_usuario = $id. El id es el usuario con sesion abierta
+	function getPoiUser($id){
+		$this->db->where('id_usuario', $id);
+		$query = $this->db->get('pois');
+		if($query->num_rows() > 0) return $query;
+		else return NULL;
+	}
+
+	
 	//Hace un INSERT INTO pois VALUES datos = $data
 	function newPoi($data){
+		if($this->session->userdata('rol') == 0)
+			$id_usuario = $data['id_usuario'];
+		else
+			$id_usuario = $this->session->userdata('id_usuario');
+
 		$this->db->insert('pois', array(
 										'lng' 		=> $data['lng'],
 										'lat' 		=> $data['lat'],
 										'nombre_poi'=> $data['nombre_poi'],
 										'txt_rep'	=> $data['txt_rep'],
 										'direccion'	=> $data['direccion'],
-										'id_usuario'=> $data['id_usuario']
+										'id_usuario'=> $id_usuario
 										)
 						);
 		/*$this->db->insert('id_poi_id_cat', array(

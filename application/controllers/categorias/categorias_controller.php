@@ -6,6 +6,8 @@ class Categorias_controller extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('categorias_model');
+		!isset($this->session->userdata['habilitado'])?   
+	   die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>')   :   '';
 	}
 
 	//Lista todas las categorias, excepto la default.
@@ -39,6 +41,8 @@ class Categorias_controller extends CI_Controller{
 
 	//Lleva a la vista con el formulario para modificar los datos. Mientras no sea id 0 que es la default.
 	function updateCategory(){
+		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
+	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
 		$data['id'] = $this->uri->segment(4);
 		if($data['id']){
 			$data['categoria'] = $this->categorias_model->getCategory($data['id']);
@@ -48,6 +52,8 @@ class Categorias_controller extends CI_Controller{
 
 	//Modifica los datos de una categoria cuyo id se pasa por parametro. Mientras no sea id 0 que es la default.
 	function getUpdateCategory(){
+		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
+	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
 		$data = array('nombre_cat' => $this->input->post('nombre'));
 		$this->categorias_model->updateCategory($this->uri->segment(4), $data);
 		$this->index();
@@ -55,6 +61,8 @@ class Categorias_controller extends CI_Controller{
 
 	//Elimina la categoria con el id pasado por parametro. Mientras no sea id 0 que es la default.
 	function deleteCategory(){
+		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
+	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
 		$id = $this->uri->segment(4);
 		if($id){
 			$this->categorias_model->deleteCategory($id);

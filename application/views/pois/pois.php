@@ -7,12 +7,13 @@
 <body>
 	<?PHP 
 	if($pois){
+		echo $this->session->userdata('id_usuario');
 		foreach ($pois->result() as $poi){ ?>
 		<ul>
 			<li><?= $poi->id_poi; ?> <?= $poi->nombre_poi; ?> (<?= $poi->lng; ?>, <?= $poi->lat; ?>)</li>
 		</ul>
 	<?PHP }
-	}else echo "No existen datos"?>
+	}else echo $this->session->userdata('id_usuario');?>
 		
 </body>
 </html>
