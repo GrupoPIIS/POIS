@@ -9,19 +9,20 @@
         <meta name="author" content="">	
 
     	<title>Home</title>
-    	<link rel="stylesheet" href="css/estilo1.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+    	<link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/bootstrap.min.css">
         <!-- Custom CSS -->
-        <link href="css/freelancer.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/freelancer.css">
         <!-- Custom Fonts -->
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url();?>/estilos/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>        
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <?=$map['js']?>        
 	</head>	
 
-	<body onload="initialize()" class="index" id="page-top">
+	<body class="index" id="page-top">
 
 		<nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -33,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-            <img class="img-centic" src="img/centic.jpg" alt="">
+            <img class="img-centic" src="<?php echo base_url();?>/estilos/img/centic.jpg" alt="">
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,9 +68,10 @@
              <article id="link-pois">
                         <a href="mis-pois.html" class="btn btn-success btn-lg">Administrar POIS</a>
                     </article>
-            <article id="pu1"> 
+            <article id="pu1">
+
                 <article id="mapa" style="width:95%; height:500px">
-                    
+                    <?=$map['html']?>
                 </article>
                 <!--<aside id="mapa-lista">
                     <ul>
@@ -90,7 +92,7 @@
              <hr class="star-primary">
              <article id="cat1">
                  <p>Visualiza el listado de categor&iacute;as de los Puntos de Interés o crea nuevas categorías si lo prefies</p>
-                 <img src="img/tag.png" id="img-estadisticas">
+                 <img src="<?php echo base_url();?>/estilos/img/tag.png" id="img-estadisticas">
              </article>
              <article id="link-categorias">
                 <a href="categorias.html" class="btn btn-success btn-lg">Administrar Categor&iacute;as</a>
@@ -102,7 +104,7 @@
             <hr class="star-secundary">
 			<article id="estad1">
                  <p>Observa diferentes estadísticas sobre tus Puntos de Interés y sobre aquellos generados por otros usuarios</p>
-                 <img src="img/estadisticas.png" id="img-estadisticas">
+                 <img src="<?php echo base_url();?>/estilos/img/estadisticas.png" id="img-estadisticas">
             </article>
             <article id="link-categorias">
                 <a href="#estadisticas" class="btn btn-lg btn-outline">Administrar Estad&iacute;sticas</a>
@@ -159,7 +161,7 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
-        <script type="text/javascript">
+       <!-- <script type="text/javascript">
             function initialize() {
                 var latlng = new google.maps.LatLng(37.985148,-1.126341);
                 var settings = {
@@ -181,23 +183,23 @@
                 });
             }
         </script>
-
-        <script src="js/jquery.js"></script>
+        -->
+        <script src="<?php echo base_url();?>/estilos/js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/bootstrap.min.js"></script>
 
         <!-- Plugin JavaScript -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="js/classie.js"></script>
-        <script src="js/cbpAnimatedHeader.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/classie.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/cbpAnimatedHeader.js"></script>
 
         <!-- Contact Form JavaScript -->
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/contact_me.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/jqBootstrapValidation.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/contact_me.js"></script>
 
         <!-- Custom Theme JavaScript -->
-        <script src="js/freelancer.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/freelancer.js"></script>
 
 	
 	</body>

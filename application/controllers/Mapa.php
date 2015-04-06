@@ -5,6 +5,7 @@ class Mapa extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->model('mapa_model');
+		$this->load->helper('url');
 	}
 	
 	public function index()
@@ -21,9 +22,9 @@ class Mapa extends CI_Controller{
         //el tipo de mapa, en el pdf podéis ver más opciones
 		$config['map_type'] = 'ROADMAP';
         //el ancho del mapa		
-		$config['map_wid_poith'] = '700px';	
+		$config['map_wid_poith'] = '100%';	
         //el alto del mapa	
-		$config['map_height'] = '600px';	
+		$config['map_height'] = '100%';	
         //inicializamos la configuración del mapa	
 		$this->googlemaps->initialize($config);	
 		
@@ -56,6 +57,6 @@ class Mapa extends CI_Controller{
 		//$data['datos'] = $this->mapa_model->get_markers();
         //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
 		$data['map'] = $this->googlemaps->create_map();
-		$this->load->view('mapa_view',$data);
+		$this->load->view('home',$data);
 	}
 }
