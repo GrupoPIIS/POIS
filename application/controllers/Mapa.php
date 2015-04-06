@@ -4,9 +4,11 @@ class Mapa extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('mapa_model');
-		$this->load->helper('url');
+		//	$this->load->model('mapa_model');
+		$this->load->model('pois_model');
+		$this->load->helper('url');	
 	}
+
 	
 	public function index()
 	{
@@ -15,7 +17,15 @@ class Mapa extends CI_Controller{
         //la zona del mapa que queremos mostrar al cargar el mapa
         //como vemos le podemos pasar la ciudad y el país
         //en lugar de la latitud y la lngitud
-		$config['center'] = 'madrid,espana';
+		$config['center'] = 'auto';
+
+		$config['onboundschanged'] = 'if (!centreGot) {
+			var mapCentre = map.getCenter();
+			marker_0.setOptions({
+				position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng()) 
+			});
+		}
+		centreGot = true;';
         // el zoom, que lo podemos poner en auto y de esa forma
         //siempre mostrará todos los markers ajustando el zoom	
 		$config['zoom'] = '6';		
@@ -26,12 +36,24 @@ class Mapa extends CI_Controller{
         //el alto del mapa	
 		$config['map_height'] = '100%';	
         //inicializamos la configuración del mapa	
-		$this->googlemaps->initialize($config);	
+		$this->googlemaps->initialize($config);
+
+		$circle = array();
+		$circle['center'] = '37.985148,-1.126341';
+		$circle['radius'] = '100000';
+		$this->googlemaps->add_circle($circle);
+
+		$marker = array();
+		$marker ['icon'] = base_url().'/estilos/img/marker.png';
+		$marker ['infowindow_content'] = 'Usted está aquí';
+		$this->googlemaps->add_marker($marker);
 		
 		//hacemos la consulta al modelo para pedirle 
 		//la posición de los markers y el nombre_poi
-		$data['datos'] = $this->mapa_model->get_markers();
-		foreach($data['datos'] as $info_marker)
+	
+		$markers = $this->pois_model->getPoiUser('0');
+		$data['datos'] = $markers;		
+		foreach($markers as $info_marker)
 		{
 			$marker = array();
             //podemos elegir DROP o BOUNCE
@@ -39,9 +61,9 @@ class Mapa extends CI_Controller{
             //posición de los markers
 			$marker ['position'] = $info_marker->lat.','.$info_marker->lng;
             //nombre_poi de los markers(ventana de información)	
-			$marker ['nombre_poi_content'] = $info_marker->nombre_poi;
+			$marker ['infowindow_content'] = $info_marker->nombre_poi;
             //la id_poi del marker
-			$marker['id_poi'] = $info_marker->id_poi; 
+			$marker['id'] = $info_marker->id_poi; 
 			$this->googlemaps->add_marker($marker);
  
             //podemos colocar iconos personalizados así de fácil

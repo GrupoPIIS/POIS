@@ -24,11 +24,10 @@ class Pois_model extends CI_Model{
 	}
 
 	//Hace un SELECT * FROM pois WHERE id_usuario = $id. El id es el usuario con sesion abierta
-	function getPoiUser($id){
-		$this->db->where('id_usuario', $id);
-		$query = $this->db->get('pois');
-		if($query->num_rows() > 0) return $query;
-		else return NULL;
+	function getPoiUser($id_usuario){
+		$this->db->where('id_usuario', $id_usuario);
+		$consulta = $this->db->get('pois');
+		return $consulta->result();
 	}
 
 	

@@ -19,6 +19,9 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script type="text/javascript">
+            var centreGot = false;
+        </script>
         <?=$map['js']?>        
 	</head>	
 
@@ -65,9 +68,9 @@
 		<section id="pois-usuario">
             <h1>MIS PUNTOS DE INTER&Eacute;S</h1>
           
-             <article id="link-pois">
-                        <a href="mis-pois.html" class="btn btn-success btn-lg">Administrar POIS</a>
-                    </article>
+            <article id="link-pois">
+                <a href="mis-pois.html" class="btn btn-success btn-lg">Administrar POIS</a>
+            </article>
             <article id="pu1">
 
                 <article id="mapa" style="width:95%; height:500px">
@@ -161,29 +164,7 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
-       <!-- <script type="text/javascript">
-            function initialize() {
-                var latlng = new google.maps.LatLng(37.985148,-1.126341);
-                var settings = {
-                    zoom: 10,
-                    center: latlng,
-                    mapTypeControl: true,
-                    mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-                    navigationControl: true,
-                    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-            };      
-
-                var map = new google.maps.Map(document.getElementById("mapa"), settings);
-                var companyPos = new google.maps.LatLng(37.985148,-1.126341);
-                var companyMarker = new google.maps.Marker({
-                    position: companyPos,
-                    map: map,
-                    title:"Ejemplo"
-                });
-            }
-        </script>
-        -->
+    
         <script src="<?php echo base_url();?>/estilos/js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
