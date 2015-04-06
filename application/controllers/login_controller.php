@@ -8,48 +8,81 @@ class Login_controller extends CI_Controller{
 		$this->load->model('login_model');
 	}
 
+	//Destruye la sesion activa y carga el formulario de login
 	function index(){
-		$this->session->sess_destroy();
-		$this->load->view('form_login');
+		isset($this->session->userdata['habilitado'])?   
+	   		$this->closeSession() : $this->load->view('form_login');
+
+	   	
 	}
 
+	//Comprueba los datos del formulario login y guarda en session los datos que pueden hacer falta
 	function login(){
 		$formulario = array(
 						'mail' 		=> $this->input->post('mail'),
 						'password' 	=> $this->input->post('password')
 					);
 		$data['usuarios'] = $this->login_model->login($formulario);
-		$usuario = array(
-						'id_usuario'=> $data['usuarios']->result()[0]->id_usuario,
-						'rol'		=> $data['usuarios']->result()[0]->rol,
-						'empresa'	=> $data['usuarios']->result()[0]->empresa,
-						'direccion'	=> $data['usuarios']->result()[0]->direccion,
-						'tel'		=> $data['usuarios']->result()[0]->tel,
-						'cif'		=> $data['usuarios']->result()[0]->cif,	
-						'mail'		=> $data['usuarios']->result()[0]->mail
-					);
-		$this->session->set_userdata($usuario);
+		if($data['usuarios'] != NULL){
+			$usuario = array(
+							'id_usuario'=> $data['usuarios']->result()[0]->id_usuario,
+							'rol'		=> $data['usuarios']->result()[0]->rol,
+							'nombre'	=> $data['usuarios']->result()[0]->nombre,
+							'empresa'	=> $data['usuarios']->result()[0]->empresa,
+							'direccion'	=> $data['usuarios']->result()[0]->direccion,
+							'tel'		=> $data['usuarios']->result()[0]->tel,
+							'cif'		=> $data['usuarios']->result()[0]->cif,	
+							'mail'		=> $data['usuarios']->result()[0]->mail
+						);
+			$this->session->set_userdata($usuario);
 
-		$info_usuario=array('habilitado' =>TRUE);
-		$this->session->set_userdata($info_usuario); // configuramos la variable de sessión 'habilitado'
+			$info_usuario=array('habilitado' =>TRUE);
+			$this->session->set_userdata($info_usuario); // configuramos la variable de sessión 'habilitado'
 
-		if($this->session->userdata('rol') == 0)
- 			redirect('usuarios/usuarios_controller', 'refresh');
+			if($this->session->userdata('rol') == 0)
+	 			redirect('usuarios/usuarios_controller', 'refresh');
 
- 		redirect('pois/pois_controller', 'refresh');
+	 		redirect('pois/pois_controller', 'refresh');
+ 		}
+ 		$message['error'] = 'Correo o contraseña incorrecto.';
+ 		$this->load->view('form_login', $message);
 	}
 
-	//Envia un correo electronico.
-	function sendEmail(){
-		$this->load->library('Email');
+	//Quita el acceso y destruye la variable session
+	function closeSession(){
+		$this->session->unset_userdata('habilitado');
+		$this->session->sess_destroy();
+		$this->load->view('form_login');
+	}
+
+	//Funcion auxiliar para llamar al formulario que coge el email desde formulario.
+	function password(){
+		$this->load->view('form_password');
+	}
+
+	//Recoge el email escrito en el form, realiza una consulta para obtener la contraseña, si existe le envia un correo.
+	function getPassword(){
 		$configuraciones['smpt'] = 'gmail';
 		$this->email->initialize($configuraciones);
-		$this->email->from('dadcuentadeprueba@gmail.com', 'Alicia');
-		$this->email->to('dadcuentadeprueba@gmail.com');
-		$this->email->subject('prueba correo');
-		$this->email->message('ejemplo de prueba de correo con CodeIgniter :D');
-		$this->email->send();
-		$this->email->print_debugger();
+
+		$mail = $this->input->post('mail');
+		$data['usuario'] = $this->login_model->getPassword($mail);
+
+		if($data['usuario'] != NULL){
+
+			$this->email->from('dadcuentadeprueba@gmail.com', 'Administrador');
+			$this->email->to($mail);
+			$this->email->subject('Recuperación de Contraseña');
+			$this->email->message('Tu contraseña es: '.$data['usuario']->result()[0]->password);
+			$this->email->send();
+			$this->email->print_debugger();
+
+			$message['error'] = 'Mensaje enviado,';
+ 			$this->load->view('form_login', $message);
+		}else{
+			$message['error'] = 'El correo especificado no existe.';
+ 			$this->load->view('form_login', $message);
+		}
 	}
 }
 ?>

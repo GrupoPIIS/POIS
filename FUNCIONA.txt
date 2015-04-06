@@ -72,3 +72,10 @@ En esta versión funciona V5:
 
 	   		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
 	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
+
+En esta versión funciona V5 (Alicia):
+
+	-	Se envía correo al insertar un usuario con su contraseña.
+	-	Formulario de recuperación de contraseña. Meter email que tenga en la BD.
+		*	Problema: Solo con cuentas de gmail.
+	-	Depurados algunos de los errores anteriores (no tenía variables de session -> if(isset)))

@@ -6,8 +6,9 @@ class Usuarios_controller extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('usuarios_model');
-		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
-	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
+		if((!isset($this->session->userdata['habilitado'])) || ($this->session->userdata['rol'] != 0)){
+	   		redirect('login_controller', 'refresh');
+	   	}
 	}
 
 	//Lista todos los usuarios
@@ -45,6 +46,16 @@ class Usuarios_controller extends CI_Controller{
 				'password' 	=> $this->input->post('password')
 			);
 		$this->usuarios_model->newUser($data);
+
+		$this->load->model('login_model');
+		$this->login_model->sendEmail(
+										$this->session->userdata['mail'], 
+										$this->session->userdata['nombre'],
+										$data['mail'],
+										'Nueva alta',
+										'Nombre de usuario: '.$data['nombre'].', correo: '.$data['mail'].' contraseña: '.$data['password']
+									);
+
 		$this->index();
 	}
 
@@ -54,7 +65,11 @@ class Usuarios_controller extends CI_Controller{
 		if($data['id']){
 			$data['usuario'] = $this->usuarios_model->getUser($data['id']);
 		}
-		$this->load->view('usuarios/form_update', $data);
+
+		if($data['poi'] != null)
+			$this->load->view('usuarios/form_update', $data);
+		else
+			$this->load->view('usuarios/form_new', $data);
 	}
 
 	//Modifica los datos de un usuario cuyo id se pasa por parametro.

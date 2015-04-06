@@ -10,6 +10,7 @@ class Usuarios_model extends CI_Model{
 
 	//Hace un SELECT * FROM usuarios
 	function getUsers(){
+		$this->db->where('id_usuario!=1');
 		$query = $this->db->get('usuarios');
 		if($query->num_rows() > 0) return $query;
 		else return NULL;
@@ -17,6 +18,7 @@ class Usuarios_model extends CI_Model{
 
 	//Hace un SELECT * FROM usuarios WHERE id = $id
 	function getUser($id){
+		$this->db->where('id_usuario!=1');
 		$this->db->where('id_usuario', $id);
 		$query = $this->db->get('usuarios');
 		if($query->num_rows() > 0) return $query;
@@ -40,12 +42,14 @@ class Usuarios_model extends CI_Model{
 
 	//Hace un UPDATE usuarios SET datos = $data WHERE id = $id
 	function updateUser($id, $data){
+		$this->db->where('id_usuario!=1');
 		$this->db->where('id_usuario', $id);
 		$query = $this->db->update('usuarios', $data);
 	}
 
 	//Hace un DELETE FROM usuarios WHERE id = $id
 	function deleteUser($id){
+		$this->db->where('id_usuario!=1');
 		$this->db->where('id_usuario', $id);
 		$this->db->delete('usuarios');
 	}

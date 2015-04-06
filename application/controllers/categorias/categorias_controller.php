@@ -7,7 +7,7 @@ class Categorias_controller extends CI_Controller{
 		parent::__construct();
 		$this->load->model('categorias_model');
 		!isset($this->session->userdata['habilitado'])?   
-	   die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>')   :   '';
+	   		redirect('login_controller', 'refresh') : '';
 	}
 
 	//Lista todas las categorias, excepto la default.
@@ -41,19 +41,24 @@ class Categorias_controller extends CI_Controller{
 
 	//Lleva a la vista con el formulario para modificar los datos. Mientras no sea id 0 que es la default.
 	function updateCategory(){
-		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
-	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
+		if($this->session->userdata['rol'] != 0)
+	   		redirect('login_controller', 'refresh');
+
 		$data['id'] = $this->uri->segment(4);
 		if($data['id']){
 			$data['categoria'] = $this->categorias_model->getCategory($data['id']);
 		}
-		$this->load->view('categorias/form_update', $data);
+		if($data['categoria'] != null)
+			$this->load->view('categorias/form_update', $data);
+		else
+			$this->load->view('categorias/form_new', $data);
 	}
 
 	//Modifica los datos de una categoria cuyo id se pasa por parametro. Mientras no sea id 0 que es la default.
 	function getUpdateCategory(){
-		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
-	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
+		if($this->session->userdata['rol'] != 0)
+	   		redirect('login_controller', 'refresh');
+
 		$data = array('nombre_cat' => $this->input->post('nombre'));
 		$this->categorias_model->updateCategory($this->uri->segment(4), $data);
 		$this->index();
@@ -61,8 +66,9 @@ class Categorias_controller extends CI_Controller{
 
 	//Elimina la categoria con el id pasado por parametro. Mientras no sea id 0 que es la default.
 	function deleteCategory(){
-		if((!$this->session->userdata['habilitado']) || ($this->session->userdata['rol'] != 0))
-	   		die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>');
+		if($this->session->userdata['rol'] != 0)
+	   		redirect('login_controller', 'refresh');
+	   	
 		$id = $this->uri->segment(4);
 		if($id){
 			$this->categorias_model->deleteCategory($id);

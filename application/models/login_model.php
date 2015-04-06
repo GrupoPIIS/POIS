@@ -8,13 +8,34 @@ class Login_model extends CI_Model{
 		$this->load->database();
 	}
 
-	//Hace un SELECT * FROM usuarios WHERE mail = $mail
+	//Hace un SELECT * FROM usuarios WHERE mail = $mail AND password = $password
 	function login($formulario){
 		$this->db->where('mail', $formulario['mail']);
 		$this->db->where('password', $formulario['password']);
 		$query = $this->db->get('usuarios');
 		if($query->num_rows() > 0) return $query;
 		else return NULL;
+	}
+
+	//Hace un SELECT * FROM usuarios WHERE mail = $mail
+	function getPassword($mail){
+		$this->db->where('mail', $mail);
+		$query = $this->db->get('usuarios');
+		if($query->num_rows() > 0) return $query;
+		else return NULL;
+	}
+
+	
+	//Envia un correo electronico.
+	function sendEmail($from, $name, $to, $subject, $message){
+		$configuraciones['smpt'] = 'gmail';
+		$this->email->initialize($configuraciones);
+		$this->email->from($from, $name);
+		$this->email->to($to);
+		$this->email->subject($subject);
+		$this->email->message($message);
+		$this->email->send();
+		$this->email->print_debugger();
 	}
 }
 ?>

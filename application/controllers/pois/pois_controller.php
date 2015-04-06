@@ -7,7 +7,7 @@ class Pois_controller extends CI_Controller{
 		parent::__construct();
 		$this->load->model('pois_model');
 		!isset($this->session->userdata['habilitado'])?   
-	   die('Página con acceso restringido. <a href="./login">Click aquí para hacer login</a>')   :   '';
+	   		redirect('login_controller', 'refresh') : '';
 	}
 
 	//Lista todos los pois
@@ -64,7 +64,10 @@ class Pois_controller extends CI_Controller{
 		if($data['id']){
 			$data['poi'] = $this->pois_model->getPoi($data['id']);
 		}
-		$this->load->view('pois/form_update', $data);
+		if($data['poi'] != null)
+			$this->load->view('pois/form_update', $data);
+		else
+			$this->load->view('pois/form_new', $data);
 	}
 
 	//Modifica los datos de un poi cuyo id se pasa por parametro.
