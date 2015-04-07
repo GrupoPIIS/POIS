@@ -13,7 +13,7 @@ class Categorias_controller extends CI_Controller{
 	//Lista todas las categorias, excepto la default.
 	function index(){
 		$data['categorias'] = $this->categorias_model->getCategories();
-		$this->load->view('categorias/categorias', $data);
+		$this->load->view('categorias', $data);
 	}
 
 	//Lista una categoria en concreto. Se pasa el id por parametro.

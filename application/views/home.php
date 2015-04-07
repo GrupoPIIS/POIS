@@ -21,6 +21,7 @@
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
         <script type="text/javascript">
             var centreGot = false;
+            var activeMap=false;
         </script>
         <?=$map['js']?>        
 	</head>	
@@ -56,7 +57,7 @@
                         <a href="#estadisticas">Estad&iacute;sticas</a>
                     </li>
                     <li class="page-scroll" id="menu-usuario">
-                        <a href="#">usuario</a>
+                        <a href="#"><?=$this->session->userdata['nombre'];?></a>
                     </li>
                 </ul>
             </div>
@@ -69,7 +70,7 @@
             <h1>MIS PUNTOS DE INTER&Eacute;S</h1>
           
             <article id="link-pois">
-                <a href="mis-pois.html" class="btn btn-success btn-lg">Administrar POIS</a>
+                <a href="<?php echo base_url();?>pois/pois_controller" class="btn btn-success btn-lg">Administrar POIS</a>
             </article>
             <article id="pu1">
 
@@ -98,7 +99,7 @@
                  <img src="<?php echo base_url();?>/estilos/img/tag.png" id="img-estadisticas">
              </article>
              <article id="link-categorias">
-                <a href="categorias.html" class="btn btn-success btn-lg">Administrar Categor&iacute;as</a>
+                <a href="<?php echo base_url();?>categorias/categorias_controller" class="btn btn-success btn-lg">Administrar Categor&iacute;as</a>
             </article>			
 		</section>
 
@@ -164,7 +165,7 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
-    
+
         <script src="<?php echo base_url();?>/estilos/js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->

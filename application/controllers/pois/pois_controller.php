@@ -12,8 +12,9 @@ class Pois_controller extends CI_Controller{
 
 	//Lista todos los pois
 	function index(){
-		$data['pois'] = $this->pois_model->getPois();
-		$this->load->view('pois/pois', $data);
+		//$data['pois'] = $this->pois_model->getPois();
+		$this->getPoiUser();
+		//$this->load->view('pois/pois', $data);
 	}
 
 	//Lista un poi en concreto. Se pasa el id por parametro.
@@ -29,9 +30,10 @@ class Pois_controller extends CI_Controller{
 
 	//Lista los pois del usuario con la sesion abierta
 	function getPoiUser(){
-		$id_usuario = $this->session->userdata('id_usuario');
-		$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
-		$this->load->view('pois/pois', $data);
+		//$id_usuario = $this->session->userdata('id_usuario');
+		//$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
+		$data['pois'] = $this->pois_model->getPoiUser(0);
+		$this->load->view('mis-pois', $data);
 	}
 	
 	//Lleva a la vista con el formulario para rellenar los datos de un nuevo poi.

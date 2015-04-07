@@ -40,9 +40,9 @@ class Login_controller extends CI_Controller{
 			$this->session->set_userdata($info_usuario); // configuramos la variable de sessión 'habilitado'
 
 			if($this->session->userdata('rol') == 0)
-	 			redirect('usuarios/usuarios_controller', 'refresh');
+	 			redirect('mapa', 'refresh');
 
-	 		redirect('pois/pois_controller', 'refresh');
+	 		redirect('mapa', 'refresh');
  		}
  		$message['error'] = 'Correo o contraseña incorrecto.';
  		$this->load->view('form_login', $message);

@@ -8,22 +8,21 @@
         <meta name="author" content=""> 
 
         <title>Mis Pois</title>
-        <link rel="stylesheet" href="css/estilo1.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
+        <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
-        <link href="css/freelancer.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
         <!-- Custom Fonts -->
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
         
 	</head>	
 
-	<body class="index" id="page-top">
+	<body id="page-top">
 
-        <nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header page-scroll">
@@ -33,7 +32,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                <img class="img-centic" src="img/centic.jpg" alt="" id ="centic">
+                <img class="img-centic" src="<?php echo base_url();?>/estilos/img/centic.jpg" alt="" id ="centic">
                 
                 </div>
 
@@ -44,15 +43,15 @@
                             <a href="#page-top"></a>
                         </li>
                         <li class="page-scroll">
-                            <a href="home.html#pois-usuario">Mis Puntos de Interés</a>
+                            <a href="<?php echo base_url();?>mapa#pois-usuario">Mis Puntos de Interés</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="home.html#categorias">Categor&iacute;as</a>
+                            <a href="<?php echo base_url();?>mapa#categorias">Categor&iacute;as</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="home.html#estadisticas">Estad&iacute;sticas</a>
+                            <a href="<?php echo base_url();?>mapa#estadisticas">Estad&iacute;sticas</a>
                         <li class="page-scroll" id="menu-usuario">
-                            <a href="#">usuario</a>
+                            <a href="#"><?=$this->session->userdata['nombre'];?></a>
                         </li>
                     </ul>                    
                 </div>
@@ -61,72 +60,58 @@
             <!-- /.container-fluid -->
         </nav>
 
-		<section id="list-pois">
-            <h1>MIS PUNTOS DE INTER&Eacute;S</h1>
-            <article id="link-pois">
-                    <img src="img/map.png" alt="Crear nuevo poi">
-                    <a href="#" class="btn btn-success btn-lg">Crear Nuevo Punto</a>
+		<section id="list-categ">
+            <h1>CATEGOR&Iacute;AS</h1>
+            <article id="link-categ">
+                    <img src="<?php echo base_url();?>/estilos/img/tag2.png" alt="Crear nueva categoría">
+                    <a href="#" class="btn btn-success btn-lg">Crear Nueva Categor&iacute;a</a>                 
             </article>
-            <article id="lp1">                
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <p class="poi-text">poi 1</p>
-                                <a href="#" class="poi-boton">
-                                    <img src="img/edit.png" alt="Editar">
-                                    <img src="img/trash.png" alt="Eliminar">
-                                </a>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <p class="poi-text">poi 2</p>
-                                <a href="#" class="poi-boton">
-                                    <img src="img/edit.png" alt="Editar">
-                                    <img src="img/trash.png" alt="Eliminar">
-                                </a>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <p class="poi-text">poi 2</p>
-                                <a href="#" class="poi-boton">
-                                    <img src="img/edit.png" alt="Editar">
-                                    <img src="img/trash.png" alt="Eliminar">
-                                </a>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <p class="poi-text">poi 2</p>
-                                <a href="#" class="poi-boton">
-                                    <img src="img/edit.png" alt="Editar">
-                                    <img src="img/trash.png" alt="Eliminar">
-                                </a>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <p class="poi-text">poi 2</p>
-                                <a href="#" class="poi-boton">
-                                    <img src="img/edit.png" alt="Editar">
-                                    <img src="img/trash.png" alt="Eliminar">
-                                </a>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <p class="poi-text">poi 2</p>
-                                <a href="#" class="poi-boton">
-                                    <img src="img/edit.png" alt="Editar">
-                                    <img src="img/trash.png" alt="Eliminar">
-                                </a>
-                            </a>
-                        </li>
+            <?php 
+                    if($categorias){ ?> 
+                        <article class="categ-sublist"> 
+                                    <article id="lc1">                             
+                                            <ul>
+                                            <?php foreach ($categorias->result() as $categoria): ?>
+                                                 <li>
+                                                    <a href="#">
+                                                        <img class="categ-img" src="img/profile.png">
+                                                        <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
+                                                    </a>
+                                                </li>
+                                            <?php endforeach; ?>  
+                                            </ul>
+                                    </article>              
+                        </article>
+                        <article class="categ-sublist">
+                            <article id="lc1">                
+                                <ul>
+                                    <?php foreach ($categorias->result() as $categoria): ?>
+                                        <li>
+                                            <a href="#">
+                                                <img class="categ-img" src="img/profile.png">
+                                                <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>  
+                                </ul> 
+                            </article>              
+                        </article>
+                        <article class="categ-sublist">
+                            <article id="lc1">                
+                                <ul>
+                                    <?php foreach ($categorias->result() as $categoria): ?>
+                                        <li>
+                                            <a href="#">
+                                                <img class="categ-img" src="img/profile.png">
+                                                <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>  
+                                </ul>
 
-                    </ul>             
-            </article>            
-            	
+                            </article>              
+                        </article>
+            <?php }else echo "No existen datos";?>
 		</section>
         <footer>
             <div class="footer-above">
@@ -171,29 +156,31 @@
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>
+                
         </footer>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
         <div class="scroll-top page-scroll visible-xs visble-sm">
             <a class="btn btn-primary" href="#page-top">
                 <i class="fa fa-chevron-up"></i>
             </a>
-        </div>	
-	   <script src="js/jquery.js"></script>
+        </div> 
+        <script src="<?php echo base_url();?>/estilos/js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/bootstrap.min.js"></script>
 
         <!-- Plugin JavaScript -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="js/classie.js"></script>
-        <script src="js/cbpAnimatedHeader.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/classie.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/cbpAnimatedHeader.js"></script>
 
         <!-- Contact Form JavaScript -->
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/contact_me.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/jqBootstrapValidation.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/contact_me.js"></script>
 
         <!-- Custom Theme JavaScript -->
-        <script src="js/freelancer.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/freelancer.js"></script>	
+	
 	</body>
 </html>

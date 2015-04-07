@@ -19,6 +19,8 @@ class Mapa extends CI_Controller{
         //en lugar de la latitud y la lngitud
 		$config['center'] = 'auto';
 
+		$config['scrollwheel'] = false;
+
 		$config['onboundschanged'] = 'if (!centreGot) {
 			var mapCentre = map.getCenter();
 			marker_0.setOptions({
@@ -26,9 +28,21 @@ class Mapa extends CI_Controller{
 			});
 		}
 		centreGot = true;';
+
+		$config['onclick'] = '
+				
+				if (!activeMap) {
+					activeMap = true;
+					
+				}else{
+					activeMap = false;
+				}
+				this.setOptions({scrollwheel:activeMap});
+			';
+		
         // el zoom, que lo podemos poner en auto y de esa forma
         //siempre mostrará todos los markers ajustando el zoom	
-		$config['zoom'] = '6';		
+		$config['zoom'] = '6';	
         //el tipo de mapa, en el pdf podéis ver más opciones
 		$config['map_type'] = 'ROADMAP';
         //el ancho del mapa		
@@ -51,7 +65,7 @@ class Mapa extends CI_Controller{
 		//hacemos la consulta al modelo para pedirle 
 		//la posición de los markers y el nombre_poi
 	
-		$markers = $this->pois_model->getPoiUser('0');
+		$markers = $this->pois_model->getPoiUser('1');
 		$data['datos'] = $markers;		
 		foreach($markers as $info_marker)
 		{

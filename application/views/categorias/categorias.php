@@ -12,7 +12,7 @@
 			<li><?= $categoria->nombre_cat; ?></li>
 		</ul>
 	<?PHP }
-	}else echo "No existen datos"?>
+	}else echo "No existen datos";?>
 		
 </body>
 </html>
