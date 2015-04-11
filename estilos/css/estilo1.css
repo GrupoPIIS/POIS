@@ -41,6 +41,7 @@ footer{
 	background-color: #bef230;
 }
 
+
 #pois-usuario h1, #estadisticas h1{
 	color:#fff;
 }
@@ -133,6 +134,19 @@ footer{
 	width: 14%;
 	padding: 0 1% 0 1%;
 
+}
+
+.sec-img-text article{
+	vertical-align:top; 
+	display: inline-block;
+	width: 30%;
+	padding-top: 3%;
+	padding-bottom: 1%;	
+}
+
+.sec-img-text article p{
+	padding: 2% 10% 5% 10%;
+	text-align: justify;
 }
 
 .categ-sublist{
