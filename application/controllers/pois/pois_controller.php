@@ -41,25 +41,27 @@ class Pois_controller extends CI_Controller{
 		$this->load->model('categorias_model');
         $data['categorias'] = $this->categorias_model->getCategories();
 
-		if($this->session->userdata('rol') == 0){
-			$this->load->model('usuarios_model');
-       	 	$data['usuarios'] = $this->usuarios_model->getUsers();
+		$this->load->model('usuarios_model');
+   	 	$data['usuarios'] = $this->usuarios_model->getUsers();
 
-			$this->load->view('pois/form_new_admin', $data);
-		}else{
-			$this->load->view('pois/form_new', $data);
-		}
+		$this->load->view('pois/form_new_admin', $data);
 	}
 
 	//Almacena los datos del formulario (newPoi()) en un array para pasarselos al modelo y añadirlo a la BD.
 	function getNewPoi(){
+		if($this->session->userdata('rol') == 0)
+			$id_usu = $this->session->userdata('id_usuario');
+		else
+			$id_usu = $this->input->post('id_usuario');
+
+
 		$data = array(
 				'lng' 		=> $this->input->post('lng'),
 				'lat' 		=> $this->input->post('lat'),
 				'nombre_poi'=> $this->input->post('nombre_poi'),
 				'txt_rep'	=> $this->input->post('txt_rep'),
 				'direccion'	=> $this->input->post('direccion'),
-				'id_usuario'=> $this->input->post('id_usuario'),
+				'id_usuario'=> $id_usu,
 
 				'id_categoria'=> $this->input->post('id_categoria')
 			);
@@ -70,9 +72,20 @@ class Pois_controller extends CI_Controller{
 	//Lleva a la vista con el formulario para modificar los datos.
 	function updatePoi(){
 		$data['id'] = $this->uri->segment(4);
+
+		$this->load->model('usuarios_model');
+   	 	$data['usuarios'] = $this->usuarios_model->getUsers();
+
+		$this->load->model('categorias_model');
+        $data['categorias'] = $this->categorias_model->getCategories();
+
+        $this->load->model('categorias_model');
+        $data['categorias_poi'] = $this->pois_model->getCategoriesFromPoi($data['id']);
+
 		if($data['id']){
 			$data['poi'] = $this->pois_model->getPoi($data['id']);
 		}
+
 		if($data['poi'] != null)
 			$this->load->view('pois/form_update', $data);
 		else
@@ -81,17 +94,22 @@ class Pois_controller extends CI_Controller{
 
 	//Modifica los datos de un poi cuyo id se pasa por parametro.
 	function getUpdatePoi(){
+		if($this->session->userdata('rol') == 0)
+			$id_usu = $this->session->userdata('id_usuario');
+		else
+			$id_usu = $this->input->post('id_usuario');
+
 		$data = array(
 				'lng' 		=> $this->input->post('lng'),
 				'lat' 		=> $this->input->post('lat'),
 				'nombre_poi'=> $this->input->post('nombre_poi'),
 				'txt_rep'	=> $this->input->post('txt_rep'),
 				'direccion'	=> $this->input->post('direccion'),
-				'id_usuario'=> $this->input->post('id_usuario'),
-
-				'id_categoria'=> $this->input->post('id_categoria')
+				'id_usuario'=> $id_usu
 			);
-		$this->pois_model->updatePoi($this->uri->segment(4), $data);
+
+		$categorias['id_categoria'] = $this->input->post('id_categoria');
+		$this->pois_model->updatePoi($this->uri->segment(4), $data, $categorias);
 		$this->index();
 	}
 

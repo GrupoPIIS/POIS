@@ -48,32 +48,54 @@ class Pois_model extends CI_Model{
 										)
 						);
 		$last = $this->db->insert_id();
-		$this->db->insert('id_poi_id_cat', array(
+		/*$this->db->insert('id_poi_id_cat', array(
 												'id_poi'	=> $last,
 												'id_cat'	=> 0
 											)
-						);
+						);*/
 
 		if($data['id_categoria']){
-			//foreach ($data['id_categoria']){
+			foreach ($data['id_categoria'] as $categoria){
+				
 				$this->db->insert('id_poi_id_cat', array(
 														'id_poi'	=> $last,
-														'id_cat'	=> $data['id_categoria']
+														'id_cat'	=> $categoria
 													)
 								);
-			//}
+			}
 		}
 	}
 
 	//Hace un UPDATE pois SET datos = $data WHERE id = $id
-	function updatePoi($id, $data){
+	function updatePoi($id, $data, $categorias){
 		$this->db->where('id_poi', $id);
 		$query = $this->db->update('pois', $data);
+
+		$this->db->where('id_poi', $id);
+		$this->db->where('id_cat!=0');
+		$this->db->delete('id_poi_id_cat');
+		if($categorias['id_categoria']){
+			foreach ($categorias['id_categoria'] as $categoria){
+				
+				$this->db->insert('id_poi_id_cat', array(
+														'id_poi'	=> $id,
+														'id_cat'	=> $categoria
+													)
+								);
+			}
+		}
 	}
 
 	//Hace un DELETE FROM pois WHERE id = $id
 	function deletePoi($id){
 		$this->db->where('id_poi', $id);
 		$this->db->delete('pois');
+	}
+
+	function getCategoriesFromPoi($id){
+		$this->db->where('id_poi', $id);
+		$query = $this->db->get('id_poi_id_cat');
+		if($query->num_rows() > 0) return $query;
+		else return NULL;
 	}
 }

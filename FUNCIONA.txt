@@ -79,3 +79,15 @@ En esta versión funciona V5 (Alicia):
 	-	Formulario de recuperación de contraseña. Meter email que tenga en la BD.
 		*	Problema: Solo con cuentas de gmail.
 	-	Depurados algunos de los errores anteriores (no tenía variables de session -> if(isset)))
+
+En esta versión funciona V7 (Alicia):
+
+	-	deletes cascade
+	-	combobox para elegir el rol (usuarios/form_new)
+	-	combobox para elegir el usuario (pois/form_new_admin)
+	-	checkbox con la lista de las categorias (solo hace el insert de una)
+
+En esta versión funciona V8 (Alicia):
+
+	-	inserta y modifica múltiples categorías
+	-	en la base de datos hay un trigger que inserta la categoria por defecto. Lo he quitado del código

@@ -15,19 +15,39 @@
 
 		$id_categoria= array('name' => 'id_categoria');
 	?>
+
+	<?PHP if($this->session->userdata('rol') == 0){?>
+		<label>Usuario: </label>
+		<select name='id_usuario' id='id_usuario'>
+			<option>--- Escoge un Usuario ---</option>
+			<?PHP if($usuarios){
+				foreach ($usuarios->result() as $usuario){ ?>
+					<option value=<?= $usuario->id_usuario; ?>> <?= $usuario->nombre; ?> </option>
+			<?PHP }
+			}else echo 'No hay datos.';?>
+		</select>
+	<?php }?>
+
 	<label>Coordenada longitud: <?= form_input($lng) ?></label>
 	<label>Coordenada latitud: <?= form_input($lat) ?></label>
 	<label>Nombre: <?= form_input($nombre_poi) ?></label>
 	<label>Texto representativo: <?= form_input($txt_rep) ?></label>
 	<label>Dirección: <?= form_input($direccion) ?></label>
-	<label>Usuario: (en el futuro lo cogerá de la sesión, excepto si es admin)<?= form_input($id_usuario) ?></label>
 	
 	<label>Categoría: </label>
-	<select name='id_categoria' id='id_categoria'>
-		<option>--- Escoge una Categoría ---</option>
 		<?PHP if($categorias){
-			foreach ($categorias->result() as $categoria){ ?>
-				<option value=<?= $categoria->id_cat; ?>> <?= $categoria->nombre_cat; ?> </option>
+			foreach ($categorias->result() as $categoria){ 
+				$bool = 0;
+			 	foreach ($categorias_poi->result() as $is){ 
+					if($categoria->id_cat == $is->id_cat){
+						$bool = 1;
+					}
+				} ?>
+				<input type="checkbox" name='id_categoria[]' id='id_categoria[]' value=<?= $categoria->id_cat; ?> 
+				<?php if($bool){ ?>
+					checked  
+				<?php } ?>
+				/> <?= $categoria->nombre_cat; ?>
 		<?PHP }
 		}else echo 'No hay datos.';?>
 	</select>
