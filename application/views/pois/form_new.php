@@ -12,7 +12,7 @@
 		$txt_rep	= array('name' => 'txt_rep');
 		$direccion	= array('name' => 'direccion');
 
-		//$id_categoria= array('name' => 'id_categoria');
+		$id_categoria= array('name' => 'id_categoria');
 	?>
 	<?php echo $this->session->userdata('rol');?>
 	<label>Coordenada longitud: <?= form_input($lng) ?></label>
@@ -20,7 +20,14 @@
 	<label>Nombre: <?= form_input($nombre_poi) ?></label>
 	<label>Texto representativo: <?= form_input($txt_rep) ?></label>
 	<label>Dirección: <?= form_input($direccion) ?></label>
-	<!--<label>Categoría: (checkbox)<?= form_input($id_categoria) ?></label>-->
+
+	<label>Categoría: </label>
+		<?PHP if($categorias){
+			foreach ($categorias->result() as $categoria){ ?>
+				<input type="checkbox" name='id_categoria' id='id_categoria' value=<?= $categoria->id_cat; ?> /> <?= $categoria->nombre_cat; ?>
+		<?PHP }
+		}else echo 'No hay datos.';?>
+	</select>
 
 	<?= form_submit('','Añadir POI') ?>
 

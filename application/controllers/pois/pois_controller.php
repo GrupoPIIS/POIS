@@ -38,10 +38,17 @@ class Pois_controller extends CI_Controller{
 	
 	//Lleva a la vista con el formulario para rellenar los datos de un nuevo poi.
 	function newPoi(){
-		if($this->session->userdata('rol') == 0)
-			$this->load->view('pois/form_new_admin');
-		else
-			$this->load->view('pois/form_new');
+		$this->load->model('categorias_model');
+        $data['categorias'] = $this->categorias_model->getCategories();
+
+		if($this->session->userdata('rol') == 0){
+			$this->load->model('usuarios_model');
+       	 	$data['usuarios'] = $this->usuarios_model->getUsers();
+
+			$this->load->view('pois/form_new_admin', $data);
+		}else{
+			$this->load->view('pois/form_new', $data);
+		}
 	}
 
 	//Almacena los datos del formulario (newPoi()) en un array para pasarselos al modelo y añadirlo a la BD.
@@ -54,7 +61,7 @@ class Pois_controller extends CI_Controller{
 				'direccion'	=> $this->input->post('direccion'),
 				'id_usuario'=> $this->input->post('id_usuario'),
 
-				//'id_categoria'=> $this->input->post('id_categoria')
+				'id_categoria'=> $this->input->post('id_categoria')
 			);
 		$this->pois_model->newPoi($data);
 		$this->index();
@@ -82,7 +89,7 @@ class Pois_controller extends CI_Controller{
 				'direccion'	=> $this->input->post('direccion'),
 				'id_usuario'=> $this->input->post('id_usuario'),
 
-				//'id_categoria'=> $this->input->post('id_categoria')
+				'id_categoria'=> $this->input->post('id_categoria')
 			);
 		$this->pois_model->updatePoi($this->uri->segment(4), $data);
 		$this->index();

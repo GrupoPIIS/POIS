@@ -13,7 +13,7 @@
 		$direccion	= array('name' => 'direccion', 'value' => $poi->result()[0]->direccion);
 		$id_usuario		= array('name' => 'id_poi', 'value' => $poi->result()[0]->id_usuario);
 
-		//$id_categoria= array('name' => 'id_categoria');
+		$id_categoria= array('name' => 'id_categoria');
 	?>
 	<label>Coordenada longitud: <?= form_input($lng) ?></label>
 	<label>Coordenada latitud: <?= form_input($lat) ?></label>
@@ -21,7 +21,16 @@
 	<label>Texto representativo: <?= form_input($txt_rep) ?></label>
 	<label>Dirección: <?= form_input($direccion) ?></label>
 	<label>Usuario: (en el futuro lo cogerá de la sesión, excepto si es admin)<?= form_input($id_usuario) ?></label>
-	<!--<label>Categoría: (checkbox)<?= form_input($id_categoria) ?></label>-->
+	
+	<label>Categoría: </label>
+	<select name='id_categoria' id='id_categoria'>
+		<option>--- Escoge una Categoría ---</option>
+		<?PHP if($categorias){
+			foreach ($categorias->result() as $categoria){ ?>
+				<option value=<?= $categoria->id_cat; ?>> <?= $categoria->nombre_cat; ?> </option>
+		<?PHP }
+		}else echo 'No hay datos.';?>
+	</select>
 
 	<?= form_submit('','Actualizar poi') ?>
 

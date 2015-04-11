@@ -17,7 +17,12 @@
 		$password	= array('name' => 'password', 'value' => $usuario->result()[0]->password);
 	?>
 
-	<label>Rol: (combobox)<?= form_input($rol) ?></label>
+	<label>Rol: </label>
+	<select name='rol' id='rol'>
+        <option value=1> Usuario </option>
+        <option value=2> Cliente VIP </option>
+	</select><br/>
+	
 	<label>Nombre: <?= form_input($nombre) ?></label>
 	<label>Empresa: <?= form_input($empresa) ?></label>
 	<label>Dirección: <?= form_input($direccion) ?></label>

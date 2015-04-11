@@ -47,18 +47,28 @@ class Pois_model extends CI_Model{
 										'id_usuario'=> $id_usuario
 										)
 						);
-		/*$this->db->insert('id_poi_id_cat', array(
-												'id_poi'		=> $data['direccion'],
-												'id_categoria'	=> $data['id_usuario']
+		$last = $this->db->insert_id();
+		$this->db->insert('id_poi_id_cat', array(
+												'id_poi'	=> $last,
+												'id_cat'	=> 0
 											)
-						);*/
+						);
+
+		if($data['id_categoria']){
+			//foreach ($data['id_categoria']){
+				$this->db->insert('id_poi_id_cat', array(
+														'id_poi'	=> $last,
+														'id_cat'	=> $data['id_categoria']
+													)
+								);
+			//}
+		}
 	}
 
 	//Hace un UPDATE pois SET datos = $data WHERE id = $id
 	function updatePoi($id, $data){
 		$this->db->where('id_poi', $id);
 		$query = $this->db->update('pois', $data);
-		//Tabla relacion
 	}
 
 	//Hace un DELETE FROM pois WHERE id = $id
