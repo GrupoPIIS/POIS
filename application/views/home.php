@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +9,13 @@
 
     	<title>Home</title>
     	<link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/bootstrap.min.css">
+        <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/freelancer.css">
+        <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
         <!-- Custom Fonts -->
-        <link href="<?php echo base_url();?>/estilos/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" t
 
         <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
         <script type="text/javascript">
@@ -56,8 +55,11 @@
                     <li class="page-scroll">
                         <a href="#estadisticas">Estad&iacute;sticas</a>
                     </li>
-                    <li class="page-scroll" id="menu-usuario">
-                        <a href="#"><?=$this->session->userdata['nombre'];?></a>
+                    <li id="menu-usuario">
+                        <a href="#" ><?=$this->session->userdata['nombre'];?></a>
+                    </li>
+                    <li >
+                        <a href="<?php echo base_url();?>/mapa/closeSession" >Salir</a>
                     </li>
                 </ul>
             </div>
@@ -73,44 +75,33 @@
                 <a href="<?php echo base_url();?>pois/pois_controller" class="btn btn-success btn-lg">Administrar POIS</a>
             </article>
             <article id="pu1">
-
                 <article id="mapa" style="width:95%; height:500px">
                     <?=$map['html']?>
-                </article>
-                <!--<aside id="mapa-lista">
-                    <ul>
-                        <li><a href="#pois-usuario">poi 1</a>
-                        <li><a href="#pois-usuario">poi 2</a>
-                        <li><a href="#pois-usuario">poi 3</a>        
-                    </ul> 
-                           
-                </aside>
-                 -->
-            </article>
-            
+                </article>                
+            </article>           
             
 		</section>
 
-		<section id="categorias">
+		<section id="categorias" class="sec-img-text">
              <h1>CATEGOR&Iacute;AS</h1>
              <hr class="star-primary">
-             <article id="cat1">
-                 <p>Visualiza el listado de categor&iacute;as de los Puntos de Interés o crea nuevas categorías si lo prefies</p>
-                 <img src="<?php echo base_url();?>/estilos/img/tag.png" id="img-estadisticas">
+             <article id="cat1" class="art-img-text">
+                <img src="<?php echo base_url();?>/estilos/img/tag.png" id="img-estadisticas">                                  
              </article>
              <article id="link-categorias">
+                <p>Visualiza el listado de categor&iacute;as de los Puntos de Interés o crea nuevas categorías si lo prefies</p>
                 <a href="<?php echo base_url();?>categorias/categorias_controller" class="btn btn-success btn-lg">Administrar Categor&iacute;as</a>
             </article>			
 		</section>
 
-		<section id="estadisticas">
+		<section id="estadisticas" class="sec-img-text">
             <h1>ESTAD&Iacute;STICAS</h1>
             <hr class="star-secundary">
-			<article id="estad1">
-                 <p>Observa diferentes estadísticas sobre tus Puntos de Interés y sobre aquellos generados por otros usuarios</p>
-                 <img src="<?php echo base_url();?>/estilos/img/estadisticas.png" id="img-estadisticas">
+			<article id="estad1" class="art-img-text">                 
+                 <img src="<?php echo base_url();?>/estilos/img/estadisticas.png" id="img-estadisticas">                 
             </article>
             <article id="link-categorias">
+                <p>Observa diferentes estadísticas sobre tus Puntos de Interés y sobre aquellos generados por otros usuarios</p>
                 <a href="#estadisticas" class="btn btn-lg btn-outline">Administrar Estad&iacute;sticas</a>
             </article>
 		</section>            

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 	<head>
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,8 +51,11 @@
                         </li>
                         <li class="page-scroll">
                             <a href="<?php echo base_url();?>mapa#estadisticas">Estad&iacute;sticas</a>
-                        <li class="page-scroll" id="menu-usuario">
-                            <a href="#"><?=$this->session->userdata['nombre']?></a>
+                        <li id="menu-usuario">
+                            <a href="#" ><?=$this->session->userdata['nombre'];?></a>
+                        </li>
+                        <li >
+                            <a href="<?php echo base_url();?>/mapa/closeSession" >Salir</a>
                         </li>
                     </ul>                    
                 </div>
