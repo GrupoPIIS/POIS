@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Nuevo POI Admin</title>
+	<title>Nuevo POI</title>
 	<meta charset='utf-8'>
 </head>
 <body>
@@ -16,7 +16,6 @@
 
 		$id_categoria= array('name' => 'id_categoria');
 	?>
-	<?php echo $this->session->userdata('rol');?>
 
 	<?PHP if($this->session->userdata('rol') == 0){?>
 		<label>Usuario: </label>
@@ -27,14 +26,14 @@
 					<option value=<?= $usuario->id_usuario; ?>> <?= $usuario->nombre; ?> </option>
 			<?PHP }
 			}else echo 'No hay datos.';?>
-		</select>
+		</select><br>
 	<?PHP } ?>
 
-	<label>Coordenada longitud: <?= form_input($lng) ?></label>
-	<label>Coordenada latitud: <?= form_input($lat) ?></label>
-	<label>Nombre: <?= form_input($nombre_poi) ?></label>
-	<label>Texto representativo: <?= form_input($txt_rep) ?></label>
-	<label>Dirección: <?= form_input($direccion) ?></label>
+	<label>Coordenada longitud: <?= form_input($lng) ?></label><br>
+	<label>Coordenada latitud: <?= form_input($lat) ?></label><br>
+	<label>Nombre: <?= form_input($nombre_poi) ?></label><br>
+	<label>Texto representativo: <?= form_input($txt_rep) ?></label><br>
+	<label>Dirección: <?= form_input($direccion) ?></label><br>
 	
 	<label>Categoría: </label>
 		<?PHP if($categorias){
@@ -42,7 +41,7 @@
 				<input type="checkbox" name='id_categoria[]' id='id_categoria[]' value=<?= $categoria->id_cat; ?> /> <?= $categoria->nombre_cat; ?>
 		<?PHP }
 		}else echo 'No hay datos.';?>
-	</select>
+	</select><br>
 
 	<?= form_submit('','Añadir POI') ?>
 

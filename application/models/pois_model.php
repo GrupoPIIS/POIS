@@ -67,7 +67,7 @@ class Pois_model extends CI_Model{
 	}
 
 	//Hace un UPDATE pois SET datos = $data WHERE id = $id
-	function updatePoi($id, $data, $categorias){
+	function updatePoi($id, $data, $categorias, $extras, $multimedia, $social){
 		$this->db->where('id_poi', $id);
 		$query = $this->db->update('pois', $data);
 
@@ -84,6 +84,17 @@ class Pois_model extends CI_Model{
 								);
 			}
 		}
+		if(isset($extras['slogan'])){
+				$query = $this->db->update('extras_poi', $extras);
+		}
+		if(isset($multimedia['tipo_recurso'])){
+				$query = $this->db->update('multimedia', $multimedia);
+		}
+		if(isset($social['id_rrss'])){
+			foreach ($social as $red){
+				$query = $this->db->update('rrss_poi', $social);
+			}
+		}
 	}
 
 	//Hace un DELETE FROM pois WHERE id = $id
@@ -95,6 +106,58 @@ class Pois_model extends CI_Model{
 	function getCategoriesFromPoi($id){
 		$this->db->where('id_poi', $id);
 		$query = $this->db->get('id_poi_id_cat');
+		if($query->num_rows() > 0) return $query;
+		else return NULL;
+	}
+
+	function extraPoi($id, $data){
+		$this->db->insert('extras_poi', array(
+											'id_poi' 			=> $id,
+											'slogan' 			=> $data['slogan'],
+											'telefono1'			=> $data['telefono1'],
+											'telefono2'			=> $data['telefono2'],
+											'direccion_local'	=> $data['direccion_local'],
+											'horario'			=> $data['horario']
+											)
+						);
+	}
+
+	function getExtraPoi($id){
+		$this->db->where('id_poi', $id);
+		$query = $this->db->get('extras_poi');
+		if($query->num_rows() > 0) return $query;
+		else return NULL;
+	}
+
+	function multimediaPoi($id, $data){
+		$this->db->insert('multimedia', array(
+											'id_poi' 			=> $id,
+											'tipo_recurso'		=> $data['tipo_recurso'],
+											'nombre_recurso'	=> $data['nombre_recurso']
+											//'ruta_recurso'		=> $data['ruta_recurso']
+											)
+						);
+	}
+
+	function getMultimediaPoi($id){
+		$this->db->where('id_poi', $id);
+		$query = $this->db->get('multimedia');
+		if($query->num_rows() > 0) return $query;
+		else return NULL;
+	}
+
+	function socialPoi($id, $data){
+		$this->db->insert('rrss_poi', array(
+											'id_poi' 			=> $id,
+											'id_rrss'	=> $data['id_rrss'],
+											'enlace'	=> $data['enlace']
+											)
+						);
+	}
+
+	function getSocialPoi($id){
+		$this->db->where('id_poi', $id);
+		$query = $this->db->get('rrss_poi');
 		if($query->num_rows() > 0) return $query;
 		else return NULL;
 	}

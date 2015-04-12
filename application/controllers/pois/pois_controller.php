@@ -44,16 +44,15 @@ class Pois_controller extends CI_Controller{
 		$this->load->model('usuarios_model');
    	 	$data['usuarios'] = $this->usuarios_model->getUsers();
 
-		$this->load->view('pois/form_new_admin', $data);
+		$this->load->view('pois/form_new', $data);
 	}
 
 	//Almacena los datos del formulario (newPoi()) en un array para pasarselos al modelo y añadirlo a la BD.
 	function getNewPoi(){
 		if($this->session->userdata('rol') == 0)
-			$id_usu = $this->session->userdata('id_usuario');
-		else
 			$id_usu = $this->input->post('id_usuario');
-
+		else
+			$id_usu = $this->session->userdata('id_usuario');
 
 		$data = array(
 				'lng' 		=> $this->input->post('lng'),
@@ -78,9 +77,18 @@ class Pois_controller extends CI_Controller{
 
 		$this->load->model('categorias_model');
         $data['categorias'] = $this->categorias_model->getCategories();
+        
+        $this->load->model('redes_sociales_model');
+        $data['redes_sociales'] = $this->redes_sociales_model->getSocials();
 
         $this->load->model('categorias_model');
         $data['categorias_poi'] = $this->pois_model->getCategoriesFromPoi($data['id']);
+
+        $data['extras'] = $this->pois_model->getExtraPoi($data['id']);
+
+        $data['multimedia'] = $this->pois_model->getMultimediaPoi($data['id']);
+
+        $data['social'] = $this->pois_model->getSocialPoi($data['id']);
 
 		if($data['id']){
 			$data['poi'] = $this->pois_model->getPoi($data['id']);
@@ -109,7 +117,27 @@ class Pois_controller extends CI_Controller{
 			);
 
 		$categorias['id_categoria'] = $this->input->post('id_categoria');
-		$this->pois_model->updatePoi($this->uri->segment(4), $data, $categorias);
+
+		$extras = array(
+				'slogan' 			=> $this->input->post('slogan'),
+				'telefono1'			=> $this->input->post('telefono1'),
+				'telefono2'			=> $this->input->post('telefono2'),
+				'direccion_local'	=> $this->input->post('direccion_local'),
+				'horario'			=> $this->input->post('horario')
+			);
+
+		$multimedia = array(
+				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
+				'nombre_recurso'	=> $this->input->post('nombre_recurso')
+				//'ruta_recurso'		=> $this->input->post('telefono2')
+			);
+
+		$social = array(
+				'id_rrss' 	=> $this->input->post('id_rrss'),
+				'enlace'	=> $this->input->post('enlace')
+			);
+
+		$this->pois_model->updatePoi($this->uri->segment(4), $data, $categorias, $extras, $multimedia, $social);
 		$this->index();
 	}
 
@@ -119,6 +147,70 @@ class Pois_controller extends CI_Controller{
 		if($id){
 			$this->pois_model->deletePoi($id);
 		}
+		$this->index();
+	}
+
+	function extraPoi(){
+		$data['id'] = $this->uri->segment(4);
+
+		if($data['id'] != null)
+			$this->load->view('pois/poi_extras', $data);
+		else
+			$this->load->view('pois/form_new', $data);
+	}
+
+	function getExtraPoi(){
+		$data = array(
+				'slogan' 			=> $this->input->post('slogan'),
+				'telefono1'			=> $this->input->post('telefono1'),
+				'telefono2'			=> $this->input->post('telefono2'),
+				'direccion_local'	=> $this->input->post('direccion_local'),
+				'horario'			=> $this->input->post('horario')
+			);
+
+		$this->pois_model->extraPoi($this->uri->segment(4), $data);
+		$this->index();
+	}
+
+	function multimediaPoi(){
+		$data['id'] = $this->uri->segment(4);
+
+		if($data['id'] != null)
+			$this->load->view('pois/poi_multimedia', $data);
+		else
+			$this->load->view('pois/form_new', $data);
+	}
+
+	function getMultimediaPoi(){
+		$data = array(
+				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
+				'nombre_recurso'	=> $this->input->post('nombre_recurso')
+				//'ruta_recurso'		=> $this->input->post('telefono2')
+			);
+
+		$this->pois_model->multimediaPoi($this->uri->segment(4), $data);
+		$this->index();
+	}
+
+	function socialPoi(){
+		$data['id'] = $this->uri->segment(4);
+
+		$this->load->model('redes_sociales_model');
+        $data['redes'] = $this->redes_sociales_model->getSocials();
+
+		if($data['id'] != null)
+			$this->load->view('pois/poi_social', $data);
+		else
+			$this->load->view('pois/form_new', $data);
+	}
+
+	function getSocialPoi(){
+		$data = array(
+				'id_rrss' 	=> $this->input->post('id_rrss'),
+				'enlace'	=> $this->input->post('enlace')
+			);
+
+		$this->pois_model->socialPoi($this->uri->segment(4), $data);
 		$this->index();
 	}
 }
