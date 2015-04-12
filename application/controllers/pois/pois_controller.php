@@ -30,9 +30,9 @@ class Pois_controller extends CI_Controller{
 
 	//Lista los pois del usuario con la sesion abierta
 	function getPoiUser(){
-		//$id_usuario = $this->session->userdata('id_usuario');
-		//$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
-		$data['pois'] = $this->pois_model->getPoiUser(0);
+		$id_usuario = $this->session->userdata('id_usuario');
+		$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
+		//$data['pois'] = $this->pois_model->getPoiUser(0);
 		$this->load->view('mis-pois', $data);
 	}
 	

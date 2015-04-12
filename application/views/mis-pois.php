@@ -68,20 +68,22 @@
             <h1>MIS PUNTOS DE INTER&Eacute;S</h1>
             <article id="link-pois">
                     <img src="<?php echo base_url();?>/estilos/img/map.png" alt="Crear nuevo poi">
-                    <a href="#" class="btn btn-success btn-lg">Crear Nuevo Punto</a>
+                    <a href="<?php echo base_url();?>/pois/pois_controller/newPoi" class="btn btn-success btn-lg">Crear Nuevo Punto</a>
             </article>
             <article id="lp1">                
                     <ul>
 
                     <?php foreach ($pois as $poi): ?>
-                        <li>
-                            <a href="#">
+                        <li class="poi-enlace">
+                            <a href="<?php echo base_url();?>/pois/pois_controller/getPoi/<?=$poi->id_poi?>" >
                                 <p class="poi-text"><?= $poi->nombre_poi?></p>
-                                <a href="#" class="poi-boton">
-                                    <img src="<?php echo base_url();?>/estilos/img/edit.png" alt="Editar">
-                                    <img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
-                                </a>
                             </a>
+                            <a href="<?php echo base_url();?>/pois/pois_controller/updatePoi/<?=$poi->id_poi?>" class="poi-boton">
+                                    <img src="<?php echo base_url();?>/estilos/img/edit.png" alt="Editar">                    
+                            </a>
+                            <a href="<?php echo base_url();?>/pois/pois_controller/deletePoi/<?=$poi->id_poi?>" class="poi-boton">
+                                <img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
+                            </a>                            
                         </li>
                     <?php endforeach ?>
                                            
