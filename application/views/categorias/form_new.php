@@ -8,7 +8,7 @@
 	<?php
 		$nombre	= array('name' => 'nombre');
 	?>
-	<label>Nombre: <?= form_input($nombre) ?></label>
+	<label>Nombre: <?= form_input($nombre) ?></label><br>
 
 	<?= form_submit('','Añadir categoría') ?>
 

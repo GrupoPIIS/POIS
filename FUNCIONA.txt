@@ -91,3 +91,22 @@ En esta versión funciona V8 (Alicia):
 
 	-	inserta y modifica múltiples categorías
 	-	en la base de datos hay un trigger que inserta la categoria por defecto. Lo he quitado del código
+
+En esta versión funciona V9 (Alicia):
+
+	-	inserta: 
+		.	extras_poi ( http://localhost/POIS/pois/pois_controller/extraPoi )
+		. 	multimedia ( http://localhost/POIS/pois/pois_controller/multimediaPoi )
+		.	rrss_poi ( http://localhost/POIS/pois/pois_controller/socialPoi )
+		.	redes sociales ( http://localhost/POIS/redes_sociales/redes_sociales_controller/newsocial )
+
+	-	modifica: 
+		.	extras_poi ( http://localhost/POIS/pois/pois_controller/updatepoi/$id )
+		.	redes sociales ( http://localhost/POIS/redes_sociales/redes_sociales_controller/updatesocial/$id )
+	
+	-	elimina: 
+		. redes sociales ( http://localhost/POIS/redes_sociales/redes_sociales_controller/deletesocial/$id )
+
+	Queda por hacer:
+		*	Tratar imágenes
+		*	Update/delete extras_poi, multimedia, rrss_poi

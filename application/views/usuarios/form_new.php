@@ -20,15 +20,15 @@
 	<select name='rol' id='rol'>
         <option value=1> Usuario </option>
         <option value=2> Cliente VIP </option>
-	</select>
+	</select><br>
 
-	<label>Nombre: <?= form_input($nombre) ?></label>
-	<label>Empresa: <?= form_input($empresa) ?></label>
-	<label>Dirección: <?= form_input($direccion) ?></label>
-	<label>Teléfono: <?= form_input($tel) ?></label>
-	<label>CIF: <?= form_input($cif) ?></label>
-	<label>Correo: <?= form_input($mail) ?></label>
-	<label>Contraseña: <?= form_input($password) ?></label>
+	<label>Nombre: <?= form_input($nombre) ?></label><br>
+	<label>Empresa: <?= form_input($empresa) ?></label><br>
+	<label>Dirección: <?= form_input($direccion) ?></label><br>
+	<label>Teléfono: <?= form_input($tel) ?></label><br>
+	<label>CIF: <?= form_input($cif) ?></label><br>
+	<label>Correo: <?= form_input($mail) ?></label><br>
+	<label>Contraseña: <?= form_input($password) ?></label><br>
 
 	<?= form_submit('','Añadir usuario') ?>
 

@@ -9,7 +9,7 @@
 		$nombre	= array('name' => 'nombre', 'value' => $categoria->result()[0]->nombre_cat);
 	?>
 
-	<label>Nombre: <?= form_input($nombre) ?></label>
+	<label>Nombre: <?= form_input($nombre) ?></label><br>
 
 	<?= form_submit('','Actualizar categoría') ?>
 
