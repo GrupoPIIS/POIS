@@ -67,7 +67,7 @@
             <h1>CATEGOR&Iacute;AS</h1>
             <article id="link-categ">
                     <img src="<?php echo base_url();?>/estilos/img/tag2.png" alt="Crear nueva categoría">
-                    <a href="#" class="btn btn-success btn-lg">Crear Nueva Categor&iacute;a</a>                 
+                    <a href="<?php echo base_url();?>/categorias/categorias_controller/newCategory" class="btn btn-success btn-lg">Crear Nueva Categor&iacute;a</a>                 
             </article>
             <?php 
                     if($categorias){ ?> 
@@ -76,43 +76,14 @@
                                             <ul>
                                             <?php foreach ($categorias->result() as $categoria): ?>
                                                  <li>
-                                                    <a href="#">
-                                                        <img class="categ-img" src="img/profile.png">
+                                                    <a href="<?php echo base_url();?>/categorias/categorias_controller/getCategory/<?=$categoria->id_cat?>">
+                                                        <img class="categ-img" src="<?php echo base_url();?>/estilos/img/profile.png">
                                                         <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
                                                     </a>
                                                 </li>
                                             <?php endforeach; ?>  
                                             </ul>
                                     </article>              
-                        </article>
-                        <article class="categ-sublist">
-                            <article id="lc1">                
-                                <ul>
-                                    <?php foreach ($categorias->result() as $categoria): ?>
-                                        <li>
-                                            <a href="#">
-                                                <img class="categ-img" src="img/profile.png">
-                                                <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
-                                            </a>
-                                        </li>
-                                    <?php endforeach; ?>  
-                                </ul> 
-                            </article>              
-                        </article>
-                        <article class="categ-sublist">
-                            <article id="lc1">                
-                                <ul>
-                                    <?php foreach ($categorias->result() as $categoria): ?>
-                                        <li>
-                                            <a href="#">
-                                                <img class="categ-img" src="img/profile.png">
-                                                <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
-                                            </a>
-                                        </li>
-                                    <?php endforeach; ?>  
-                                </ul>
-
-                            </article>              
                         </article>
             <?php }else echo "No existen datos";?>
 		</section>
