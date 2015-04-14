@@ -66,7 +66,7 @@ class Usuarios_controller extends CI_Controller{
 			$data['usuario'] = $this->usuarios_model->getUser($data['id']);
 		}
 
-		if($data['poi'] != null)
+		if($data['id'] != null)
 			$this->load->view('usuarios/form_update', $data);
 		else
 			$this->load->view('usuarios/form_new', $data);
