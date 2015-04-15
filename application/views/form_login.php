@@ -13,7 +13,7 @@
 	<label>Contraseña: <?= form_password($password) ?></label>
 	<p1 style=color:red;><?php if(isset($error)) echo $error; ?></p1>
 
-	<a href="./password">¿Olvidaste tu contraseña?</a>
+	<a href="./login_controller/password">¿Olvidaste tu contraseña?</a>
 
 	<?= form_submit('','Entrar') ?>
 
