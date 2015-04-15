@@ -109,33 +109,7 @@ class Pois_model extends CI_Model{
 		if($query->num_rows() > 0) return $query;
 		else return NULL;
 	}
-
-<<<<<<< HEAD
-	//Devuelve los 20 pois dentro de un círculo de radio r (en kms) y centro en la ubicación actual.
-	//se el pasa un array como argumento que contiene la ubicación (lat y lng del centro del círculo, 
-	//es decir, la ubicación actual del navegador o del móvil o la que se le seleccione 
-	//desde el mapa de la página principal) y el radio en kms que quieres que te devuelva.
-	//
-
-	function getPoisCloseTo($lat, $lng, $radius){
-
-		/*SELECT
-		    id, (
-		      6371 * acos (
-		      cos ( radians(78.3232) )
-		      * cos( radians( lat ) )
-		      * cos( radians( lng ) - radians(65.3234) )
-		      + sin ( radians(78.3232) )
-		      * sin( radians( lat ) )
-		    )
-		) AS distance
-		FROM markers
-		HAVING distance < 30
-		ORDER BY distance
-		LIMIT 0 , 20;*/
-///////////////////////////////////////////////////////
 	
-=======
 	function extraPoi($id, $data){
 		$this->db->insert('extras_poi', array(
 											'id_poi' 			=> $id,
@@ -186,6 +160,29 @@ class Pois_model extends CI_Model{
 		$query = $this->db->get('rrss_poi');
 		if($query->num_rows() > 0) return $query;
 		else return NULL;
->>>>>>> 6c8693373a2c6effb16e7c4ca5aface1ec4b62ce
 	}
+
+		//Devuelve los 20 pois dentro de un círculo de radio r (en kms) y centro en la ubicación actual.
+	//se el pasa un array como argumento que contiene la ubicación (lat y lng del centro del círculo, 
+	//es decir, la ubicación actual del navegador o del móvil o la que se le seleccione 
+	//desde el mapa de la página principal) y el radio en kms que quieres que te devuelva.
+	//
+
+	//function getPoisCloseTo($lat, $lng, $radius){
+
+		/*SELECT
+		    id, (
+		      6371 * acos (
+		      cos ( radians(78.3232) )
+		      * cos( radians( lat ) )
+		      * cos( radians( lng ) - radians(65.3234) )
+		      + sin ( radians(78.3232) )
+		      * sin( radians( lat ) )
+		    )
+		) AS distance
+		FROM markers
+		HAVING distance < 30
+		ORDER BY distance
+		LIMIT 0 , 20;*/
+///////////////////////////////////////////////////////*/
 }
