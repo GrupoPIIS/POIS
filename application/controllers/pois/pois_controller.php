@@ -103,9 +103,9 @@ class Pois_controller extends CI_Controller{
 	//Modifica los datos de un poi cuyo id se pasa por parametro.
 	function getUpdatePoi(){
 		if($this->session->userdata('rol') == 0)
-			$id_usu = $this->session->userdata('id_usuario');
-		else
 			$id_usu = $this->input->post('id_usuario');
+		else
+			$id_usu = $this->session->userdata('id_usuario');
 
 		$data = array(
 				'lng' 		=> $this->input->post('lng'),
