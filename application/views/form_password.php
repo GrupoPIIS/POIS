@@ -82,7 +82,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="index2.php">Principal</a>
+                        <a href="<?php echo base_url();?>/index2.php">Principal</a>
                     </li>
                 
                 </ul>
