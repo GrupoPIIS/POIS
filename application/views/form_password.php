@@ -61,7 +61,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="login">Acceso</a>
+                        <a href="<?php echo base_url();?>/login_controller/login">Acceso</a>
                     </li>
                   </ul>
 
