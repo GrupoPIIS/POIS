@@ -91,7 +91,7 @@
             </article>            
             	
 		</section>
-         <!-- Footer -->
+     <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
@@ -138,7 +138,6 @@
             </div>
         </div>
     </footer>
-
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
         <div class="scroll-top page-scroll visible-xs visble-sm">
             <a class="btn btn-primary" href="#page-top">

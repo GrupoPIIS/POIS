@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">	
 
-    	<title>Home</title>
+    	<title>Administracion</title>
     	<link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
         <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
@@ -17,12 +17,7 @@
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
 
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-        <script type="text/javascript">
-            var centreGot = false;
-            var activeMap=false;
-        </script>
-        <?=$map['js']?>        
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>              
 	</head>	
 
 	<body class="index" id="page-top">
@@ -47,7 +42,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#page-top">Mis Puntos de Interés</a>
+                        <a href="#page-top">Puntos de Interés</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#categorias">Categor&iacute;as</a>
@@ -55,8 +50,8 @@
                     <li class="page-scroll">
                         <a href="#estadisticas">Estad&iacute;sticas</a>
                     </li>
-                    <li id="menu-usuario">
-                        <a href="#" ><?=$this->session->userdata['nombre'];?></a>
+                    <li class="page-scroll">
+                        <a href="#usuarios" >Usuarios</a>
                     </li>
                     <li >
                         <a href="<?php echo base_url();?>/mapa/closeSession" >Salir</a>
@@ -68,19 +63,17 @@
         <!-- /.container-fluid -->
     </nav>
 
-		<section id="pois-usuario">
-            <h1>MIS PUNTOS DE INTER&Eacute;S</h1>
-          
-            <article id="link-pois">
-                <a href="<?php echo base_url();?>pois/pois_controller" class="btn btn-success btn-lg">Administrar POIS</a>
-            </article>
-            <article id="pu1">
-                <article id="mapa" style="width:95%; height:500px">
-                    <?=$map['html']?>
-                </article>                
-            </article>           
-            
+		<section id="pois-usuario" class="sec-img-text">
+            <h1>PUNTOS DE INTER&Eacute;S</h1>             
+             <article id="pois1" class="art-img-text">
+                <img src="<?php echo base_url();?>/estilos/img/map2.png" id="img-estadisticas">                                  
+             </article>
+             <article id="link">
+                <p>Administra los puntos de interés creados hasta la fecha por todos los usuarios registrados</p>                 
+                <a href="<?php echo base_url();?>pois/pois_controller" class="btn btn-success btn-lg">Administrar POIS</a>        
+            </article>      
 		</section>
+        
 
 		<section id="categorias" class="sec-img-text">
              <h1>CATEGOR&Iacute;AS</h1>
@@ -104,7 +97,19 @@
                 <p>Observa diferentes estadísticas sobre tus Puntos de Interés y sobre aquellos generados por otros usuarios</p>
                 <a href="#estadisticas" class="btn btn-lg btn-outline">Administrar Estad&iacute;sticas</a>
             </article>
-		</section>   
+		</section>
+
+        <section id="usuarios" class="sec-img-text">
+            <h1>USUARIOS</h1>
+            <hr class="star-primary">             
+             <article id="usu1" class="art-img-text">
+                <img src="<?php echo base_url();?>/estilos/img/user.png" id="img-estadisticas">                                  
+             </article>
+             <article id="link">
+                <p>Visualiza, crea y da de baja a usuarios</p>                 
+                <a href="#" class="btn btn-success btn-lg">Administrar Usuarios</a>        
+            </article>      
+        </section>   
 
                  
      <!-- Footer -->
