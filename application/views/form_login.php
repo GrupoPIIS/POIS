@@ -129,7 +129,7 @@
                             <div class="form-group col-xs-12">
                             	<!--<?= form_submit('','Entrar') ?> -->
                                 <button type="submit" class="btn btn-success btn-lg">Entrar</button>
-                                <h6><a href="./login_controller/password">¿Olvidaste tu contraseña?</a></h6>
+                                <h6><a href="<?php echo base_url();?>/login_controller/password">¿Olvidaste tu contraseña?</a></h6>
                             </div>
                         </div>
                     </form>
