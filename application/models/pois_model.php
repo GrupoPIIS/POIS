@@ -168,21 +168,17 @@ class Pois_model extends CI_Model{
 	//desde el mapa de la página principal) y el radio en kms que quieres que te devuelva.
 	//
 
-	//function getPoisCloseTo($lat, $lng, $radius){
+	function getPoisCloseTo($lat, $lng, $radius){
+	  $this->db->query('SELECT id_poi, ( 6371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;
+');
+	//o uso esta query
 
-		/*SELECT
-		    id, (
-		      6371 * acos (
-		      cos ( radians(78.3232) )
-		      * cos( radians( lat ) )
-		      * cos( radians( lng ) - radians(65.3234) )
-		      + sin ( radians(78.3232) )
-		      * sin( radians( lat ) )
-		    )
-		) AS distance
-		FROM markers
-		HAVING distance < 30
-		ORDER BY distance
-		LIMIT 0 , 20;*/
-///////////////////////////////////////////////////////*/
+		
+		//$this->db->having('distance < '.$radius.'');
+
+		//$query = $this->db->get('pois'); 
+// Produces: SELECT title, content, date FROM mytable*/
+///////// SELECT id_poi, ( 6371 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < $radius ORDER BY distance LIMIT 0 , 20;
+
+//////////////////////////////////////////////*/
 }
