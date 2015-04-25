@@ -107,7 +107,13 @@ class Mapa extends CI_Controller{
 			//$data['datos'] = $this->mapa_model->get_markers();
 	        //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
 			$data['map'] = $this->googlemaps->create_map();
-			$this->load->view('home',$data);
+			$rol= $this->session->userdata['rol'];
+			if($rol=='0'){
+				$this->load->view('home-admin',$data);
+			}else{
+				$this->load->view('home',$data);
+			}
+			
 		}
 	}
 }
