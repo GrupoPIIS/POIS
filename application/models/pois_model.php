@@ -148,7 +148,7 @@ class Pois_model extends CI_Model{
 
 	function socialPoi($id, $data){
 		$this->db->insert('rrss_poi', array(
-											'id_poi' 			=> $id,
+											'id_poi' 	=> $id,
 											'id_rrss'	=> $data['id_rrss'],
 											'enlace'	=> $data['enlace']
 											)
@@ -169,16 +169,9 @@ class Pois_model extends CI_Model{
 	//
 
 	function getPoisCloseTo($lat, $lng, $radius){
-	  $this->db->query('SELECT id_poi, ( 6371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;
+	  $this->db->query('SELECT id_poi, ( 6371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;
 ');
-	//o uso esta query
-
-		
-		//$this->db->having('distance < '.$radius.'');
-
-		//$query = $this->db->get('pois'); 
-// Produces: SELECT title, content, date FROM mytable*/
-///////// SELECT id_poi, ( 6371 * acos( cos( radians($lat) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians($lng) ) + sin( radians($lat) ) * sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < $radius ORDER BY distance LIMIT 0 , 20;
-
-//////////////////////////////////////////////*/
-}
+	  $query = $this->db->get('pois');
+	  if($query->num_rows() > 0) return $query;
+	  else return NULL;
+	}
