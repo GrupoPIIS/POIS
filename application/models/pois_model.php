@@ -87,13 +87,18 @@ class Pois_model extends CI_Model{
 		if(isset($extras['slogan'])){
 				$query = $this->db->update('extras_poi', $extras);
 		}
-		if(isset($multimedia['tipo_recurso'])){
-				$query = $this->db->update('multimedia', $multimedia);
+		if(isset($multimedia['nombre_recurso'])){
+			/*foreach ($multimedia as $multi){
+				$this->db->where('id_poi', $id);
+				//$this->db->where('nombre_recurso', $multi['nombre_original']);
+				$query = $this->db->update('multimedia', $multi);
+			}*/
 		}
-		if(isset($social['id_rrss'])){
-			foreach ($social as $red){
+		if(isset($social['nombre_red'])){
+			/*foreach ($social as $red){
+				$this->db->where('id_poi', $id);
 				$query = $this->db->update('rrss_poi', $social);
-			}
+			}*/
 		}
 	}
 
@@ -133,8 +138,8 @@ class Pois_model extends CI_Model{
 		$this->db->insert('multimedia', array(
 											'id_poi' 			=> $id,
 											'tipo_recurso'		=> $data['tipo_recurso'],
-											'nombre_recurso'	=> $data['nombre_recurso']
-											//'ruta_recurso'		=> $data['ruta_recurso']
+											'nombre_recurso'	=> $data['nombre_recurso'],
+											'ruta_recurso'		=> $data['ruta_recurso']
 											)
 						);
 	}

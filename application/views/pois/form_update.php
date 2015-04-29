@@ -181,9 +181,12 @@
 		}
 
 		if($multimedia){
-			$tipo_recurso	= array('name' => 'tipo_recurso', 'value' 		=> $multimedia->result()[0]->tipo_recurso);
-			$nombre_recurso	= array('name' => 'nombre_recurso', 'value' 	=> $multimedia->result()[0]->nombre_recurso);
-			//$ruta_recurso	= array('name' => 'ruta_recurso', 'value' 		=> $multimedia->result()[0]->ruta_recurso);
+			$tipo_recurso	= array('name' => 'tipo_recurso');
+			$nombre_recurso	= array('name' => 'nombre_recurso');
+			$ruta_recurso	= array('name' => 'ruta_recurso');
+
+			$nombre_original= array('name' => 'nombre_original');
+
 		}
 
 		if($social){
@@ -331,7 +334,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Teléfono</label>
-                               	<?= form_input($tlefono1) ?>
+                               	<?= form_input($telefono1) ?>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -362,47 +365,51 @@
 		
 			<?PHP } ?><br>
 
-	<!--<?PHP if($multimedia){ ?>
+	<?PHP if($multimedia){ ?>
 		<br>
 		-----------------------------------------------------------------------------------
 		<br><br>
-		<label>Tipo: </label>
-		<select name='tipo_recurso' id='tipo_recurso'>
-	        <option value='Imagen'> Imagen </option>
-	        <option value='Video'> Vídeo VIP </option>
-		</select><br>
+		<?php foreach ($multimedia->result() as $multi){ ?>
 
-		<label>Nombre: <?= form_input($nombre_recurso) ?></label><br>
-		<label>Ruta: <input type="file" name="ruta_recurso"> </label><br>
-	<?PHP } ?><br>
+			<label>Tipo: </label>
+			<select name='tipo_recurso[]' id='tipo_recurso[]'>
+		        <option value='Imagen' <?PHP if($multi->tipo_recurso == "Imagen"){ ?> selected <?PHP }?>> Imagen </option>
+		        <option value='Video' <?PHP if($multi->tipo_recurso == "Video"){ ?> selected <?PHP }?>> Vídeo </option>
+			</select><br>
+
+			<?PHP $nombre_original[] = $multi->nombre_recurso; ?>
+
+			<label>Nombre: <input type="input" name="nombre_recurso[]" value= <?= $multi->nombre_recurso; ?> ></label><br>
+			<label>Ruta: <input type="file" name="ruta_recurso[]" value= <?= $multi->ruta_recurso; ?>> </label><br>
+		<br><br>
+		<?PHP } ?>
+		<a href="<?php echo base_url();?>pois/pois_controller/multimediaPoi/<?= $id ?>">Añadir más contenido</a>
+	<?php } ?>
 
 	<?PHP if($social){ ?>
 		<br>
 		-----------------------------------------------------------------------------------
 		<br><br>
-		<label>Redes Sociales: </label>
+		<label>Redes Sociales: </label><br>
 			<?PHP foreach ($redes_sociales->result() as $red){ 
-				$bool = 0;
-			 	foreach ($social->result() as $is){ 
-					if($red->id_red == $is->id_rrss){
-						$bool = 1;
-					}
-				} ?>
-				<input type="checkbox" name='id_rrss[]' id='id_rrss[]' value=<?= $red->id_red; ?> 
-				<?PHP if($bool){ ?>
-					checked  
+				$aux = -1;
+				for ($i=0; $i < count($social); $i++){ 
+
+					if($red->id_red == $social->result()[$i]->id_rrss){ 
+						$aux = $i;
+					 } ?>
+
 				<?PHP } ?>
-				/> <?= $red->nombre_red; ?> 
-				<input type="text" name='enlace_red[]' id='enlace_red[]' 
-				<?PHP if($bool){ ?>
-					value = <?= $social->enlace; ?>
-					/> <?= $social->enlace; ?>
-				<?PHP }else{ ?> 
-							/> 
-				?PHP } ?>
-				
+
+				<input type="checkbox" name='id_rrss[]' id='id_rrss[]' value=<?= $red->id_red; ?> 
+					<?php if($aux != -1){ ?>
+						checked  
+					<?php } ?>
+				/> <?= $red->nombre_red; ?>
+				<input type="input" name="enlace" <?php if($aux != -1){ ?>value= <?= $social->result()[$aux]->enlace; } ?> >
+				 <br>
 		<?PHP }
-	 }}?><br>-->
+	}?><br>
 
  				<p1 style=color:red;><?php if(isset($error)) echo $error; ?></p1>
 

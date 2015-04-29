@@ -128,8 +128,10 @@ class Pois_controller extends CI_Controller{
 
 		$multimedia = array(
 				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
-				'nombre_recurso'	=> $this->input->post('nombre_recurso')
-				//'ruta_recurso'		=> $this->input->post('telefono2')
+				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
+				'ruta_recurso'		=> $this->input->post('ruta_recurso'),
+
+				'nombre_original'		=> $this->input->post('nombre_original')
 			);
 
 		$social = array(
@@ -184,8 +186,8 @@ class Pois_controller extends CI_Controller{
 	function getMultimediaPoi(){
 		$data = array(
 				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
-				'nombre_recurso'	=> $this->input->post('nombre_recurso')
-				//'ruta_recurso'		=> $this->input->post('telefono2')
+				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
+				'ruta_recurso'		=> $this->input->post('ruta_recurso')
 			);
 
 		$this->pois_model->multimediaPoi($this->uri->segment(4), $data);
