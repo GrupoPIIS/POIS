@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content=""> 
 
-        <title>Mis Pois</title>
+        <title>Estadisticas</title>
         <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
         <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
@@ -63,74 +63,58 @@
             <!-- /.container-fluid -->
         </nav>
 
-		<section id="list-categ">
-            <h1>CATEGOR&Iacute;AS</h1>
+		<section id="estad-1">
+            <h1>ESTAD&Iacute;STICAS</h1>
             <article id="link-categ">
-                    <img src="<?php echo base_url();?>/estilos/img/tag2.png" alt="Crear nueva categoría">
-                    <a href="<?php echo base_url();?>/categorias/categorias_controller/newCategory" class="btn btn-success btn-lg">Crear Nueva Categor&iacute;a</a>                 
+                                       
             </article>
-            <?php                     
-                    if($categorias){ ?> 
-                        <article class="categ-sublist">                                                                  
-                                    <ul>
-                                        <?php foreach ($categorias->result() as $categoria): ?>
-                                             <li>
-                                                <a href="<?php echo base_url();?>/categorias/categorias_controller/updateCategory/<?=$categoria->id_cat?>">
-                                                    <img class="categ-img" src="<?php echo base_url();?>/estilos/img/profile.png">
-                                                    <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
-                                                </a>
-                                            </li>
-                                        <?php endforeach; ?>  
-                                    </ul>                                                
-                        </article>
-            <?php }else echo "No existen datos";?>
+            
 		</section>
             <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Localización</h3>
-                        <p>Calle Condes de Barcelona, 5, 30007 Murcia
-                        <br>968 96 44 00</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Redes sociales</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Sobre nosotros</h3>
-                        <p>Para más información <a href="http://www.google.com">Google</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; Grupo 1 2015
+                <div class="footer-above">
+                    <div class="container">
+                        <div class="row">
+                            <div class="footer-col col-md-4">
+                                <h3>Localización</h3>
+                                <p>Calle Condes de Barcelona, 5, 30007 Murcia
+                                <br>968 96 44 00</p>
+                            </div>
+                            <div class="footer-col col-md-4">
+                                <h3>Redes sociales</h3>
+                                <ul class="list-inline">
+                                    <li>
+                                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="footer-col col-md-4">
+                                <h3>Sobre nosotros</h3>
+                                <p>Para más información <a href="http://www.google.com">Google</a>.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-                
+                <div class="footer-below">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                Copyright &copy; Grupo 1 2015
+                            </div>
+                        </div>
+                    </div>
+                </div>                
         </footer>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
         <div class="scroll-top page-scroll visible-xs visble-sm">

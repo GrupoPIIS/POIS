@@ -12,8 +12,7 @@ class Usuarios_model extends CI_Model{
 	function getUsers(){
 		$this->db->where('id_usuario!=1');
 		$query = $this->db->get('usuarios');
-		if($query->num_rows() > 0) return $query;
-		else return NULL;
+		return $query->result();
 	}
 
 	//Hace un SELECT * FROM usuarios WHERE id = $id

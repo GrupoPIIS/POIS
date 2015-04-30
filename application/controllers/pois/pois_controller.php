@@ -25,13 +25,19 @@ class Pois_controller extends CI_Controller{
 		}else{
 			$data['pois'] = $this->pois_model->getPoi($data['id']);
 		}
-		$this->load->view('pois/pois', $data);
+		$this->load->view('poicaracteristicas', $data);
 	}
 
 	//Lista los pois del usuario con la sesion abierta
 	function getPoiUser(){
+		$rol=$this->session->userdata('rol');
 		$id_usuario = $this->session->userdata('id_usuario');
-		$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
+		if($rol==0){
+			$data['pois'] = $this->pois_model->getPois();
+		}else{
+			$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
+		}
+		
 		//$data['pois'] = $this->pois_model->getPoiUser(0);
 		$this->load->view('mis-pois', $data);
 	}

@@ -102,7 +102,7 @@
             </article>
             <article id="link-categorias">
                 <p>Observa diferentes estadísticas sobre tus Puntos de Interés y sobre aquellos generados por otros usuarios</p>
-                <a href="#estadisticas" class="btn btn-lg btn-outline">Administrar Estad&iacute;sticas</a>
+                <a href="<?php echo base_url();?>estadisticas/estadisticas_controller" class="btn btn-lg btn-outline">Administrar Estad&iacute;sticas</a>
             </article>
 		</section>   
 

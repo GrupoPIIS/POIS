@@ -11,8 +11,7 @@ class Pois_model extends CI_Model{
 	//Hace un SELECT * FROM pois
 	function getPois(){
 		$query = $this->db->get('pois');
-		if($query->num_rows() > 0) return $query;
-		else return NULL;
+		return $query->result();
 	}
 
 	//Hace un SELECT * FROM pois WHERE id = $id

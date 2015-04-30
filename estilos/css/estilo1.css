@@ -73,30 +73,34 @@ footer{
 	height: 500px;
 }
 
-#list-pois{
+#list-pois, #list-users{
 	margin-top:7%;
 	padding:2% 0 2% 0;
 	width: 100%;
 }
 
-#link-pois img, #link-pois a{
-	vertical-align: middle;
-	text-align: left;
-
+#link-pois, #link-users{
+	margin-top: 2%;
+	margin-bottom: 3%;
 }
 
-#link-pois img{
+#link-pois img, #link-pois a, #link-users img, #link-users a{
+	vertical-align: middle;
+	text-align: left;
+}
+
+#link-pois img, #link-users img{
 	height: 5%;
 	width: 5%;
 }
 
 
-#lp1{
+#lp1, #lu1{
 	margin:2% 25% 2% 25%;
 	width:50%;
 }
 
-#lp1 ul li{
+#lp1 ul li, #lu1 ul li{
 	border:solid 1px #a2a2a2;
 	padding: 1% 0 1% 0;
 	 border-radius: 5px;
@@ -104,7 +108,7 @@ footer{
 
 }
 
-#lp1 ul li a{
+#lp1 ul li a, #lu1 ul li a{
 	 text-decoration: none;
 }
 
@@ -157,8 +161,14 @@ footer{
 }
 
 .categ-sublist{
-	width:32%;
-	display:inline-block;	
+	-webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    text-align: justify;
+    width: 80%;
+    margin-left: 15%;
+    margin-right: 5%;
+
 }
 
 .categ-sublist img, .categ-sublist p{
@@ -167,9 +177,10 @@ footer{
 }
 
 .categ-sublist img{
-	width: 12%;
-	height: 12%;
-	
+	width: 20%;
+	height: 20%;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 
 .categ-sublist li{
