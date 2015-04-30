@@ -98,7 +98,7 @@
         
       
 
-	<?= form_open("/login_controller/getPassword")?>
+	<?= form_open("<?php echo base_url();?>/login_controller/getPassword")?>
 	<?php
 		$mail 		= array('name' => 'mail',
 										'class' => 'form-control',

@@ -186,3 +186,38 @@ footer{
 .categ-sublist li{
 	list-style-type: none;
 }
+
+.user-info{
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.img-user{
+	width: 35%;
+}
+
+.img-user img{
+	width: 100%;
+}
+
+.img-user, .text-user{
+	display:inline-block;
+	vertical-align: top;
+	margin-top: 5%;
+}
+
+.text-user{
+	width: 50%;
+	text-align: left;
+	margin-left: 10%;
+	padding-top: 3%;	
+}
+
+
+.text-user p, .text-user h4{
+	
+	display:inline-block;
+	vertical-align: center;
+}
+

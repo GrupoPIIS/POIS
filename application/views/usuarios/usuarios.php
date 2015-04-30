@@ -76,7 +76,7 @@
             <article id="lu1">                
                     <ul>
                         
-                    <?php foreach ($usuarios as $user): ?>
+                    <?php foreach ($usuarios->result() as $user): ?>
                         <li class="poi-enlace">
                             <a href="<?php echo base_url();?>usuarios/usuarios_controller/getUsuario/<?=$user->id_usuario?>" >
                                 <p class="poi-text"><?=$user->nombre?></p>
