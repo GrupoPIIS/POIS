@@ -90,6 +90,14 @@ header {
 	margin-top: 1%;
 }
 
+
+#containermargen{
+	margin-left: -130px;
+  	margin-right: -90px;
+  	margin-top: -2%;
+}
+
+
 header{
     margin-top: -13%;
 }

@@ -187,11 +187,50 @@ footer{
 	list-style-type: none;
 }
 
+
+.poi-info{
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+
+.img-poi{
+	width: 35%;
+}
+
+.img-poi img{
+	width: 100%;
+}
+
+
+.img-poi, .text-poi{
+	display:inline-block;
+	vertical-align: top;
+	margin-top: 5%;
+}
+
+.text-poi{
+	width: 50%;
+	text-align: left;
+	margin-left: 10%;
+	padding-top: 3%;	
+}
+
+
+.text-poi p, .text-poi h4{
+	
+	display:inline-block;
+	vertical-align: center;
+}
+
+
 .user-info{
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
 }
+
 
 .img-user{
 	width: 35%;
