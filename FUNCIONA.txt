@@ -110,3 +110,7 @@ En esta versión funciona V9 (Alicia):
 	Queda por hacer:
 		*	Tratar imágenes
 		*	Update/delete extras_poi, multimedia, rrss_poi
+
+En esta versión funciona V10 (Alicia):
+	
+	-	Nueva vista de update

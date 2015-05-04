@@ -51,10 +51,6 @@
                     </li>
                     <li class="page-scroll">
                         <a href="#categorias">Categor&iacute;as</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#estadisticas">Estad&iacute;sticas</a>
-                    </li>
                     <li id="menu-usuario">
                         <a href="#" ><?=$this->session->userdata['nombre'];?></a>
                     </li>
@@ -102,7 +98,7 @@
             </article>
             <article id="link-categorias">
                 <p>Observa diferentes estadísticas sobre tus Puntos de Interés y sobre aquellos generados por otros usuarios</p>
-                <a href="#estadisticas" class="btn btn-lg btn-outline">Administrar Estad&iacute;sticas</a>
+                <a href="<?php echo base_url();?>estadisticas/estadisticas_controller" class="btn btn-lg btn-outline">Administrar Estad&iacute;sticas</a>
             </article>
 		</section>   
 

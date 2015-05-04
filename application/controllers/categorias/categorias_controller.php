@@ -42,7 +42,7 @@ class Categorias_controller extends CI_Controller{
 	//Lleva a la vista con el formulario para modificar los datos. Mientras no sea id 0 que es la default.
 	function updateCategory(){
 		if($this->session->userdata['rol'] != 0)
-	   		redirect('login_controller', 'refresh');
+	   		redirect('categorias/categorias_controller/getCategory/'.$this->uri->segment(4), 'refresh');
 
 		$data['id'] = $this->uri->segment(4);
 		if($data['id']){

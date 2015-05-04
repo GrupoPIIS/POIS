@@ -25,13 +25,19 @@ class Pois_controller extends CI_Controller{
 		}else{
 			$data['pois'] = $this->pois_model->getPoi($data['id']);
 		}
-		$this->load->view('pois/pois', $data);
+		$this->load->view('poicaracteristicas', $data);
 	}
 
 	//Lista los pois del usuario con la sesion abierta
 	function getPoiUser(){
+		$rol=$this->session->userdata('rol');
 		$id_usuario = $this->session->userdata('id_usuario');
-		$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
+		if($rol==0){
+			$data['pois'] = $this->pois_model->getPois();
+		}else{
+			$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
+		}
+		
 		//$data['pois'] = $this->pois_model->getPoiUser(0);
 		$this->load->view('mis-pois', $data);
 	}
@@ -128,8 +134,10 @@ class Pois_controller extends CI_Controller{
 
 		$multimedia = array(
 				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
-				'nombre_recurso'	=> $this->input->post('nombre_recurso')
-				//'ruta_recurso'		=> $this->input->post('telefono2')
+				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
+				'ruta_recurso'		=> $this->input->post('ruta_recurso'),
+
+				'nombre_original'		=> $this->input->post('nombre_original')
 			);
 
 		$social = array(
@@ -184,8 +192,8 @@ class Pois_controller extends CI_Controller{
 	function getMultimediaPoi(){
 		$data = array(
 				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
-				'nombre_recurso'	=> $this->input->post('nombre_recurso')
-				//'ruta_recurso'		=> $this->input->post('telefono2')
+				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
+				'ruta_recurso'		=> $this->input->post('ruta_recurso')
 			);
 
 		$this->pois_model->multimediaPoi($this->uri->segment(4), $data);

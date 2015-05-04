@@ -11,8 +11,7 @@ class Pois_model extends CI_Model{
 	//Hace un SELECT * FROM pois
 	function getPois(){
 		$query = $this->db->get('pois');
-		if($query->num_rows() > 0) return $query;
-		else return NULL;
+		return $query->result();
 	}
 
 	//Hace un SELECT * FROM pois WHERE id = $id
@@ -87,13 +86,18 @@ class Pois_model extends CI_Model{
 		if(isset($extras['slogan'])){
 				$query = $this->db->update('extras_poi', $extras);
 		}
-		if(isset($multimedia['tipo_recurso'])){
-				$query = $this->db->update('multimedia', $multimedia);
+		if(isset($multimedia['nombre_recurso'])){
+			/*foreach ($multimedia as $multi){
+				$this->db->where('id_poi', $id);
+				//$this->db->where('nombre_recurso', $multi['nombre_original']);
+				$query = $this->db->update('multimedia', $multi);
+			}*/
 		}
-		if(isset($social['id_rrss'])){
-			foreach ($social as $red){
+		if(isset($social['nombre_red'])){
+			/*foreach ($social as $red){
+				$this->db->where('id_poi', $id);
 				$query = $this->db->update('rrss_poi', $social);
-			}
+			}*/
 		}
 	}
 
@@ -133,8 +137,8 @@ class Pois_model extends CI_Model{
 		$this->db->insert('multimedia', array(
 											'id_poi' 			=> $id,
 											'tipo_recurso'		=> $data['tipo_recurso'],
-											'nombre_recurso'	=> $data['nombre_recurso']
-											//'ruta_recurso'		=> $data['ruta_recurso']
+											'nombre_recurso'	=> $data['nombre_recurso'],
+											'ruta_recurso'		=> $data['ruta_recurso']
 											)
 						);
 	}
@@ -169,6 +173,7 @@ class Pois_model extends CI_Model{
 	//
 
 	function getPoisCloseTo($lat, $lng, $radius){
+<<<<<<< HEAD
 	  $this->db->query('SELECT id_poi, ( 6371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;');
 	  $query = $this->db->get('pois');
 	  return $query->result();
@@ -176,3 +181,14 @@ class Pois_model extends CI_Model{
 	  //else return NULL;
 	}
 }
+=======
+	  $this->db->query('SELECT id_poi, ( 6371 * acos( cos( radians('.$lat.') ) 
+	  		* cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) 
+	  		* sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;');
+	  $query = $this->db->get('pois');
+	  if($query->num_rows() > 0) return $query;
+	  else return NULL;
+	}
+
+}
+>>>>>>> 7f399eee4adcacf25a38834b0d5dcad6df83f018

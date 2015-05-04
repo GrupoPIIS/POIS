@@ -7,26 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
 
     <title>Características del punto de interés</title>
 
    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-  
-        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
-        <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
+    <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
-        <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
         <!-- Custom Fonts -->
-        <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	
+    <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#back').click(function(){
+                parent.history.back();
+                return false;
+            });
+        });
+    </script>	
 
 </head>
 
@@ -44,7 +47,7 @@
                     <span class="icon-bar"></span>
                 </button>
            <!--     <a class="navbar-brand" href="#page-top">Start Bootstrap</a> -->
-            <img class="img-centic" src="img/centic.jpg" alt="">
+            <img class="img-centic" src="<?php echo base_url();?>estilos/img/centic.jpg" alt="">
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,7 +57,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="index.html">Principal</a>
+                        <a id="back" href="">Volver</a>
                     </li>
                   
                 </ul>
@@ -72,11 +75,11 @@
         
         
         <div class="container">
-            <div class="row">
+            <div class="row" id="containermargen">
                 <div class="col-lg-12">
                    <div class="col-lg-12 text-center">
                        
-                       <h2>Nombre del POI</h2>
+                       <h3><?=$pois->result()[0]->nombre_poi?></h3>
                        <hr class="star-light">
                        <br>
 
@@ -102,7 +105,7 @@
 
 <div class="item active">
 
-<img src="img/portfolio/catedral.jpg" alt="First slide" style="width: 50%; margin-top: -10%;">
+<img src="<?php echo base_url();?>/estilos/img/portfolio/catedral.jpg" alt="First slide" style="width: 50%; margin-top: -10%;">
 
 
 
@@ -130,7 +133,7 @@
 
 <div class="item">
 
-<img src="img/portfolio/rinconpepe.jpg" alt="First slide" style="width: 50%; margin-top: -10%;">
+<img src="<?php echo base_url();?>/estilos/img/portfolio/rinconpepe.jpg" alt="First slide" style="width: 50%; margin-top: -10%;">
 
 </div>
 
@@ -167,49 +170,58 @@
     </header>
 
     <!-- Portfolio Grid Section -->
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
+    <section  class="poi-info">
+      
                 <div class="col-lg-12 text-center">
                     <h2>Características</h2>
                     <hr class="star-primary">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                   
-                        <img src="img/portfolio/miniatura.jpg" class="img-responsive" alt="">
-                        <div id="contenido" style="border-width: 2px">
-                            <h6>Descripción del sitio: lalalalalalalala. <br> 
-                                Horario de apertura: 10:00 - 20:00 <br><br>
-                                mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br></h6>
-                        </div>
-                </div>
-             
-            </div>
-           
-        </div>
+                    
+                    <article class="img-poi">
+                    <img src="<?php echo base_url();?>estilos/img/mapsindividual.jpg">
+                    </article>
+                    
+                        <article class="text-poi">
+                        
+                         <article class="campo-poi">
+                            <h4>NOMBRE:</h4>
+                            <p><?=$pois->result()[0]->nombre_poi?></p>
+                         </article>
+                        
+                         <article class="campo-poi">
+                            <h4>TEXTO REPRESENTATIVO:</h4>
+                            <p><?=$pois->result()[0]->txt_rep?></p>
+                         </article>
+                        
+                         <article class="campo-poi">
+                             <h4>DIRECCIÓN:</h4>
+                            <p><?=$pois->result()[0]->direccion?></p>
+                         </article>
+            
+                         <article class="campo-poi">
+                            <h4>FECHA DE ALTA:</h4>
+                             <p><?=$pois->result()[0]->creado?></p>
+                         </article>            
+            
+    
+                        </article>
+
+              
     </section>
 
   
-
-    <!-- Footer -->
+  <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                        <h3>Localización</h3>
+                        <p>Calle Condes de Barcelona, 5, 30007 Murcia
+                        <br>968 96 44 00</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
+                        <h3>Redes sociales</h3>
                         <ul class="list-inline">
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
@@ -229,8 +241,8 @@
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        <h3>Sobre nosotros</h3>
+                        <p>Para más información <a href="http://www.google.com">Google</a>.</p>
                     </div>
                 </div>
             </div>
@@ -239,7 +251,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2014
+                        Copyright &copy; Grupo 1 2015
                     </div>
                 </div>
             </div>

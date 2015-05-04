@@ -1,50 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content=""> 
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <title>Inicio</title>
+        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
+        <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
 
-    <title>Inicio</title>
-
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="estilos/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="estilos/css/freelancer.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
-
-		<script>
-		  function initialize() {
-			var mapCanvas = document.getElementById('map-canvas');
-			var mapOptions = {
-			  center: new google.maps.LatLng(40.249874536739235, -4.01321785000005),
-			  zoom: 6,
-			  mapTypeId: google.maps.MapTypeId.ROADMAP
-			}
-			var map = new google.maps.Map(mapCanvas, mapOptions)
-		  }
-		  google.maps.event.addDomListener(window, 'load', initialize);
-		</script>
-	</script>
-
-</head>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script type="text/javascript">
+            var centreGot = false;
+            var activeMap=false;
+        </script>
+        <?=$map['js']?>   
+    </head>
 
 <body id="page-top" class="index">
 
@@ -79,7 +58,7 @@
                         <a href="#contact">Contacto</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="login_controller">Acceso</a>
+                        <a href="login_controller">Acceso </a>
                     </li>
                 </ul>
             </div>
@@ -116,8 +95,13 @@
         </a>
       
     </div>
-	<div id="map-canvas"></div>
-    <div id="locationinfo"></div>
+
+   
+	 <article id="pu1">
+                <article id="mapa" style="width:95%; height:500px">
+                    <?=$map['html']?>
+                </article>                
+            </article>   
     
 
     

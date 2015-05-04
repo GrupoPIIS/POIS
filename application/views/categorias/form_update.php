@@ -90,7 +90,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                   <br> <h3>Nuevo categoría</h3>
+                   <br> <h3>Modificar categoría</h3>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -101,10 +101,10 @@
                     <form name="sentMessage" id="contactForm" novalidate>
                         
                         <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Nombre de la categoría</label>
-                               	<?= form_input($nombre_label) ?>
+                            <div class="form-group col-xs-12 floating-label-form-group controls">                             
+                                <p>Nuevo nombre de la categoría:</p>
                                	<?= form_input($nombre) ?>
+                               	<!--<?= form_input($nombre) ?>-->
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                         <div class="row">
                             <div class="form-group col-xs-12">
                             	<!--<?= form_submit('','Añadir categoria') ?> -->
-                                <button type="submit" class="btn btn-success btn-lg">Añadir categoría</button>
+                                <button type="submit" class="btn btn-success btn-lg">Modificar categoría</button>
                                 
                             </div>
                         </div>

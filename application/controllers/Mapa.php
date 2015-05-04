@@ -108,11 +108,18 @@ class Mapa extends CI_Controller{
 	        //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
 			$data['map'] = $this->googlemaps->create_map();
 			$rol= $this->session->userdata['rol'];
+
+			// Para cargar el mapa en el index
+			if($rol==null){
+				$this->load->view('index',$data);
+			}
+
 			if($rol=='0'){
 				$this->load->view('home-admin',$data);
 			}else{
 				$this->load->view('home',$data);
 			}
+			
 			
 		}
 	}

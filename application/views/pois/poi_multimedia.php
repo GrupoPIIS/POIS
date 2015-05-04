@@ -15,7 +15,7 @@
 	<label>Tipo: </label>
 	<select name='tipo_recurso' id='tipo_recurso'>
         <option value='Imagen'> Imagen </option>
-        <option value='Video'> Vídeo VIP </option>
+        <option value='Video'> Vídeo </option>
 	</select><br>
 
 	<label>Nombre: <?= form_input($nombre_recurso) ?></label><br>
