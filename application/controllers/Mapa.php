@@ -48,7 +48,7 @@ class Mapa extends CI_Controller{
 			
 	        // el zoom, que lo podemos poner en auto y de esa forma
 	        //siempre mostrará todos los markers ajustando el zoom	
-			$config['zoom'] = '6';	
+			$config['zoom'] = '8';	
 	        //el tipo de mapa, en el pdf podéis ver más opciones
 			$config['map_type'] = 'ROADMAP';
 	        //el ancho del mapa		

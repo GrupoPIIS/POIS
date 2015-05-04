@@ -18,11 +18,27 @@
     <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
-
+       
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
     <script type="text/javascript">
         var centreGot = false;
         var activeMap=false;
+    </script>
+    <script type="text/javascript">
+        function datos_marker(lat, lng, marker)
+        {
+             var mi_marker = new google.maps.LatLng(lat, lng);
+             map.panTo(mi_marker);
+             google.maps.event.trigger(marker, 'click');
+        }
+    </script>
+    <script type="text/javascript">
+        function hoverapp(element) {
+            element.setAttribute('src', 'estilos/img/app2.png');
+        }
+        function unhoverapp(element) {
+            element.setAttribute('src', 'estilos/img/app.png');
+        }  
     </script>
     <?=$map['js']?>        
 
@@ -42,7 +58,8 @@
                     <span class="icon-bar"></span>
                 </button>
            <!--     <a class="navbar-brand" href="#page-top">Start Bootstrap</a> -->
-            <img class="img-centic" src="estilos/img/centic.jpg" alt="">
+            <a href="#page-top"><img class="img-centic" src="estilos/img/centic.jpg" ></a>
+            
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,9 +67,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
                         <a href="#page-top"></a>
-                    </li>
+                    </li>   
                     <li class="page-scroll">
-                        <a href="#portfolio">Puntos de interés</a>
+                        <a href="#portfolio">Puntos m&aacute;s visitados</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#about">Preguntas frecuentes</a>
@@ -78,7 +95,10 @@
             <span class="skills">Explora y conoce los lugares de interés que hay a tu alrededor a través de nuestra aplicación</span>          
         </article>  
         <article id="imgApp">
-            <img src="estilos/img/app.png" width="150" title="App"/>
+        <a href="https://play.google.com/store?hl=es_419" title="">
+            <img src="estilos/img/app.png" width="150" title="Descargar Aplicacion" onmouseover="hoverapp(this);" onmouseout="unhoverapp(this);"/>
+        </a>
+            
         </article>
         <div id="ubicacion">
 
@@ -96,18 +116,17 @@
         <aside id="lado">
                 
                 <article id="enlaces">
-                    <h3>POIs m&aacute;s visitados</h3>
+                    <h3>POIs cercanos</h3>
                     <ul>
-                        <li><a href="" target="_blank">Poi 1</a></li>
-                        <li><a href="" target="_blank">Poi 2</a></li>
-                        <li><a href="" target="_blank">Poi 3</a></li>
-                        <li><a href="" target="_blank">Poi 4</a></li>
-                        <li><a href="" target="_blank">Poi 5</a></li>
-                        <li><a href="" target="_blank">Poi 6</a></li>
-                        <li><a href="" target="_blank">Poi 7</a></li>
-                        <li><a href="" target="_blank">Poi 8</a></li>
-                        <li><a href="" target="_blank">Poi 9</a></li>
-                        <li><a href="" target="_blank">Poi 10</a></li>
+                        <?php
+                            if($datos){
+                            foreach($datos->result() as $marker_sidebar)
+                            {
+                                ?><li onclick="datos_marker(<?=$marker_sidebar->lat?>,<?=$marker_sidebar->lng?>,marker_<?=$marker_sidebar->id_poi?>)">
+                                <?=substr($marker_sidebar->nombre_poi,0,10)?></li><?php
+                            }
+                        }
+                        ?>
                     </ul>
                 </article>
             </aside>
@@ -121,7 +140,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Puntos de interés</h2>
+                    <h2>Puntos m&aacute;s visitados</h2>
                     <hr class="star-primary">
                 </div>
             </div>
