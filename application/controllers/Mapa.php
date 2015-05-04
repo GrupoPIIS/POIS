@@ -106,6 +106,7 @@ class Mapa extends CI_Controller{
 			//$data['datos'] = $this->mapa_model->get_markers();
 	        //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
 			$data['map'] = $this->googlemaps->create_map();
+<<<<<<< HEAD
 
 			if(isset($this->session->userdata['habilitado'])){
 				$rol= $this->session->userdata['rol'];
@@ -116,9 +117,21 @@ class Mapa extends CI_Controller{
 					$this->load->view('home',$data);
 				}
 
+=======
+			$rol= $this->session->userdata['rol'];
+
+			// Para cargar el mapa en el index
+			if($rol==null){
+				$this->load->view('index',$data);
+			}
+
+			if($rol=='0'){
+				$this->load->view('home-admin',$data);
+>>>>>>> 6c2b4b1099fc8ce06ca3ad38c60c7ae893005083
 			}else{
 				$this->load->view('index2',$data);
 			}
+			
 			
 		}
 	

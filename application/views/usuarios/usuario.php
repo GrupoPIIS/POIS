@@ -93,18 +93,18 @@
     </section>
 
   
-
-    <!-- Footer -->
+  <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                        <h3>Localización</h3>
+                        <p>Calle Condes de Barcelona, 5, 30007 Murcia
+                        <br>968 96 44 00</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
+                        <h3>Redes sociales</h3>
                         <ul class="list-inline">
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
@@ -124,8 +124,8 @@
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        <h3>Sobre nosotros</h3>
+                        <p>Para más información <a href="http://www.google.com">Google</a>.</p>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2014
+                        Copyright &copy; Grupo 1 2015
                     </div>
                 </div>
             </div>

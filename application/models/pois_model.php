@@ -2,7 +2,7 @@
 
 class Pois_model extends CI_Model{
 
-	//Contructor correspondiente de la clase. Carga la base de datos.
+		//Contructor correspondiente de la clase. Carga la base de datos.
 	function __construct(){
 		parent::__construct();
 		$this->load->database();
@@ -175,6 +175,15 @@ class Pois_model extends CI_Model{
 	//
 
 	function getPoisCloseTo($lat, $lng, $radius){
+<<<<<<< HEAD
+	  $this->db->query('SELECT id_poi, ( 6371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;');
+	  $query = $this->db->get('pois');
+	  return $query->result();
+	  //if($query->num_rows() > 0) return $query;
+	  //else return NULL;
+	}
+}
+=======
 	  $this->db->query('SELECT id_poi, ( 6371 * acos( cos( radians('.$lat.') ) 
 	  		* cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) 
 	  		* sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;');
@@ -183,3 +192,4 @@ class Pois_model extends CI_Model{
 	}
 
 }
+>>>>>>> 7f399eee4adcacf25a38834b0d5dcad6df83f018

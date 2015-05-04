@@ -12,7 +12,7 @@
     <title>Características del punto de interés</title>
 
    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-  
+     <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
     <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
     <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
@@ -75,11 +75,11 @@
         
         
         <div class="container">
-            <div class="row">
+            <div class="row" id="containermargen">
                 <div class="col-lg-12">
                    <div class="col-lg-12 text-center">
                        
-                       <h2>Nombre del POI</h2>
+                       <h3><?=$pois->result()[0]->nombre_poi?></h3>
                        <hr class="star-light">
                        <br>
 
@@ -170,49 +170,58 @@
     </header>
 
     <!-- Portfolio Grid Section -->
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
+    <section  class="poi-info">
+      
                 <div class="col-lg-12 text-center">
                     <h2>Características</h2>
                     <hr class="star-primary">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                   
-                        <img src="<?php echo base_url();?>/estilos/img/portfolio/miniatura.jpg" class="img-responsive" alt="">
-                        <div id="contenido" style="border-width: 2px">
-                            <h6>Descripción del sitio: lalalalalalalala. <br> 
-                                Horario de apertura: 10:00 - 20:00 <br><br>
-                                mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br>
-                            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm <br></h6>
-                        </div>
-                </div>
-             
-            </div>
-           
-        </div>
+                    
+                    <article class="img-poi">
+                    <img src="<?php echo base_url();?>estilos/img/mapsindividual.jpg">
+                    </article>
+                    
+                        <article class="text-poi">
+                        
+                         <article class="campo-poi">
+                            <h4>NOMBRE:</h4>
+                            <p><?=$pois->result()[0]->nombre_poi?></p>
+                         </article>
+                        
+                         <article class="campo-poi">
+                            <h4>TEXTO REPRESENTATIVO:</h4>
+                            <p><?=$pois->result()[0]->txt_rep?></p>
+                         </article>
+                        
+                         <article class="campo-poi">
+                             <h4>DIRECCIÓN:</h4>
+                            <p><?=$pois->result()[0]->direccion?></p>
+                         </article>
+            
+                         <article class="campo-poi">
+                            <h4>FECHA DE ALTA:</h4>
+                             <p><?=$pois->result()[0]->creado?></p>
+                         </article>            
+            
+    
+                        </article>
+
+              
     </section>
 
   
-
-    <!-- Footer -->
+  <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                        <h3>Localización</h3>
+                        <p>Calle Condes de Barcelona, 5, 30007 Murcia
+                        <br>968 96 44 00</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
+                        <h3>Redes sociales</h3>
                         <ul class="list-inline">
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
@@ -232,8 +241,8 @@
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        <h3>Sobre nosotros</h3>
+                        <p>Para más información <a href="http://www.google.com">Google</a>.</p>
                     </div>
                 </div>
             </div>
@@ -242,7 +251,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2014
+                        Copyright &copy; Grupo 1 2015
                     </div>
                 </div>
             </div>

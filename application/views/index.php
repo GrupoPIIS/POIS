@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content=""> 
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <title>Inicio</title>
+        <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
+        <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
 
+<<<<<<< HEAD:application/views/index2.php
     <title>Inicio</title>
 
     <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
@@ -27,6 +37,15 @@
     <?=$map['js']?>        
 
 </head>
+=======
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script type="text/javascript">
+            var centreGot = false;
+            var activeMap=false;
+        </script>
+        <?=$map['js']?>   
+    </head>
+>>>>>>> 6c2b4b1099fc8ce06ca3ad38c60c7ae893005083:application/views/index.php
 
 <body id="page-top" class="index">
 
@@ -61,7 +80,7 @@
                         <a href="#contact">Contacto</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="login_controller">Acceso</a>
+                        <a href="login_controller">Acceso </a>
                     </li>
                 </ul>
             </div>
@@ -70,6 +89,7 @@
         <!-- /.container-fluid -->
     </nav>
 
+<<<<<<< HEAD:application/views/index2.php
     <!-- Header -->            
     <header id="header-principal">                
         <article id="header-tittle">
@@ -81,6 +101,44 @@
             <img src="estilos/img/app.png" width="150" title="App"/>
         </article>
         <div id="ubicacion">
+=======
+    <!-- Header -->
+    
+   
+             
+    <header>
+        
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                   <div class="col-lg-12 text-center">
+                       <h1><font color="#ffffff">Busca a tus alrededores</font></h1>
+                    
+                        <hr class="star-light">
+                        <span class="skills">Explora y conoce los lugares de interés que hay a tu alrededor a través de nuestra aplicación</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <div id="ubicacion"> 
+		<font color="000000"> <input class type="text" name="sitio" id="sitio" value> </font>
+
+		<a href="#" class="btn btn-lg btn-outline">
+			<i class="fa fa-map-marker"></i> Buscar
+        </a>
+      
+    </div>
+
+   
+	 <article id="pu1">
+                <article id="mapa" style="width:95%; height:500px">
+                    <?=$map['html']?>
+                </article>                
+            </article>   
+    
+>>>>>>> 6c2b4b1099fc8ce06ca3ad38c60c7ae893005083:application/views/index.php
 
     		<input id="buscar" type="text" name="sitio" id="sitio" value>
 
