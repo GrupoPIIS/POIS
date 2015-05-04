@@ -10,39 +10,21 @@
 
     <title>Inicio</title>
 
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="estilos/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="estilos/css/freelancer.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
+    <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+    <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+    <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
-
-		<script>
-		  function initialize() {
-			var mapCanvas = document.getElementById('map-canvas');
-			var mapOptions = {
-			  center: new google.maps.LatLng(40.249874536739235, -4.01321785000005),
-			  zoom: 6,
-			  mapTypeId: google.maps.MapTypeId.ROADMAP
-			}
-			var map = new google.maps.Map(mapCanvas, mapOptions)
-		  }
-		  google.maps.event.addDomListener(window, 'load', initialize);
-		</script>
-	</script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script type="text/javascript">
+        var centreGot = false;
+        var activeMap=false;
+    </script>
+    <?=$map['js']?>        
 
 </head>
 
@@ -88,66 +70,51 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    
-   
-             
-    <header>
-        
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                   <div class="col-lg-12 text-center">
-                       <h1><font color="#ffffff">Busca a tus alrededores</font></h1>
-                    
-                        <hr class="star-light">
-                        <span class="skills">Explora y conoce los lugares de interés que hay a tu alrededor a través de nuestra aplicación</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-    <div id="ubicacion"> 
-		<font color="000000"> <input class type="text" name="sitio" id="sitio" value> </font>
+    <!-- Header -->            
+    <header id="header-principal">                
+        <article id="header-tittle">
+            <h1><font color="#ffffff">Busca a tus alrededores</font></h1>                    
+            <hr class="star-light">
+            <span class="skills">Explora y conoce los lugares de interés que hay a tu alrededor a través de nuestra aplicación</span>          
+        </article>  
+        <article id="imgApp">
+            <img src="estilos/img/app.png" width="150" title="App"/>
+        </article>
+        <div id="ubicacion">
 
-		<a href="#" class="btn btn-lg btn-outline">
-			<i class="fa fa-map-marker"></i> Buscar
-        </a>
-      
-    </div>
-	<div id="map-canvas"></div>
-    <div id="locationinfo"></div>
-    
+    		<input id="buscar" type="text" name="sitio" id="sitio" value>
 
-    
-    <aside class="lado">
-			<article id="imgApp">
-				<img src="estilos/img/app.png" width="150" title="App"/>
-			</article>
-			<article id="enlaces">
-				<h3>POIs m&aacute;s visitados</h3>
-				<ul>
-					<li><a href="" target="_blank">Poi 1</a></li>
-					<li><a href="" target="_blank">Poi 2</a></li>
-					<li><a href="" target="_blank">Poi 3</a></li>
-					<li><a href="" target="_blank">Poi 4</a></li>
-					<li><a href="" target="_blank">Poi 5</a></li>
-					<li><a href="" target="_blank">Poi 6</a></li>
-					<li><a href="" target="_blank">Poi 7</a></li>
-					<li><a href="" target="_blank">Poi 8</a></li>
-					<li><a href="" target="_blank">Poi 9</a></li>
-					<li><a href="" target="_blank">Poi 10</a></li>
-				</ul>
-			</article>
-		</aside>
-
-             
-        <div class="container">
-             
-           
+    		<a id="boton" href="#" class="btn btn-lg btn-outline">
+    			<i class="fa fa-map-marker"></i> Buscar
+            </a>     
         </div>
     </header>
+	<section id="section-mapa">
+        <article id="mapa-principal">
+            <?=$map['html']?>
+        </article> 
+        <aside id="lado">
+    			
+    			<article id="enlaces">
+    				<h3>POIs m&aacute;s visitados</h3>
+    				<ul>
+    					<li><a href="" target="_blank">Poi 1</a></li>
+    					<li><a href="" target="_blank">Poi 2</a></li>
+    					<li><a href="" target="_blank">Poi 3</a></li>
+    					<li><a href="" target="_blank">Poi 4</a></li>
+    					<li><a href="" target="_blank">Poi 5</a></li>
+    					<li><a href="" target="_blank">Poi 6</a></li>
+    					<li><a href="" target="_blank">Poi 7</a></li>
+    					<li><a href="" target="_blank">Poi 8</a></li>
+    					<li><a href="" target="_blank">Poi 9</a></li>
+    					<li><a href="" target="_blank">Poi 10</a></li>
+    				</ul>
+    			</article>
+    		</aside>
+
+    </section>    
+
+    
 
     <!-- Portfolio Grid Section -->
     <section id="portfolio">

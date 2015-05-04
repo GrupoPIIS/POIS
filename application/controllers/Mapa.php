@@ -9,23 +9,15 @@ class Mapa extends CI_Controller{
 		$this->load->helper('url');	
 	}
 
-	function closeSession(){
-		$this->session->unset_userdata('habilitado');
-		$this->session->sess_destroy();
-		$this->load->view('form_login');
-	}
 
 	
 	public function index()
-	{
+	{	
 
-		if(!isset($this->session->userdata['habilitado'])){			 
-		   
-		   	$this->closeSession();
-		   	
-		}else{
+			if(isset($this->session->userdata['habilitado'])){		
 
-			$id=$this->session->userdata['id_usuario'];
+				$id=$this->session->userdata['id_usuario'];
+			}
 			//creamos la configuración del mapa con un array
 			$config = array();
 	        //la zona del mapa que queremos mostrar al cargar el mapa
@@ -79,41 +71,55 @@ class Mapa extends CI_Controller{
 			//hacemos la consulta al modelo para pedirle 
 			//la posición de los markers y el nombre_poi
 			
-			$markers = $this->pois_model->getPoiUser($id);
-			$data['datos'] = $markers;		
-			foreach($markers as $info_marker)
-			{
-				$marker = array();
-	            //podemos elegir DROP o BOUNCE
-				$marker ['animation'] = 'DROP';
-	            //posición de los markers
-				$marker ['position'] = $info_marker->lat.','.$info_marker->lng;
-	            //nombre_poi de los markers(ventana de información)	
-				$marker ['infowindow_content'] = $info_marker->nombre_poi;
-	            //la id_poi del marker
-				$marker['id'] = $info_marker->id_poi; 
-				$this->googlemaps->add_marker($marker);
-	 
-	            //podemos colocar iconos personalizados así de fácil
-				//$marker ['icon'] = base_url().'imagenes/'.$fila->imagen;
-	 
-				//si queremos que se pueda arrastrar el marker
-				//$marker['draggable'] = TRUE;
-				//si queremos darle una id_poi, muy útil
+			if(isset($this->session->userdata['habilitado'])){
+				$markers = $this->pois_model->getPoiUser($id);
+			}else{
+				$markers = $this->pois_model->getPois();
 			}
-			
+
+			$data['datos'] = $markers;
+
+			if($markers){
+				foreach($markers->result() as $info_marker)
+				{
+					$marker = array();
+		            //podemos elegir DROP o BOUNCE
+					$marker ['animation'] = 'DROP';
+		            //posición de los markers
+					$marker ['position'] = $info_marker->lat.','.$info_marker->lng;
+		            //nombre_poi de los markers(ventana de información)	
+					$marker ['infowindow_content'] = $info_marker->nombre_poi;
+		            //la id_poi del marker
+					$marker['id'] = $info_marker->id_poi; 
+					$this->googlemaps->add_marker($marker);
+		 
+		            //podemos colocar iconos personalizados así de fácil
+					//$marker ['icon'] = base_url().'imagenes/'.$fila->imagen;
+		 
+					//si queremos que se pueda arrastrar el marker
+					//$marker['draggable'] = TRUE;
+					//si queremos darle una id_poi, muy útil
+				}
+			}	
 			//en $data['datos']tenemos la información de cada marker para
 	        //poder utilizarlo en el sid_poiebar en nuestra vista mapa_view
 			//$data['datos'] = $this->mapa_model->get_markers();
 	        //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
 			$data['map'] = $this->googlemaps->create_map();
-			$rol= $this->session->userdata['rol'];
-			if($rol=='0'){
-				$this->load->view('home-admin',$data);
+
+			if(isset($this->session->userdata['habilitado'])){
+				$rol= $this->session->userdata['rol'];
+
+				if($rol=='0'){
+					$this->load->view('home-admin',$data);
+				}else{
+					$this->load->view('home',$data);
+				}
+
 			}else{
-				$this->load->view('home',$data);
+				$this->load->view('index2',$data);
 			}
 			
 		}
-	}
+	
 }

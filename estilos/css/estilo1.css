@@ -53,8 +53,6 @@ footer{
 
 #pois-usuario #mapa{
 	display: inline-block;
-	
-	
 	vertical-align: top;
 }
 
@@ -66,7 +64,88 @@ footer{
 	margin-top:2%;
 	padding: 0.75%;
 	width: 80%;
+	color:black;
 }
+
+#header-principal{
+	margin-top:1%;
+}
+
+#header-tittle{
+	margin-left: 10%;
+	width: 60%;
+
+}
+
+#imgApp{
+	width:15%;
+
+}
+
+#header-tittle, #imgApp{
+	display: inline-block;
+	vertical-align: top;
+}
+
+#section-mapa{
+	background-color: #a2a2a2;
+	padding-right: 1%;
+	padding-left: 1%;
+	padding-top: 0;
+}
+
+#mapa-principal{
+
+	background-color: #fff;
+	border:2px solid #505050;
+	border-radius: 25px;	
+	margin-top:2%;
+	padding: 0.75%;
+	width: 88%;
+	color:black;
+	height:500px;
+}
+
+#mapa-principal, #lado{
+display: inline-block;
+vertical-align: top;
+
+}
+
+#lado{
+	width: 10%;	
+}
+
+
+
+#lado article h3{
+	font-size: 140.7%;
+	text-align: center;
+	margin-bottom: 5%;
+	color:white;
+}
+
+#lado ul{
+	text-align: center;
+}
+
+#lado li{
+	margin-bottom: 2%;
+	border-bottom: thin Silver solid;
+	border-top: thin Silver solid;
+	list-style: none;
+
+}
+
+#lado li a{
+	text-decoration: none;
+	color: white;
+}
+
+#lado ul li a:hover{
+	color: #CDCA09;
+}
+
 
 #mapa-lista{
 	width: 20%;
@@ -187,6 +266,12 @@ footer{
 	list-style-type: none;
 }
 
+.little-img img{
+	width: 7%;
+	height: 7%;
+	margin-left: 2%;
+}
+
 .user-info{
 	width: 80%;
 	margin-left: 10%;
@@ -218,6 +303,20 @@ footer{
 .text-user p, .text-user h4{
 	
 	display:inline-block;
+	vertical-align: center;
+}
+
+#buscar{
+	width: 30%;
+	border-radius: 5px;
+	color:black;
+	padding: 0.5%;
+	margin-right: 1%;
+	border:2px solid #bef230;
+}
+
+#buscar, #boton{
+	display: inline-block;
 	vertical-align: center;
 }
 

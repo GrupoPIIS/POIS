@@ -11,7 +11,8 @@ class Pois_model extends CI_Model{
 	//Hace un SELECT * FROM pois
 	function getPois(){
 		$query = $this->db->get('pois');
-		return $query->result();
+		if($query->num_rows() > 0) return $query;
+		else return NULL;
 	}
 
 	//Hace un SELECT * FROM pois WHERE id = $id
@@ -26,7 +27,8 @@ class Pois_model extends CI_Model{
 	function getPoiUser($id_usuario){
 		$this->db->where('id_usuario', $id_usuario);
 		$consulta = $this->db->get('pois');
-		return $consulta->result();
+		if($consulta->num_rows() > 0) return $consulta;
+		else return NULL;
 	}
 
 	
@@ -177,8 +179,7 @@ class Pois_model extends CI_Model{
 	  		* cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) 
 	  		* sin( radians( lat ) ) ) ) AS distance FROM pois HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;');
 	  $query = $this->db->get('pois');
-	  if($query->num_rows() > 0) return $query;
-	  else return NULL;
+	  return $query->result();
 	}
 
 }

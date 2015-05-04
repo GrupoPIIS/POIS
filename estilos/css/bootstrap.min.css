@@ -20,41 +20,7 @@ body{
 	height: auto;
 }
 
-.lado{
-	float: right;
-	width: 16%;
-	margin-right: 10%;
-	margin-top: -45%;
-}
 
-.lado article{
-}
-
-.lado article h3{
-	font-size: 140.7%;
-	text-align: center;
-	margin-bottom: 5%;
-}
-
-.lado ul{
-	text-align: left;
-	margin-left: 10%;
-}
-
-.lado li{
-	margin-bottom: 2%;
-	border-bottom: thin Silver solid;
-	border-top: thin Silver solid;
-}
-
-.lado li a{
-	text-decoration: none;
-	color: white;
-}
-
-.lado ul li a:hover{
-	color: #CDCA09;
-}
 
 #ubicacion {
 	border-radius: 1px; 

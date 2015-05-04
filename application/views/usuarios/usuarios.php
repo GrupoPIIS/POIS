@@ -55,7 +55,7 @@
                             <a href="#" ><?=$this->session->userdata['nombre'];?></a>
                         </li>
                         <li >
-                            <a href="<?php echo base_url();?>/mapa/closeSession" >Salir</a>
+                            <a href="<?php echo base_url();?>login_controller/closeSession" >Salir</a>
                         </li>
                     </ul>                    
                 </div>

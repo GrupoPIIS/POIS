@@ -66,8 +66,6 @@ class Categorias_controller extends CI_Controller{
 
 	//Elimina la categoria con el id pasado por parametro. Mientras no sea id 0 que es la default.
 	function deleteCategory(){
-		if($this->session->userdata['rol'] != 0)
-	   		redirect('login_controller', 'refresh');
 	   	
 		$id = $this->uri->segment(4);
 		if($id){

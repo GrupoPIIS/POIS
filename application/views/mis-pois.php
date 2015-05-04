@@ -55,7 +55,7 @@
                             <a href="#" ><?=$this->session->userdata['nombre'];?></a>
                         </li>
                         <li >
-                            <a href="<?php echo base_url();?>/mapa/closeSession" >Salir</a>
+                            <a href="<?php echo base_url();?>login_controller/closeSession" >Salir</a>
                         </li>
                     </ul>                    
                 </div>
@@ -84,7 +84,7 @@
             <article id="lp1">                
                     <ul>
                         
-                    <?php foreach ($pois as $poi): ?>
+                    <?php if($pois){ foreach ($pois->result() as $poi): ?>
                         <li class="poi-enlace">
                             <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$poi->id_poi?>" >
                                 <p class="poi-text"><?= $poi->nombre_poi?></p>
@@ -96,7 +96,7 @@
                                 <img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
                             </a>                            
                         </li>
-                    <?php endforeach ?>
+                    <?php endforeach; } ?>
                                            
                     </ul>             
             </article>            

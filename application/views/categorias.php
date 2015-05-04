@@ -54,7 +54,7 @@
                             <a href="#" ><?=$this->session->userdata['nombre'];?></a>
                         </li>
                         <li >
-                            <a href="<?php echo base_url();?>/mapa/closeSession" >Salir</a>
+                            <a href="<?php echo base_url();?>login_controller/closeSession" >Salir</a>
                         </li>
                     </ul>                    
                 </div>
@@ -75,12 +75,21 @@
                                     <ul>
                                         <?php foreach ($categorias->result() as $categoria): ?>
                                              <li>
+                                                <?php if($this->session->userdata['rol']==0){?>
                                                 <a href="<?php echo base_url();?>/categorias/categorias_controller/updateCategory/<?=$categoria->id_cat?>">
                                                     <img class="categ-img" src="<?php echo base_url();?>/estilos/img/profile.png">
                                                     <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
                                                 </a>
-                                            </li>
-                                        <?php endforeach; ?>  
+                                                <a class="little-img" href="<?php echo base_url();?>/categorias/categorias_controller/deleteCategory/<?=$categoria->id_cat?>">
+                                                    <img  src="<?php echo base_url();?>/estilos/img/trash.png">
+                                                </a>
+                                                <?php }else{ ?>
+                                                    <img class="categ-img" src="<?php echo base_url();?>/estilos/img/profile.png">
+                                                    <p class="categ-text"><?= $categoria->nombre_cat;?></p>
+                                                <?php } ?>
+                                            </li>                                         
+
+                                           <?php endforeach; ?>  
                                     </ul>                                                
                         </article>
             <?php }else echo "No existen datos";?>
