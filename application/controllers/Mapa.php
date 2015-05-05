@@ -26,13 +26,33 @@ class Mapa extends CI_Controller{
 			$config['center'] = 'auto';
 
 			$config['scrollwheel'] = false;
+			
+			$config['onboundschanged'] = '
+			if (!centreGot) {
 
-			$config['onboundschanged'] = 'if (!centreGot) {
 				var mapCentre = map.getCenter();
 				marker_0.setOptions({
 					position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng()) 
 				});
+				
+				/*var infowindow = new google.maps.InfoWindow({
+			        map: map,
+			        position: marker_0.position,
+			        content: "USTED SE ENCUENTRA AQUI"
+			      });
+				*/
+				/*	var populationOptions = {
+						map:map,      
+				      	center: new google.maps.LatLng(marker_0.position.lat(), marker_0.position.lng()),
+				      	radius: 100000
+				    };
+	 				var cityCircle = new google.maps.Circle(populationOptions);
+	 			*/	
+ 				
+				usermarker=marker_0;
+				
 			}
+			//alert(usermarker.position.lat());
 			centreGot = true;';
 
 			$config['onclick'] = '
@@ -57,17 +77,18 @@ class Mapa extends CI_Controller{
 			$config['map_height'] = '100%';	
 	        //inicializamos la configuración del mapa	
 			$this->googlemaps->initialize($config);
-
+			
+			$marker = array();			
+			$marker ['icon'] = base_url().'/estilos/img/marker.png';
+			$marker ['infowindow_content'] = 'USTED SE ENCUENTRA AQUI';
+			$marker['animation'] ='BOUNCE';
+			$this->googlemaps->add_marker($marker);
+			/*
 			$circle = array();
-			$circle['center'] = $this->pois_model->getPoi('2')->result()[0]->lat.','.$this->pois_model->getPoi('2')->result()[0]->lng;
+			$circle['center'] = 'usermarker.position.lat();, usermarker.position.lng();';
 			$circle['radius'] = '100000';
 			$this->googlemaps->add_circle($circle);
-
-			$marker = array();
-			$marker ['icon'] = base_url().'/estilos/img/marker.png';
-			$marker ['infowindow_content'] = 'Usted está aquí';
-			$this->googlemaps->add_marker($marker);
-			
+			*/
 			//hacemos la consulta al modelo para pedirle 
 			//la posición de los markers y el nombre_poi
 			

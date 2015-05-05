@@ -19,11 +19,40 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
        
-    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
     <script type="text/javascript">
         var centreGot = false;
         var activeMap=false;
-    
+        var usermarker;
+        var circleactive = false;
+        var circle;
+
+        function createRadius() {
+            if(circleactive){
+                circle.setMap(null);
+                circleactive = false;
+            }
+            
+            
+            var radio=document.getElementById("buscar").value;
+
+            var centro = new google.maps.LatLng(usermarker.position.lat(), usermarker.position.lng());
+            var populationOptions = {
+              strokeColor: '#FF0000',
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: '#FF0000',
+              fillOpacity: 0.35,
+              map: map,
+              center:centro,
+              radius: Number(radio)
+            };
+            
+            circle = new google.maps.Circle(populationOptions);
+            circleactive = true;
+            map.setZoom(13);
+            }     
+
         function datos_marker(lat, lng, marker)
         {
              var mi_marker = new google.maps.LatLng(lat, lng);
@@ -39,6 +68,9 @@
         }  
     
         function initialize() {
+            google.maps.event.addListener(marker, 'onload', function() {
+                window.location.href = "<?php echo base_url();?>/pois_controller/getPois?>";
+            });
             google.maps.event.addListener(marker, 'dblclick', function() {
                 window.location.href = "<?php echo base_url();?>/pois_controller/getPois?>";
             });
@@ -107,9 +139,9 @@
         </article>
         <div id="ubicacion">
 
-            <input id="buscar" type="text" name="sitio" id="sitio" value>
+            <input id="buscar" type="number" name="sitio" onchange="createRadius()">
 
-            <a id="boton" href="#" class="btn btn-lg btn-outline">
+            <a id="boton" href="#" class="btn btn-lg btn-outline" onclick="createRadius()">
                 <i class="fa fa-map-marker"></i> Buscar
             </a>     
         </div>
@@ -125,9 +157,11 @@
                     <ul>
                         <?php
                             if($datos){
+                                 ?><li class="posicion-actual" onclick="datos_marker(usermarker.position.lat(),usermarker.position.lng(),usermarker)">
+                                    Su Posici&oacute;n</li><?php
                             foreach($datos->result() as $marker_sidebar)
                             {
-                                ?><li onclick="datos_marker(<?=$marker_sidebar->lat?>,<?=$marker_sidebar->lng?>,marker_<?=$marker_sidebar->id_poi?>)">
+                                ?><li class="posicion-poi" onclick="datos_marker(<?=$marker_sidebar->lat?>,<?=$marker_sidebar->lng?>,marker_<?=$marker_sidebar->id_poi?>)">
                                 <?=substr($marker_sidebar->nombre_poi,0,10)?></li><?php
                             }
                         }

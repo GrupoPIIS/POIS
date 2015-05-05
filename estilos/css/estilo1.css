@@ -145,17 +145,9 @@ vertical-align: top;
 	padding-bottom: 5%;
 	border-radius: 5px;
 	color: #606060;
-	cursor: pointer;
-	background-color: white;
+	cursor: pointer;	
 
 }
-
-
-
-#lado ul li:hover{
-	background-color: #bef230;
-}
-
 
 #mapa-lista{
 	width: 20%;
@@ -206,6 +198,20 @@ vertical-align: top;
 	margin-bottom:4%;
 }
 
+
+#buscar{
+	width: 30%;
+	border-radius: 5px;
+	color:black;
+	padding: 0.5%;
+	margin-right: 1%;
+	border:2px solid #bef230;
+}
+
+#buscar, #boton{
+	display: inline-block;
+	vertical-align: center;
+}
 
 .poi-boton, .poi-text{
 	display:inline-block;
@@ -358,17 +364,13 @@ vertical-align: top;
 	vertical-align: center;
 }
 
-#buscar{
-	width: 30%;
-	border-radius: 5px;
-	color:black;
-	padding: 0.5%;
-	margin-right: 1%;
-	border:2px solid #bef230;
+.posicion-actual, .posicion-poi:hover{
+	background-color: #bef230;
 }
 
-#buscar, #boton{
-	display: inline-block;
-	vertical-align: center;
+.posicion-actual:hover, .posicion-poi{
+	background-color: #fff;
 }
+
+
 
