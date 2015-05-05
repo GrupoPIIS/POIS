@@ -23,23 +23,28 @@
     <script type="text/javascript">
         var centreGot = false;
         var activeMap=false;
-    </script>
-    <script type="text/javascript">
+    
         function datos_marker(lat, lng, marker)
         {
              var mi_marker = new google.maps.LatLng(lat, lng);
              map.panTo(mi_marker);
              google.maps.event.trigger(marker, 'click');
         }
-    </script>
-    <script type="text/javascript">
+    
         function hoverapp(element) {
             element.setAttribute('src', 'estilos/img/app2.png');
         }
         function unhoverapp(element) {
             element.setAttribute('src', 'estilos/img/app.png');
         }  
+    
+        function initialize() {
+            google.maps.event.addListener(marker, 'dblclick', function() {
+                window.location.href = "<?php echo base_url();?>/pois_controller/getPois?>";
+            });
+        }
     </script>
+
     <?=$map['js']?>        
 
 </head>

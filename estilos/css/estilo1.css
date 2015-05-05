@@ -112,6 +112,14 @@ vertical-align: top;
 
 }
 
+#mapa-principal a{
+	text-decoration: none;
+}
+
+#mapa-principal a:hover{
+	background-color: #bef230;
+}
+
 #lado{
 	width: 10%;	
 }

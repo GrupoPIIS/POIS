@@ -6,8 +6,7 @@ class Pois_controller extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('pois_model');
-		!isset($this->session->userdata['habilitado'])?   
-	   		redirect('login_controller', 'refresh') : '';
+		
 	}
 
 	//Lista todos los pois

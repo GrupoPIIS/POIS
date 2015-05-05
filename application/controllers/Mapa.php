@@ -59,7 +59,7 @@ class Mapa extends CI_Controller{
 			$this->googlemaps->initialize($config);
 
 			$circle = array();
-			$circle['center'] = '37.985148,-1.126341';
+			$circle['center'] = $this->pois_model->getPoi('2')->result()[0]->lat.','.$this->pois_model->getPoi('2')->result()[0]->lng;
 			$circle['radius'] = '100000';
 			$this->googlemaps->add_circle($circle);
 
@@ -88,9 +88,12 @@ class Mapa extends CI_Controller{
 		            //posición de los markers
 					$marker ['position'] = $info_marker->lat.','.$info_marker->lng;
 		            //nombre_poi de los markers(ventana de información)	
-					$marker ['infowindow_content'] = $info_marker->nombre_poi;
+					$marker ['infowindow_content'] = '<a href="pois/pois_controller/getPoi/'.$info_marker->id_poi.'?>" >'.$info_marker->nombre_poi.'</a>';
 		            //la id_poi del marker
 					$marker['id'] = $info_marker->id_poi; 
+
+					//$marker['ondblclick'] = 'window.location.href="'.base_url().'pois_controller/getPoi/'.$info_marker->id_poi.'"';
+
 					$this->googlemaps->add_marker($marker);
 		 
 		            //podemos colocar iconos personalizados así de fácil
