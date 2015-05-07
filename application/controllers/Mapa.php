@@ -93,9 +93,13 @@ class Mapa extends CI_Controller{
 			//la posición de los markers y el nombre_poi
 			
 			if(isset($this->session->userdata['habilitado'])){
+				
 				$markers = $this->pois_model->getPoiUser($id);
-			}else{
-				$markers = $this->pois_model->getPois();
+			}else{ 
+				$lat=37.9871633;
+				$lng=-1.1992195;
+				$radius= 8;
+				$markers = $this->pois_model->getPoisCloseTo($lat, $lng, $radius);
 			}
 
 			$data['datos'] = $markers;
@@ -144,8 +148,7 @@ class Mapa extends CI_Controller{
 			}else{
 				$this->load->view('index',$data);
 			}
-			
-			
+		
 		}
 	
 }
