@@ -24,12 +24,13 @@ class Redes_sociales_model extends CI_Model{
 	}
 
 	//Hace un INSERT INTO redes_sociales VALUES datos = $data
-	function newSocial($data){
-		$this->db->insert('redes_sociales', array('nombre_red' => $data['nombre_red']/*,
-												  'icono_red' => $data['icono_red']*/
-											)
-		);
-	}
+	function newSocial($titulo,$imagen){
+        $data = array(
+            'nombre_red' => $titulo,
+            'icono_red' => $imagen
+        );
+        return $this->db->insert('redes_sociales', $data);
+    }
 
 	//Hace un UPDATE redes_sociales SET datos = $data WHERE id = $id
 	function updateSocial($id, $data){

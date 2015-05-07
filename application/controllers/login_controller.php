@@ -12,8 +12,6 @@ class Login_controller extends CI_Controller{
 	function index(){
 		isset($this->session->userdata['habilitado'])?   
 	   		$this->closeSession() : $this->load->view('form_login');
-
-	   	
 	}
 
 	//Comprueba los datos del formulario login y guarda en session los datos que pueden hacer falta

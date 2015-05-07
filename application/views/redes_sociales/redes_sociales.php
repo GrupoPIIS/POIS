@@ -10,7 +10,10 @@
 		foreach ($redes->result() as $red){ ?>
 		<ul>
 			<li><?= $red->nombre_red; ?> 
-			<img src="<?=$red->icono_red?>" /></li>
+
+			<img src="<?= base_url('uploads/thumbs/'.$red->icono_red); ?>" >
+
+			</li>
 		</ul>
 	<?PHP }
 	}else echo "No existen datos";?>

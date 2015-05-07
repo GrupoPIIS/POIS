@@ -202,7 +202,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                   <br> <h3>Nuevo punto de interés</h3>
+                   <br> <h3>Modificar punto de interés</h3>
                     <hr class="star-primary">
                 </div>
             </div>

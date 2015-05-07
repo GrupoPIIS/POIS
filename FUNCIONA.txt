@@ -114,3 +114,8 @@ En esta versión funciona V9 (Alicia):
 En esta versión funciona V10 (Alicia):
 	
 	-	Nueva vista de update
+
+En esta versión funciona V11 (Alicia):
+
+	-	Updatea y visualiza imagenes (solo en Redes Sociales)
+	*	Hacer lo de mas imágenes también en multimedia y en categorias
