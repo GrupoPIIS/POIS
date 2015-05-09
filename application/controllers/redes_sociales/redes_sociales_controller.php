@@ -34,12 +34,34 @@ class Redes_sociales_controller extends CI_Controller{
 
 	//Almacena los datos del formulario (newSocial()) en un array para pasarselos al modelo y añadirlo a la BD.
 	function getNewSocial(){
-		$data = array('nombre_red' => $this->input->post('nombre_red')/*,
-						'icono_red' => $this->input->post('icono_red')*/
-					);
-		$this->redes_sociales_model->newSocial($data);
-		$this->index();
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2000';
+        $config['max_width'] = '2024';
+        $config['max_height'] = '2008';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload();
+        $file_info = $this->upload->data();
+        $this->_create_thumbnail($file_info['file_name']);
+        $titulo = $this->input->post('nombre_red');
+        $imagen = $file_info['file_name'];
+        $subir = $this->redes_sociales_model->newSocial($titulo,$imagen);
+        $this->index();
 	}
+
+	//Crea una miniatura de la imagen
+    function _create_thumbnail($filename){
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = 'uploads/'.$filename;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['new_image']='uploads/thumbs/';
+        $config['width'] = 50;
+        $config['height'] = 50;
+        $this->load->library('image_lib', $config); 
+        $this->image_lib->resize();
+    }
 
 	//Lleva a la vista con el formulario para modificar los datos. Mientras no sea id 0 que es la default.
 	function updateSocial(){

@@ -7,11 +7,11 @@
 	<?= form_open_multipart("/redes_sociales/redes_sociales_controller/getNewSocial")?>
 	<?php
 		$nombre_red	= array('name' => 'nombre_red');
-		$icono_red	= array('name' => 'icono_red');
+		$userfile	= array('name' => 'userfile');
 	?>
 	
 	<label>Nombre: <?= form_input($nombre_red) ?></label><br>
-	<label>Icono: <input type="file" name="icono_red"></label><br>
+	<label>Icono: <input type="file" name="userfile"></label><br>
 
 	<?= form_submit('','Añadir red social') ?>
 
