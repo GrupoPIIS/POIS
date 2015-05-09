@@ -68,9 +68,7 @@
         }  
     
         function initialize() {
-            google.maps.event.addListener(marker, 'onload', function() {
-                window.location.href = "<?php echo base_url();?>/pois_controller/getPois?>";
-            });
+           
             google.maps.event.addListener(marker, 'dblclick', function() {
                 window.location.href = "<?php echo base_url();?>/pois_controller/getPois?>";
             });
@@ -146,7 +144,7 @@
             </a>     
         </div>
     </header>
-    <section id="section-mapa">
+    <section id="section-mapa" onload="createRadius()">
         <article id="mapa-principal">
             <?=$map['html']?>
         </article> 
