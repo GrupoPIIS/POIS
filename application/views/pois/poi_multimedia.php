@@ -5,11 +5,11 @@
 </head>
 <body>
 
-	<?= form_open("/pois/pois_controller/getMultimediaPoi/".$id)?>
+	<?= form_open_multipart("/pois/pois_controller/getMultimediaPoi/".$id)?>
 	<?php
 		$tipo_recurso	= array('name' => 'tipo_recurso');
 		$nombre_recurso	= array('name' => 'nombre_recurso');
-		$ruta_recurso	= array('name' => 'ruta_recurso');
+		$userfile		= array('name' => 'userfile');
 	?>
 
 	<label>Tipo: </label>
@@ -19,7 +19,7 @@
 	</select><br>
 
 	<label>Nombre: <?= form_input($nombre_recurso) ?></label><br>
-	<label>Ruta: <input type="file" name="ruta_recurso"> </label><br>
+	<label>Ruta: <input type="file" name="userfile" multiple> </label><br>
 
 	<?= form_submit('','Añadir multimedia POI') ?>
 

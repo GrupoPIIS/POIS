@@ -119,3 +119,11 @@ En esta versión funciona V11 (Alicia):
 
 	-	Updatea y visualiza imagenes (solo en Redes Sociales)
 	*	Hacer lo de mas imágenes también en multimedia y en categorias
+
+En esta versión funcion V12 (Alicia):
+	-	Subir archivos de imagen (gif|jpg|png), si es necesario se pueden añadir más tipos.
+		+	Para las categorias
+		+ 	Para las redes sociales
+		+	Para el multimedia del poi *** Hay que comprobar como se verá eso en la vista ***
+			*	Se pueden subir multiples archivos de una vez
+			*	Se pueden subir más tipos de archivo, la opción video (mp3|mp4)

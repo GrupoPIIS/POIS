@@ -9,7 +9,8 @@
 	if($categorias){
 		foreach ($categorias->result() as $categoria){ ?>
 		<ul>
-			<li><?= $categoria->nombre_cat; ?></li>
+			<li><?= $categoria->nombre_cat; ?>
+				<img src="<?= base_url('uploads/thumbs/'.$categorias->imagen); ?>" ></li>
 		</ul>
 	<?PHP }
 	}else echo "No existen datos";?>

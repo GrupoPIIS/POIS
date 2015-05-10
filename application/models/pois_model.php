@@ -135,14 +135,22 @@ class Pois_model extends CI_Model{
 		else return NULL;
 	}
 
-	function multimediaPoi($id, $data){
-		$this->db->insert('multimedia', array(
+	function multimediaPoi($id, $tipo, $nombre, $imagen){
+		/*$this->db->insert('multimedia', array(
 											'id_poi' 			=> $id,
 											'tipo_recurso'		=> $data['tipo_recurso'],
 											'nombre_recurso'	=> $data['nombre_recurso'],
 											'ruta_recurso'		=> $data['ruta_recurso']
 											)
-						);
+						);*/
+		
+        $data = array(
+        	'id_poi' 	=> $id,
+            'tipo_recurso' => $tipo,
+            'nombre_recurso' => $nombre,
+            'ruta_recurso' => $imagen
+        );
+        return $this->db->insert('multimedia', $data);
 	}
 
 	function getMultimediaPoi($id){

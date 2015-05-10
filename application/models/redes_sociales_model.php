@@ -33,9 +33,16 @@ class Redes_sociales_model extends CI_Model{
     }
 
 	//Hace un UPDATE redes_sociales SET datos = $data WHERE id = $id
-	function updateSocial($id, $data){
-		$this->db->where('id_red', $id);
-		$query = $this->db->update('redes_sociales', $data);
+	function updateSocial($id, $titulo, $imagen){
+		/*$this->db->where('id_red', $id);
+		$query = $this->db->update('redes_sociales', $data);*/
+
+		$data = array(
+            'nombre_red' => $titulo,
+            'icono_red' => $imagen
+        );
+        $this->db->where('id_red', $id);
+        return $this->db->update('redes_sociales', $data);
 	}
 
 	//Hace un DELETE FROM redes_sociales WHERE id = $id

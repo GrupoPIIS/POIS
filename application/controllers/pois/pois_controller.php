@@ -189,14 +189,23 @@ class Pois_controller extends CI_Controller{
 	}
 
 	function getMultimediaPoi(){
-		$data = array(
+		/*$data = array(
 				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
 				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
 				'ruta_recurso'		=> $this->input->post('ruta_recurso')
 			);
 
 		$this->pois_model->multimediaPoi($this->uri->segment(4), $data);
-		$this->index();
+		$this->index();*/
+
+		if($this->input->post('tipo_recurso') == 'Imagen')
+			$file_info = $this->_create_image();
+		else
+			$file_info = $this->_create_video();
+		
+        $subir = $this->pois_model->multimediaPoi($this->uri->segment(4), $this->input->post('tipo_recurso'),
+        	$this->input->post('nombre_recurso'), $file_info['file_name']);
+        $this->index();
 	}
 
 	function socialPoi(){
@@ -220,5 +229,42 @@ class Pois_controller extends CI_Controller{
 		$this->pois_model->socialPoi($this->uri->segment(4), $data);
 		$this->index();
 	}
+
+
+	function _create_video(){
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'mp3|mp4';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload();
+        $file_info = $this->upload->data();
+        return $file_info;
+	}
+
+	function _create_image(){
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2000';
+        $config['max_width'] = '2024';
+        $config['max_height'] = '2008';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload();
+        $file_info = $this->upload->data();
+        $this->_create_thumbnail($file_info['file_name']);
+        return $file_info;
+	}
+	//Crea una miniatura de la imagen
+    function _create_thumbnail($filename){
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = 'uploads/'.$filename;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['new_image']='uploads/thumbs/';
+        $config['width'] = 50;
+        $config['height'] = 50;
+        $this->load->library('image_lib', $config); 
+        $this->image_lib->resize();
+    }
 }
 ?>

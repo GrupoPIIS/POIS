@@ -77,7 +77,7 @@
                                              <li>
                                                 <?php if($this->session->userdata['rol']==0){?>
                                                 <a href="<?php echo base_url();?>/categorias/categorias_controller/updateCategory/<?=$categoria->id_cat?>">
-                                                    <img class="categ-img" src="<?php echo base_url();?>/estilos/img/profile.png">
+                                                    <img class="categ-img" src="<?php echo base_url();?>/uploads/<?=$categoria->imagen?>" >
                                                     <p class="categ-text"><?= $categoria->nombre_cat;?></p>                                
                                                 </a>
                                                 <a class="little-img" href="<?php echo base_url();?>/categorias/categorias_controller/deleteCategory/<?=$categoria->id_cat?>">

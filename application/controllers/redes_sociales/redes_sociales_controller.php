@@ -34,34 +34,10 @@ class Redes_sociales_controller extends CI_Controller{
 
 	//Almacena los datos del formulario (newSocial()) en un array para pasarselos al modelo y añadirlo a la BD.
 	function getNewSocial(){
-		$config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '2000';
-        $config['max_width'] = '2024';
-        $config['max_height'] = '2008';
-
-        $this->load->library('upload', $config);
-        $this->upload->do_upload();
-        $file_info = $this->upload->data();
-        $this->_create_thumbnail($file_info['file_name']);
-        $titulo = $this->input->post('nombre_red');
-        $imagen = $file_info['file_name'];
-        $subir = $this->redes_sociales_model->newSocial($titulo,$imagen);
+        $file_info = $this->_create_image();
+        $subir = $this->redes_sociales_model->newSocial($this->input->post('nombre_red'),$file_info['file_name']);
         $this->index();
 	}
-
-	//Crea una miniatura de la imagen
-    function _create_thumbnail($filename){
-        $config['image_library'] = 'gd2';
-        $config['source_image'] = 'uploads/'.$filename;
-        $config['create_thumb'] = TRUE;
-        $config['maintain_ratio'] = TRUE;
-        $config['new_image']='uploads/thumbs/';
-        $config['width'] = 50;
-        $config['height'] = 50;
-        $this->load->library('image_lib', $config); 
-        $this->image_lib->resize();
-    }
 
 	//Lleva a la vista con el formulario para modificar los datos. Mientras no sea id 0 que es la default.
 	function updateSocial(){
@@ -83,11 +59,9 @@ class Redes_sociales_controller extends CI_Controller{
 		if($this->session->userdata['rol'] != 0)
 	   		redirect('login_controller', 'refresh');
 
-		$data = array('nombre_red' => $this->input->post('nombre_red'),
-						'icono_red' => $this->input->post('icono_red')
-					);
-		$this->redes_sociales_model->updateSocial($this->uri->segment(4), $data);
-		$this->index();
+		$file_info = $this->_create_image();
+        $subir = $this->redes_sociales_model->updateSocial($this->uri->segment(4),$this->input->post('nombre_red'),$file_info['file_name']);
+        $this->index();
 	}
 
 	//Elimina la categoria con el id pasado por parametro. Mientras no sea id 0 que es la default.
@@ -101,5 +75,32 @@ class Redes_sociales_controller extends CI_Controller{
 		}
 		$this->index();
 	}
+
+
+	function _create_image(){
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2000';
+        $config['max_width'] = '2024';
+        $config['max_height'] = '2008';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload();
+        $file_info = $this->upload->data();
+        $this->_create_thumbnail($file_info['file_name']);
+        return $file_info;
+	}
+	//Crea una miniatura de la imagen
+    function _create_thumbnail($filename){
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = 'uploads/'.$filename;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['new_image']='uploads/thumbs/';
+        $config['width'] = 50;
+        $config['height'] = 50;
+        $this->load->library('image_lib', $config); 
+        $this->image_lib->resize();
+    }
 }
 ?>

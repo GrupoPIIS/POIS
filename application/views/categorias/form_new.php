@@ -72,13 +72,19 @@
 
         
         
-     <?= form_open("/categorias/categorias_controller/getNewCategory")?>
+     <?= form_open_multipart("/categorias/categorias_controller/getNewCategory")?>
 	<?php
 		$nombre	= array('name' => 'nombre',
 							'class' => 'form-control',
 							'placeholder' => 'Nombre de la categoría',
 							'id' => 'nombre',
 							'required data-validation-required-message' => 'Por favor, introduzca el nombre de la categoría');
+
+        $userfile   = array('name' => 'userfile',
+                            'class' => 'form-control',
+                            'placeholder' => 'Imagen de la categoría',
+                            'id' => 'userfile',
+                            'required data-validation-required-message' => 'Por favor, introduzca el icono de la categoría');
 	?> 
 
 
@@ -88,7 +94,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                   <br> <h3>Nuevo categoría</h3>
+                   <br> <h3>Nueva categoría</h3>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -102,6 +108,7 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Nombre de la categoría</label>
                                	<?= form_input($nombre) ?>
+                                <label>Icono</label><input type="file" name="userfile">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>

@@ -72,9 +72,10 @@
 
         
         
-    <?= form_open("/categorias/categorias_controller/getUpdateCategory/".$id)?>
+    <?= form_open_multipart("/categorias/categorias_controller/getUpdateCategory/".$id)?>
 	<?php
 		$nombre	= array('name' => 'nombre', 'value' => $categoria->result()[0]->nombre_cat);
+        $userfile   = array('name' => 'userfile', 'value' => "./uploads/".$categoria->result()[0]->imagen);
 
 		$nombre_label	= array('name' => 'nombre_label',
 							'class' => 'form-control',
@@ -104,7 +105,8 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">                             
                                 <p>Nuevo nombre de la categoría:</p>
                                	<?= form_input($nombre) ?>
-                               	<!--<?= form_input($nombre) ?>-->
+                                <p>Nuevo icono de la categoría:</p>
+                               	<input type="file" name="userfile">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
