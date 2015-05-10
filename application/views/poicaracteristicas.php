@@ -92,12 +92,10 @@
 <!-- Indicators -->
 
 <ol class="carousel-indicators">
-
 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-
-<li data-target="#myCarousel" data-slide-to="1"></li>
-
-<li data-target="#myCarousel" data-slide-to="2"></li>
+<?PHP for($i=1; $i<count($multimedia)+1; $i++){ ?>
+    <li data-target="#myCarousel" data-slide-to="<?= $i ?>"></li>
+ <?php } ?>
 
 </ol>
 
@@ -105,39 +103,22 @@
 
 <div class="item active">
 
-<img src="<?php echo base_url();?>/estilos/img/portfolio/catedral.jpg" alt="First slide" style="width: 50%; margin-top: -10%;">
+<?PHP if($multimedia){ ?>
+
+    <img src="<?php echo base_url();?>/uploads/<?=$multimedia->result()[0]->ruta_recurso?>" alt="First slide" style="width: 50%; margin-top: -10%;">
+    </div>
+
+        <?PHP for($i = 1; $i < count($multimedia)+1; $i++){ ?>
+
+            <div class="item">
+
+            <img src="<?php echo base_url();?>/uploads/<?= $multimedia->result()[$i]->ruta_recurso?>" alt="Second slide" style="width: 50%; margin-top: -10%;">
+
+            </div>
+        <?php }
+    } ?>
 
 
-
-</div>
-
-<div class="item">
-
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAGZmZgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-
-<div class="container">
-
-<div class="carousel-caption">
-
-<h2>Lema de la empresa</h2>
-
-<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-<p><a class="btn btn-lg btn-primary" href="#" role="button">Ir a la página oficial</a></p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="item">
-
-<img src="<?php echo base_url();?>/estilos/img/portfolio/rinconpepe.jpg" alt="First slide" style="width: 50%; margin-top: -10%;">
-
-</div>
-
-</div>
 
 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 

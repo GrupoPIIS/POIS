@@ -24,6 +24,15 @@ class Pois_controller extends CI_Controller{
 		}else{
 			$data['pois'] = $this->pois_model->getPoi($data['id']);
 		}
+
+
+		$data['extras'] = $this->pois_model->getExtraPoi($data['id']);
+
+        $data['multimedia'] = $this->pois_model->getMultimediaPoi($data['id']);
+
+        $data['social'] = $this->pois_model->getSocialPoi($data['id']);
+        
+
 		$this->load->view('poicaracteristicas', $data);
 	}
 
@@ -136,7 +145,7 @@ class Pois_controller extends CI_Controller{
 				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
 				'ruta_recurso'		=> $this->input->post('ruta_recurso'),
 
-				'nombre_original'		=> $this->input->post('nombre_original')
+				'nombre_original'	=> $this->input->post('nombre_original')
 			);
 
 		$social = array(

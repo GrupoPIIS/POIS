@@ -127,3 +127,4 @@ En esta versión funcion V12 (Alicia):
 		+	Para el multimedia del poi *** Hay que comprobar como se verá eso en la vista ***
 			*	Se pueden subir multiples archivos de una vez
 			*	Se pueden subir más tipos de archivo, la opción video (mp3|mp4)
+		+ 	En ver detalle poi carrusel con imágenes
