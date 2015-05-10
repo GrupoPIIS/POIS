@@ -217,7 +217,7 @@
                         <div class="row">
                             <div class="form-group col-xs-12">
                             	<!--<?= form_submit('','Añadir POI') ?> -->
-                                <button type="submit" class="btn btn-success btn-lg">Añadir punto de interés</button>
+                                <button type="submit" class="btn btn-success btn-lg">Crear punto de interés</button>
                                 
                             </div>
                         </div>

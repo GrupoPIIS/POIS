@@ -164,27 +164,73 @@
                     
                         <article class="text-poi">
                         
-                         <article class="campo-poi">
-                            <h4>NOMBRE:</h4>
-                            <p><?=$pois->result()[0]->nombre_poi?></p>
-                         </article>
-                        
-                         <article class="campo-poi">
-                            <h4>TEXTO REPRESENTATIVO:</h4>
-                            <p><?=$pois->result()[0]->txt_rep?></p>
-                         </article>
-                        
-                         <article class="campo-poi">
-                             <h4>DIRECCIÓN:</h4>
-                            <p><?=$pois->result()[0]->direccion?></p>
-                         </article>
-            
-                         <article class="campo-poi">
-                            <h4>FECHA DE ALTA:</h4>
-                             <p><?=$pois->result()[0]->creado?></p>
-                         </article>            
-            
-    
+                             <article class="campo-poi">
+                                <h4>NOMBRE:</h4>
+                                <p><?=$pois->result()[0]->nombre_poi?></p>
+                             </article>
+                            
+                             <article class="campo-poi">
+                                <h4>TEXTO REPRESENTATIVO:</h4>
+                                <p><?=$pois->result()[0]->txt_rep?></p>
+                             </article>
+                            
+                             <article class="campo-poi">
+                                 <h4>DIRECCIÓN:</h4>
+                                <p><?=$pois->result()[0]->direccion?></p>
+                             </article>
+                
+                             <!--<article class="campo-poi">
+                                <h4>FECHA DE ALTA:</h4>
+                                 <p><?=$pois->result()[0]->creado?></p>
+                             </article> -->        
+                            <?PHP if($extras){ ?>
+                                 <article class="campo-poi">
+                                    <h4>SLOGAN:</h4>
+                                    <p><?=$extras->result()[0]->slogan?></p>
+                                </article>
+
+                                <article class="campo-poi">
+                                    <h4>TELÉFONOS:</h4>
+                                    <p><?=$extras->result()[0]->telefono1?></p> - 
+                                    <p><?=$extras->result()[0]->telefono2?></p>
+                                </article>
+
+                                <article class="campo-poi">
+                                    <h4>DIRECCIÓN:</h4>
+                                    <p><?=$extras->result()[0]->direccion_local?></p>
+                                </article>
+
+                                <article class="campo-poi">
+                                    <h4>HORARIO:</h4>
+                                    <p><?=$extras->result()[0]->horario?></p>
+                                </article>
+                            <?PHP }?>
+
+                            <?PHP if($social){ ?>
+                                <article class="campo-poi">
+                                    <h4>REDES SOCIALES:</h4>
+                                    <?php foreach ($social->result() as $red){ ?>
+
+                                        <img src="<?php echo base_url();?>/uploads/thumbs/<?=$red->icono_red?>" >
+                                        <a href="<?=$red->enlace?>"> <p><?=$red->nombre_red?></p> </a>
+                                    
+                                    <?php } ?>
+                                </article>
+                            <?PHP } ?>
+
+                            <?PHP if($multimedia){ ?>
+                                <article class="campo-poi">
+                                    
+                                    <?php foreach ($multimedia->result() as $multi){ ?>
+                                        <?php if($multi->tipo_recurso != 'Imagen'){ ?>
+
+                                        <video src="<?php echo base_url();?>/uploads/<?=$multi->ruta_recurso?>"></video> 
+                                    
+                                    <?php }
+                                    } ?>
+                                </article>
+                            <?PHP } ?>
+
                         </article>
 
               

@@ -213,7 +213,6 @@
                     <form name="sentMessage" id="contactForm" novalidate>
 
 
-
 					<?PHP if($this->session->userdata('rol') == 0){?>
 		 			<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -317,11 +316,10 @@
 							 <p class="help-block text-danger"></p>
                           </div>
                         </div>
-
+<!-- EXTRAS ------------------------------------------------------------------ -->
+	<br>
+	<h3> CONTENIDO EXTRA </h3>
 	<?PHP if($extras){ ?>
-		<br>
-		-----------------------------------------------------------------------------------
-		<br><br>
 
 						<div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -365,51 +363,42 @@
 		
 			<?PHP } ?><br>
 
+
+	<!-- MULTIMEDIA ------------------------------------------------------------------ -->
+	<br>
+	<h3> CONTENIDO MULTIMEDIA </h3>
+	<a href="<?php echo base_url();?>pois/pois_controller/multimediaPoi/<?= $id ?>">Añadir contenido multimedia</a>
 	<?PHP if($multimedia){ ?>
-		<br>
-		-----------------------------------------------------------------------------------
-		<br><br>
 		<?php foreach ($multimedia->result() as $multi){ ?>
-
-			<label>Tipo: </label>
-			<select name='tipo_recurso[]' id='tipo_recurso[]'>
-		        <option value='Imagen' <?PHP if($multi->tipo_recurso == "Imagen"){ ?> selected <?PHP }?>> Imagen </option>
-		        <option value='Video' <?PHP if($multi->tipo_recurso == "Video"){ ?> selected <?PHP }?>> Vídeo </option>
-			</select><br>
-
-			<?PHP $nombre_original[] = $multi->nombre_recurso; ?>
-
-			<label>Nombre: <input type="input" name="nombre_recurso[]" value= <?= $multi->nombre_recurso; ?> ></label><br>
-			<label>Ruta: <input type="file" name="ruta_recurso[]" value= <?= $multi->ruta_recurso; ?>> </label><br>
-		<br><br>
+			<li class="poi-enlace">
+			<?php if($multi->tipo_recurso == "Imagen"){ ?>
+				<img src="<?php echo base_url();?>/uploads/thumbs/<?= $multi->ruta_recurso?>">
+			<?php } else{?>
+				<video src="<?php echo base_url();?>/uploads/<?=$multi->ruta_recurso?>"></video> 
 		<?PHP } ?>
-		<a href="<?php echo base_url();?>pois/pois_controller/multimediaPoi/<?= $id ?>">Añadir más contenido</a>
+			<a href="<?php echo base_url();?>pois/pois_controller/deleteMultimediaPoi/<?= $id ?>/<?=$multi->nombre_recurso?>" class="poi-boton">
+	           <img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
+	        </a> 
+			</li>
+		<?php } ?>
+		
 	<?php } ?>
 
+	<!-- SOCIAL ------------------------------------------------------------------ -->
+	<br>
+	<h3> REDES SOCIALES </h3>
+	<a href="<?php echo base_url();?>pois/pois_controller/socialPoi/<?= $id ?>">Añadir una red social</a>
 	<?PHP if($social){ ?>
-		<br>
-		-----------------------------------------------------------------------------------
-		<br><br>
-		<label>Redes Sociales: </label><br>
-			<?PHP foreach ($redes_sociales->result() as $red){ 
-				$aux = -1;
-				for ($i=0; $i < count($social); $i++){ 
-
-					if($red->id_red == $social->result()[$i]->id_rrss){ 
-						$aux = $i;
-					 } ?>
-
-				<?PHP } ?>
-
-				<input type="checkbox" name='id_rrss[]' id='id_rrss[]' value=<?= $red->id_red; ?> 
-					<?php if($aux != -1){ ?>
-						checked  
-					<?php } ?>
-				/> <?= $red->nombre_red; ?>
-				<input type="input" name="enlace" <?php if($aux != -1){ ?>value= <?= $social->result()[$aux]->enlace; } ?> >
-				 <br>
-		<?PHP }
-	}?><br>
+		<?php foreach ($social->result() as $red){ ?>
+			<li class="poi-enlace">
+				<img src="<?php echo base_url();?>/uploads/thumbs/<?= $red->icono_red?>">
+				<a href="<?=$red->enlace?>"> <?=$red->nombre_red?> </a>
+				<a href="<?php echo base_url();?>pois/pois_controller/deleteSocialPoi/<?= $id ?>/<?=$red->id_rrss?>" class="poi-boton">
+	           	<img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
+	        	</a> 
+			</li>
+		<?php } ?>
+	<?php } ?>
 
  				<p1 style=color:red;><?php if(isset($error)) echo $error; ?></p1>
 

@@ -49,11 +49,6 @@ class Pois_model extends CI_Model{
 										)
 						);
 		$last = $this->db->insert_id();
-		/*$this->db->insert('id_poi_id_cat', array(
-												'id_poi'	=> $last,
-												'id_cat'	=> 0
-											)
-						);*/
 
 		if($data['id_categoria']){
 			foreach ($data['id_categoria'] as $categoria){
@@ -87,19 +82,6 @@ class Pois_model extends CI_Model{
 		}
 		if(isset($extras['slogan'])){
 				$query = $this->db->update('extras_poi', $extras);
-		}
-		if(isset($multimedia['nombre_recurso'])){
-			/*foreach ($multimedia as $multi){
-				$this->db->where('id_poi', $id);
-				//$this->db->where('nombre_recurso', $multi['nombre_original']);
-				$query = $this->db->update('multimedia', $multi);
-			}*/
-		}
-		if(isset($social['nombre_red'])){
-			/*foreach ($social as $red){
-				$this->db->where('id_poi', $id);
-				$query = $this->db->update('rrss_poi', $social);
-			}*/
 		}
 	}
 
@@ -136,13 +118,6 @@ class Pois_model extends CI_Model{
 	}
 
 	function multimediaPoi($id, $tipo, $nombre, $imagen){
-		/*$this->db->insert('multimedia', array(
-											'id_poi' 			=> $id,
-											'tipo_recurso'		=> $data['tipo_recurso'],
-											'nombre_recurso'	=> $data['nombre_recurso'],
-											'ruta_recurso'		=> $data['ruta_recurso']
-											)
-						);*/
 		
         $data = array(
         	'id_poi' 	=> $id,
@@ -155,9 +130,27 @@ class Pois_model extends CI_Model{
 
 	function getMultimediaPoi($id){
 		$this->db->where('id_poi', $id);
+		$this->db->order_by("tipo_recurso", "ASC"); 
 		$query = $this->db->get('multimedia');
 		if($query->num_rows() > 0) return $query;
 		else return NULL;
+	}
+
+	function updateMultimediaPoi($id_poi, $id_recurso, $tipo, $nombre, $recurso){
+		 $data = array(
+            'tipo_recurso' => $tipo,
+            'nombre_recurso' => $nombre,
+            'ruta_recurso' => $recurso
+        );
+		$this->db->where('id_poi', $id_poi);
+		$this->db->where('nombre_recurso', $id_recurso);
+        return $this->db->update('multimedia', $data);
+	}
+
+	function deleteMultimediaPoi($id_poi, $id_recurso){
+		$this->db->where('id_poi', $id_poi);
+		$this->db->where('nombre_recurso', $id_recurso);
+		$this->db->delete('multimedia');
 	}
 
 	function socialPoi($id, $data){
@@ -174,6 +167,17 @@ class Pois_model extends CI_Model{
 		$query = $this->db->get('rrss_poi');
 		if($query->num_rows() > 0) return $query;
 		else return NULL;
+	}
+
+	function getSocialAllPoi($id){
+		return $this->db->query('SELECT * FROM redes_sociales, rrss_poi WHERE id_rrss = id_red AND id_poi = '.$id);
+	
+	}
+
+	function deleteSocialPoi($id_poi, $id_recurso){
+		$this->db->where('id_poi', $id_poi);
+		$this->db->where('id_rrss', $id_recurso);
+		$this->db->delete('rrss_poi');
 	}
 
 		//Devuelve los 20 pois dentro de un círculo de radio r (en kms) y centro en la ubicación actual.

@@ -86,13 +86,13 @@
                         
                     <?php if($pois){ foreach ($pois->result() as $poi): ?>
                         <li class="poi-enlace">
-                            <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$poi->id_poi?>" >
+                            <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$poi->id_poi ?>" >
                                 <p class="poi-text"><?= $poi->nombre_poi?></p>
                             </a>
-                            <a href="<?php echo base_url();?>pois/pois_controller/updatePoi/<?=$poi->id_poi?>" class="poi-boton">
+                            <a href="<?php echo base_url();?>pois/pois_controller/updatePoi/<?=$poi->id_poi ?>" class="poi-boton">
                                     <img src="<?php echo base_url();?>/estilos/img/edit.png" alt="Editar">                    
                             </a>
-                            <a href="<?php echo base_url();?>pois/pois_controller/deletePoi/<?=$poi->id_poi?>" class="poi-boton">
+                            <a href="<?php echo base_url();?>pois/pois_controller/deletePoi/<?=$poi->id_poi ?>" class="poi-boton">
                                 <img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
                             </a>                            
                         </li>

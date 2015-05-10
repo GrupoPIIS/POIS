@@ -113,7 +113,7 @@ class Mapa extends CI_Controller{
 		            //posición de los markers
 					$marker ['position'] = $info_marker->lat.','.$info_marker->lng;
 		            //nombre_poi de los markers(ventana de información)	
-					$marker ['infowindow_content'] = '<a href="pois/pois_controller/getPoi/'.$info_marker->id_poi.'?>" >'.$info_marker->nombre_poi.'</a>';
+					$marker ['infowindow_content'] = '<a href="pois/pois_controller/getPoi/'.$info_marker->id_poi.'" >'.$info_marker->nombre_poi.'</a>';
 		            //la id_poi del marker
 					$marker['id'] = $info_marker->id_poi; 
 

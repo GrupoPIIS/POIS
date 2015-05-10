@@ -25,13 +25,11 @@ class Pois_controller extends CI_Controller{
 			$data['pois'] = $this->pois_model->getPoi($data['id']);
 		}
 
-
 		$data['extras'] = $this->pois_model->getExtraPoi($data['id']);
 
         $data['multimedia'] = $this->pois_model->getMultimediaPoi($data['id']);
 
-        $data['social'] = $this->pois_model->getSocialPoi($data['id']);
-        
+        $data['social'] = $this->pois_model->getSocialAllPoi($data['id']);
 
 		$this->load->view('poicaracteristicas', $data);
 	}
@@ -102,7 +100,7 @@ class Pois_controller extends CI_Controller{
 
         $data['multimedia'] = $this->pois_model->getMultimediaPoi($data['id']);
 
-        $data['social'] = $this->pois_model->getSocialPoi($data['id']);
+        $data['social'] = $this->pois_model->getSocialAllPoi($data['id']);
 
 		if($data['id']){
 			$data['poi'] = $this->pois_model->getPoi($data['id']);
@@ -138,19 +136,6 @@ class Pois_controller extends CI_Controller{
 				'telefono2'			=> $this->input->post('telefono2'),
 				'direccion_local'	=> $this->input->post('direccion_local'),
 				'horario'			=> $this->input->post('horario')
-			);
-
-		$multimedia = array(
-				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
-				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
-				'ruta_recurso'		=> $this->input->post('ruta_recurso'),
-
-				'nombre_original'	=> $this->input->post('nombre_original')
-			);
-
-		$social = array(
-				'id_rrss' 	=> $this->input->post('id_rrss'),
-				'enlace'	=> $this->input->post('enlace')
 			);
 
 		$this->pois_model->updatePoi($this->uri->segment(4), $data, $categorias, $extras, $multimedia, $social);
@@ -198,14 +183,6 @@ class Pois_controller extends CI_Controller{
 	}
 
 	function getMultimediaPoi(){
-		/*$data = array(
-				'tipo_recurso' 		=> $this->input->post('tipo_recurso'),
-				'nombre_recurso'	=> $this->input->post('nombre_recurso'),
-				'ruta_recurso'		=> $this->input->post('ruta_recurso')
-			);
-
-		$this->pois_model->multimediaPoi($this->uri->segment(4), $data);
-		$this->index();*/
 
 		if($this->input->post('tipo_recurso') == 'Imagen')
 			$file_info = $this->_create_image();
@@ -214,6 +191,33 @@ class Pois_controller extends CI_Controller{
 		
         $subir = $this->pois_model->multimediaPoi($this->uri->segment(4), $this->input->post('tipo_recurso'),
         	$this->input->post('nombre_recurso'), $file_info['file_name']);
+        $this->index();
+	}
+
+	function updateMultimediaPoi(){
+		$data['id'] = $this->uri->segment(4);
+
+		if($data['id'] != null)
+			$this->load->view('pois/poi_multimedia', $data);
+		else
+			$this->load->view('pois/form_new', $data);
+	}
+
+	function getUpdateMultimediaPoi(){
+
+		if($this->input->post('tipo_recurso') == 'Imagen')
+			$file_info = $this->_create_image();
+		else
+			$file_info = $this->_create_video();
+		
+        $subir = $this->pois_model->updateMultimediaPoi($this->uri->segment(4), $this->uri->segment(5), $this->input->post('tipo_recurso'),
+        	$this->input->post('nombre_recurso'), $file_info['file_name']);
+        $this->index();
+	}
+
+	function deleteMultimediaPoi(){
+		
+        $subir = $this->pois_model->deleteMultimediaPoi($this->uri->segment(4), $this->uri->segment(5));
         $this->index();
 	}
 
@@ -239,6 +243,11 @@ class Pois_controller extends CI_Controller{
 		$this->index();
 	}
 
+	function deleteSocialPoi(){
+		
+        $subir = $this->pois_model->deleteSocialPoi($this->uri->segment(4), $this->uri->segment(5));
+        $this->index();
+	}
 
 	function _create_video(){
 		$config['upload_path'] = './uploads/';

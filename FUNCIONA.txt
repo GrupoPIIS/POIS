@@ -128,3 +128,12 @@ En esta versión funcion V12 (Alicia):
 			*	Se pueden subir multiples archivos de una vez
 			*	Se pueden subir más tipos de archivo, la opción video (mp3|mp4)
 		+ 	En ver detalle poi carrusel con imágenes
+
+En esta versión funcion V13 (Alicia):
+	-	Vista de update poi
+		+	listar contenidos multimedia, añadir botón de eliminar cada uno
+		+	añadir botón de añadir contenido multimedia (general)
+		+	listar redes sociales, añadir botón de eliminar cada una
+		+	añadir botón de añadir red social (general)
+		*	pois_model.php (133)
+				$this->db->order_by("tipo_recurso", "ASC"); 
