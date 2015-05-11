@@ -18,14 +18,16 @@
     <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
-       
+    <script src="<?php echo base_url();?>/estilos/js/jquery-1.11.2.js" type="text/javascript"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+
     <script type="text/javascript">
         var centreGot = false;
         var activeMap=false;
         var usermarker;
         var circleactive = false;
         var circle;
+
 
         function createRadius() {
             if(circleactive){
@@ -67,16 +69,12 @@
             element.setAttribute('src', 'estilos/img/app.png');
         }  
     
-        function initialize() {
-           
-            google.maps.event.addListener(marker, 'dblclick', function() {
-                window.location.href = "<?php echo base_url();?>/pois_controller/getPois?>";
-            });
-        }
+       
+
+        
     </script>
 
     <?=$map['js']?>        
-
 </head>
 
 <body id="page-top" class="index">
@@ -93,7 +91,7 @@
                     <span class="icon-bar"></span>
                 </button>
            <!--     <a class="navbar-brand" href="#page-top">Start Bootstrap</a> -->
-            <a href="#page-top"><img class="img-centic" src="estilos/img/centic.jpg" ></a>
+            <a href="<?php echo base_url();?>"><img class="img-centic" src="estilos/img/centic.jpg" ></a>
             
             </div>
 
@@ -130,39 +128,40 @@
             <span class="skills">Explora y conoce los lugares de interés que hay a tu alrededor a través de nuestra aplicación</span>          
         </article>  
         <article id="imgApp">
-        <a href="https://play.google.com/store?hl=es_419" title="">
-            <img src="estilos/img/app.png" width="150" title="Descargar Aplicacion" onmouseover="hoverapp(this);" onmouseout="unhoverapp(this);"/>
-        </a>
+       
             
         </article>
         <div id="ubicacion">
+        <form action="<?php echo base_url();?>Mapa" method="post" >
+            <input id="buscar" type="range" name="sitio" min="0" max="100">            
+            <input id="latitud" type="hidden" name="lat">
+            <input id="longitud" type="hidden" name="lng">
+            <input id="dragged" type="hidden" name="dragged">
+            <input type="submit"  value="Buscar" class="btn btn-success btn-lg">
+        </form>
+            
 
-            <input id="buscar" type="number" name="sitio" onchange="createRadius()">
-
-            <a id="boton" href="#" class="btn btn-lg btn-outline" onclick="createRadius()">
-                <i class="fa fa-map-marker"></i> Buscar
-            </a>     
+                 
         </div>
     </header>
-    <section id="section-mapa" onload="createRadius()">
+    <section id="section-mapa">
         <article id="mapa-principal">
             <?=$map['html']?>
         </article> 
         <aside id="lado">
                 
                 <article id="enlaces">
-                    <h3>POIs cercanos</h3>
-                    <ul>
-                        <?php
+                    <h3>POIS CERCANOS</h3>                 
+                    <ul>                            
+                            <li class="posicion-actual" onclick="datos_marker(usermarker.position.lat(),usermarker.position.lng(),usermarker)">
+                                Su Posici&oacute;n</li><?php
                             if($datos){
-                                 ?><li class="posicion-actual" onclick="datos_marker(usermarker.position.lat(),usermarker.position.lng(),usermarker)">
-                                    Su Posici&oacute;n</li><?php
-                            foreach($datos->result() as $marker_sidebar)
-                            {
-                                ?><li class="posicion-poi" onclick="datos_marker(<?=$marker_sidebar->lat?>,<?=$marker_sidebar->lng?>,marker_<?=$marker_sidebar->id_poi?>)">
-                                <?=substr($marker_sidebar->nombre_poi,0,10)?></li><?php
+                                foreach($datos->result() as $marker_sidebar)
+                                {
+                                    ?><li class="posicion-poi" onclick="datos_marker(<?=$marker_sidebar->lat?>,<?=$marker_sidebar->lng?>,marker_<?=$marker_sidebar->id_poi?>)">
+                                    <?=substr($marker_sidebar->nombre_poi,0,10)?></li><?php
+                                }
                             }
-                        }
                         ?>
                     </ul>
                 </article>
@@ -270,8 +269,8 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
+<!-- 
+     
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -282,8 +281,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. 
+                    The form should work on most web servers, but if the form is not working you may need to configure your web server differently. 
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -325,7 +324,7 @@
             </div>
         </div>
     </section>
-
+-->
      <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
@@ -618,9 +617,9 @@
 
     <!-- Contact Form JavaScript -->
     <script src="estilos/js/jqBootstrapValidation.js"></script>
-    <script src="estilos/js/contact_me.js"></script>
+     <!-- <script src="estilos/js/contact_me.js"></script>
 
-    <!-- Custom Theme JavaScript -->
+    Custom Theme JavaScript -->
     <script src="estilos/js/freelancer.js"></script>
 
 </body>

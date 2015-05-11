@@ -1,18 +1,27 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');	
 class Mapa extends CI_Controller{
 	
 	public function __construct()
 	{
 		parent::__construct();
-		//	$this->load->model('mapa_model');
 		$this->load->model('pois_model');
 		$this->load->helper('url');	
 	}
 
-
 	
 	public function index()
 	{	
+
+			$dragged="";
+			$lat="";
+			$lng="";
+			$radius="";
+			if($this->input->post()){
+				$dragged = $this->input->post('dragged');
+				$lat = $this->input->post('lat');
+				$lng = $this->input->post('lng');
+				$radius = $this->input->post('sitio');
+			}
 
 			if(isset($this->session->userdata['habilitado'])){		
 
@@ -23,36 +32,46 @@ class Mapa extends CI_Controller{
 	        //la zona del mapa que queremos mostrar al cargar el mapa
 	        //como vemos le podemos pasar la ciudad y el país
 	        //en lugar de la latitud y la lngitud
-			$config['center'] = 'auto';
+
+	        if($lat!="" & $lng!=""){
+				$config['center'] = $lat.','.$lng;
+			}else{
+				$config['center'] = 'auto';
+			}
 
 			$config['scrollwheel'] = false;
 			
 			$config['onboundschanged'] = '
 			if (!centreGot) {
-
+				var dragged = "'.$dragged.'";
+				var lat="'.$lat.'";
+				var lng="'.$lng.'";
+				var radius=	"'.$radius.'";				
+					
 				var mapCentre = map.getCenter();
-				marker_0.setOptions({
-					position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng()) 
-				});
-				
-				/*var infowindow = new google.maps.InfoWindow({
-			        map: map,
-			        position: marker_0.position,
-			        content: "USTED SE ENCUENTRA AQUI"
-			      });
-				*/
-				/*	var populationOptions = {
-						map:map,      
-				      	center: new google.maps.LatLng(marker_0.position.lat(), marker_0.position.lng()),
-				      	radius: 100000
-				    };
-	 				var cityCircle = new google.maps.Circle(populationOptions);
-	 			*/	
- 				
+
+				if(dragged=="dragged" || (lat!="" && lat!=mapCentre.lat()) || (lng!="" && lng!=mapCentre.lng())){
+					marker_0.setOptions({					
+						position: new google.maps.LatLng("'.$lat.'", 
+										"'.$lng.'")
+					});	
+				}else{
+					marker_0.setOptions({					
+						position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
+					});	
+				}
+							
+		
 				usermarker=marker_0;
-				
+
+				var userlat = usermarker.position.lat();
+                var userlng =usermarker.position.lng();
+              
+				document.getElementById("latitud").value = userlat;
+                document.getElementById("longitud").value = userlng;		
+				document.getElementById("buscar").value = radius;
 			}
-			//alert(usermarker.position.lat());
+			
 			centreGot = true;';
 
 			$config['onclick'] = '
@@ -68,7 +87,7 @@ class Mapa extends CI_Controller{
 			
 	        // el zoom, que lo podemos poner en auto y de esa forma
 	        //siempre mostrará todos los markers ajustando el zoom	
-			$config['zoom'] = '8';	
+			$config['zoom'] = '9';	
 	        //el tipo de mapa, en el pdf podéis ver más opciones
 			$config['map_type'] = 'ROADMAP';
 	        //el ancho del mapa		
@@ -78,60 +97,18 @@ class Mapa extends CI_Controller{
 	        //inicializamos la configuración del mapa	
 			$this->googlemaps->initialize($config);
 			
-			$marker = array();			
-			$marker ['icon'] = base_url().'/estilos/img/marker.png';
-			$marker ['infowindow_content'] = 'USTED SE ENCUENTRA AQUI';
-			$marker['animation'] ='BOUNCE';
-			$this->googlemaps->add_marker($marker);
-			/*
-			$circle = array();
-			$circle['center'] = 'usermarker.position.lat();, usermarker.position.lng();';
-			$circle['radius'] = '100000';
-			$this->googlemaps->add_circle($circle);
-			*/
+			$this->setUserMarker();
+
+			
 			//hacemos la consulta al modelo para pedirle 
 			//la posición de los markers y el nombre_poi
 			
-			if(isset($this->session->userdata['habilitado'])){
-				
-				$markers = $this->pois_model->getPoiUser($id);
-			}else{ 
-				$lat=37.9871633;
-				$lng=-1.1992195;
-				$radius= 8;
-				$markers = $this->pois_model->getPoisCloseTo($lat, $lng, $radius);
-			}
-
+			$markers=$this->getMarkers();
+			
 			$data['datos'] = $markers;
-
-			if($markers){
-				foreach($markers->result() as $info_marker)
-				{
-					$marker = array();
-		            //podemos elegir DROP o BOUNCE
-					$marker ['animation'] = 'DROP';
-		            //posición de los markers
-					$marker ['position'] = $info_marker->lat.','.$info_marker->lng;
-		            //nombre_poi de los markers(ventana de información)	
-					$marker ['infowindow_content'] = '<a href="pois/pois_controller/getPoi/'.$info_marker->id_poi.'" >'.$info_marker->nombre_poi.'</a>';
-		            //la id_poi del marker
-					$marker['id'] = $info_marker->id_poi; 
-
-					//$marker['ondblclick'] = 'window.location.href="'.base_url().'pois_controller/getPoi/'.$info_marker->id_poi.'"';
-
-					$this->googlemaps->add_marker($marker);
-		 
-		            //podemos colocar iconos personalizados así de fácil
-					//$marker ['icon'] = base_url().'imagenes/'.$fila->imagen;
-		 
-					//si queremos que se pueda arrastrar el marker
-					//$marker['draggable'] = TRUE;
-					//si queremos darle una id_poi, muy útil
-				}
-			}	
-			//en $data['datos']tenemos la información de cada marker para
-	        //poder utilizarlo en el sid_poiebar en nuestra vista mapa_view
-			//$data['datos'] = $this->mapa_model->get_markers();
+				
+			$this->fillMarkers($markers);			
+			
 	        //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
 			$data['map'] = $this->googlemaps->create_map();
 
@@ -148,7 +125,81 @@ class Mapa extends CI_Controller{
 			}else{
 				$this->load->view('index',$data);
 			}
-		
+			
+		}
+
+
+		public function setUserMarker(){
+			$marker = array();			
+			$marker ['icon'] = base_url().'/estilos/img/marker.png';
+			$marker ['infowindow_content'] = 'SU POSICION';
+			$marker['animation'] ='BOUNCE';
+			$marker['draggable'] = true;
+			$marker['ondragend'] = '
+				document.getElementById("dragged").value = "dragged";
+				document.getElementById("latitud").value = event.latLng.lat();
+                document.getElementById("longitud").value = event.latLng.lng();
+			';
+			
+			$this->googlemaps->add_marker($marker);
+		}
+
+		public function getMarkers(){
+
+			if(isset($this->session->userdata['habilitado'])){
+				
+				$markers = $this->pois_model->getPoiUser($this->session->userdata['id_usuario']);
+
+			}else{	
+				if($this->input->post()){
+					$lat = $this->input->post('lat');
+					$lng = $this->input->post('lng');
+					if($this->input->post('sitio')){
+						$radius = $this->input->post('sitio');
+					}else {
+						$radius=0;
+					}					
+				}else{
+					$lat=304.312;
+					$lng=-1.123124;
+					$radius= 8;
+				}				
+					
+					
+			$circle = array();
+			$circle['center'] = $lat.','.$lng;
+			$circle['radius'] = $radius*1000;
+			$this->googlemaps->add_circle($circle);
+
+					$markers = $this->pois_model->getPoisCloseTo($lat, $lng, $radius);
+			}
+
+			return $markers;
+		}
+
+
+		public function fillMarkers($markers){
+
+			if($markers){
+				foreach($markers->result() as $info_marker)
+				{
+					$marker = array();
+		            //podemos elegir DROP o BOUNCE
+					$marker ['animation'] = 'DROP';
+		            //posición de los markers
+					$marker ['position'] = $info_marker->lat.','.$info_marker->lng;
+		            //nombre_poi de los markers(ventana de información)	
+					$marker ['infowindow_content'] = '<a href="pois/pois_controller/getPoi/'.$info_marker->id_poi.'" >'.$info_marker->nombre_poi.'</a>';
+		            //la id_poi del marker
+					$marker['id'] = $info_marker->id_poi; 					
+
+					$this->googlemaps->add_marker($marker);	           
+		 
+					//si queremos que se pueda arrastrar el marker
+					//$marker['draggable'] = TRUE;
+					//si queremos darle una id_poi, muy útil
+				}
+			}	
 		}
 	
 }
