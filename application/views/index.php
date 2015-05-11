@@ -128,7 +128,9 @@
             <span class="skills">Explora y conoce los lugares de interés que hay a tu alrededor a través de nuestra aplicación</span>          
         </article>  
         <article id="imgApp">
-       
+        <a href="https://play.google.com/store?hl=es_419" title="">
+            <img src="estilos/img/app.png" width="150" title="Descargar Aplicacion" onmouseover="hoverapp(this);" onmouseout="unhoverapp(this);"/>
+        </a>
             
         </article>
         <div id="ubicacion">
