@@ -55,7 +55,7 @@ class Pois_controller extends CI_Controller{
 
 		$this->load->model('usuarios_model');
    	 	$data['usuarios'] = $this->usuarios_model->getUsers();
-
+   	 	$data['map']=$this->selectMap();
 		$this->load->view('pois/form_new', $data);
 	}
 
@@ -105,6 +105,8 @@ class Pois_controller extends CI_Controller{
 		if($data['id']){
 			$data['poi'] = $this->pois_model->getPoi($data['id']);
 		}
+
+		$data['map']=$this->selectMap();
 
 		if($data['poi'] != null)
 			$this->load->view('pois/form_update', $data);
@@ -284,5 +286,71 @@ class Pois_controller extends CI_Controller{
         $this->load->library('image_lib', $config); 
         $this->image_lib->resize();
     }
+
+
+
+
+
+	public function selectMap(){
+			//creamos la configuración del mapa con un array
+			$config = array();
+	        //la zona del mapa que queremos mostrar al cargar el mapa
+	        //como vemos le podemos pasar la ciudad y el país
+	        //en lugar de la latitud y la lngitud
+			$config['center'] = 'auto';
+
+			$config['scrollwheel'] = false;
+
+			$config['onboundschanged'] = 
+				'if (!centreGot) {
+					var mapCentre = map.getCenter();
+					marker_0.setOptions({
+						position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng()) 
+					});
+				}
+				centreGot = true;';
+							
+
+			$config['onclick'] = '
+					
+					if (!activeMap) {
+						activeMap = true;
+						
+					}else{
+						activeMap = false;
+					}
+					this.setOptions({scrollwheel:activeMap});
+				';
+			
+	        // el zoom, que lo podemos poner en auto y de esa forma
+	        //siempre mostrará todos los markers ajustando el zoom	
+			$config['zoom'] = '6';	
+	        //el tipo de mapa, en el pdf podéis ver más opciones
+			$config['map_type'] = 'ROADMAP';
+	        //el ancho del mapa		
+			$config['map_wid_poith'] = '100%';	
+	        //el alto del mapa	
+			$config['map_height'] = '100%';	
+	        //inicializamos la configuración del mapa	
+			$this->googlemaps->initialize($config);
+
+			$marker = array();			
+			$marker ['icon'] = base_url().'/estilos/img/marker.png';
+			$marker ['infowindow_content'] = 'MUEVA ESTE MARCADOR';
+			$marker['animation'] ='BOUNCE';
+			$marker['draggable'] = true;
+			$marker['ondragend'] = '
+				
+				document.getElementById("latitud").value = event.latLng.lat();
+                document.getElementById("longitud").value = event.latLng.lng();
+
+			';
+			
+			$this->googlemaps->add_marker($marker);
+
+			return $this->googlemaps->create_map();
+			
+		}
+
 }
 ?>

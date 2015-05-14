@@ -27,33 +27,7 @@
         var usermarker;
         var circleactive = false;
         var circle;
-
-
-        function createRadius() {
-            if(circleactive){
-                circle.setMap(null);
-                circleactive = false;
-            }
-            
-            
-            var radio=document.getElementById("buscar").value;
-
-            var centro = new google.maps.LatLng(usermarker.position.lat(), usermarker.position.lng());
-            var populationOptions = {
-              strokeColor: '#FF0000',
-              strokeOpacity: 0.8,
-              strokeWeight: 2,
-              fillColor: '#FF0000',
-              fillOpacity: 0.35,
-              map: map,
-              center:centro,
-              radius: Number(radio)
-            };
-            
-            circle = new google.maps.Circle(populationOptions);
-            circleactive = true;
-            map.setZoom(13);
-            }     
+        
 
         function datos_marker(lat, lng, marker)
         {
@@ -65,16 +39,44 @@
         function hoverapp(element) {
             element.setAttribute('src', 'estilos/img/app2.png');
         }
+
         function unhoverapp(element) {
             element.setAttribute('src', 'estilos/img/app.png');
-        }  
-    
-       
+        } 
+
+        function showVal(newVal){
+            document.getElementById("km").innerHTML=newVal+" kms";
+        }
+        
+        jQuery(document).ready(function(){
+            $('#buscar').hide();
+            $('#categ').hide();
+            $('#boton-buscar').hide();
+
+            jQuery('#hideshow').on('click', function(event) {
+        
+                $('#buscar').toggle('show');
+                if($('#hideshow').is(':checked') || $('#hideshow2').is(':checked') )
+                    $('#boton-buscar').show(500);  
+                else
+                    $('#boton-buscar').hide(500);              
+            });
+
+            jQuery('#hideshow2').on('click', function(event) {                       
+                $('#categ').toggle('show');
+                if($('#hideshow').is(':checked') || $('#hideshow2').is(':checked') )
+                    $('#boton-buscar').show(500);  
+                else
+                    $('#boton-buscar').hide(500);
+              
+             });
+
+        });     
 
         
     </script>
+    <?=$map['js']?> 
 
-    <?=$map['js']?>        
 </head>
 
 <body id="page-top" class="index">
@@ -124,26 +126,31 @@
     <header id="header-principal">                
         <article id="header-tittle">
             <h1><font color="#ffffff">Busca a tus alrededores</font></h1>                    
-            <hr class="star-light">
+            <!-- <hr class="star-light">-->  
             <span class="skills">Explora y conoce los lugares de interés que hay a tu alrededor a través de nuestra aplicación</span>          
         </article>  
         <article id="imgApp">
-        <a href="https://play.google.com/store?hl=es_419" title="">
-            <img src="estilos/img/app.png" width="150" title="Descargar Aplicacion" onmouseover="hoverapp(this);" onmouseout="unhoverapp(this);"/>
-        </a>
-            
+            <a href="https://play.google.com/store?hl=es_419" title="">
+                <img src="estilos/img/app.png" width="150" title="Descargar Aplicacion" onmouseover="hoverapp(this);" onmouseout="unhoverapp(this);"/>
+            </a>            
         </article>
-        <div id="ubicacion">
-        <form action="<?php echo base_url();?>Mapa" method="post" >
-            <input id="buscar" type="range" name="sitio" min="0" max="100">            
-            <input id="latitud" type="hidden" name="lat">
-            <input id="longitud" type="hidden" name="lng">
-            <input id="dragged" type="hidden" name="dragged">
-            <input type="submit"  value="Buscar" class="btn btn-success btn-lg">
-        </form>
-            
-
-                 
+       
+        <div id="ubicacion">          
+            <form action="<?php echo base_url();?>Mapa" method="post" >
+                <input type="checkbox" id="hideshow" name="distancia" value="distancia" class="checkbox1">
+                <span>Buscar por distancia</span> 
+                <input type="checkbox" id="hideshow2" name="categoria"value="categoría" class="checkbox1">
+                <span>Buscar por categor&iacute;a</span>                
+                <div id="distancia">
+                    <input id="buscar" type="range" name="sitio" min="0" max="100"  oninput="showVal(this.value)" onchange="showVal(this.value)">
+                    <span id="km"></span>
+                </div>
+                <input id="categ" type="text" name="categ" placeholder="Introduzca categor&iacute;a, ejemplo: Restaurante">            
+                <input id="latitud" type="hidden" name="lat">
+                <input id="longitud" type="hidden" name="lng">
+                <input id="dragged" type="hidden" name="dragged">
+                <input id="boton-buscar" type="submit" value="Buscar" class="btn btn-success btn-lg">
+            </form>                 
         </div>
     </header>
     <section id="section-mapa">

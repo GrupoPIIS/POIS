@@ -121,9 +121,11 @@ vertical-align: top;
 }
 
 #lado{
-	width: 10%;	
+	width: 10%;
+	height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;	
 }
-
 
 
 #lado article h3{
@@ -199,22 +201,52 @@ vertical-align: top;
 }
 
 
-#buscar{
+#categ{
 	width: 30%;
 	border-radius: 5px;
 	color:black;
 	padding: 0.5%;
 	margin-right: 1%;
 	border:2px solid #bef230;
+	margin-left: 35%;
+	margin-right: 35%;
 }
 
-#buscar, #boton{
+#buscar{
+	width: 30%;
+	margin-left: 34%;
+	
+}
+
+#km{
+	margin-right: 27%;
+	width: 8%;
+}
+#distancia{
+	width:100%;
+}
+
+
+#categ,#distancia{
+	display: block;
+	margin-bottom: 1%;
+	margin-top: 1%;
+}
+
+#buscar, #km{
 	display: inline-block;
-	vertical-align: center;
+	vertical-align: baseline;
+}
+
+#ubicacion span{
+	padding-right: 2%;
+	padding-left: 0.5%;
+	vertical-align: super;
+	font-size: 120%;
 }
 
 .poi-boton, .poi-text{
-	display:inline-block;
+	display:inline;
 	vertical-align: middle;
 		
 }
@@ -370,6 +402,22 @@ vertical-align: top;
 
 .posicion-actual:hover, .posicion-poi{
 	background-color: #fff;
+}
+
+.checkbox1{
+  -webkit-appearance: none;
+  width:20px;
+  height:20px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #606060;
+  cursor: pointer;
+  
+}
+
+
+.checkbox1:checked{
+  background-color: #bef230;
 }
 
 

@@ -12,6 +12,12 @@
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
 
+        <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+        <script type="text/javascript">
+            var centreGot = false;
+            var activeMap=false;          
+        </script>
+        <?=$map['js']?>        
 
 </head>
 <body id="page-top" class="index">
@@ -69,20 +75,21 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
+    
         
 	<?= form_open("/pois/pois_controller/getUpdatePoi/".$id)?>
 	<?php
-		$lng 		= array('name' => 'lng', 'value' => $poi->result()[0]->lng,
+		$lng 		= array(
+							'name' => 'lng', 'value' => $poi->result()[0]->lng,
 							'class' => 'form-control',
 							'placeholder' => 'Longitud',
 							'id' => 'longitud',
 							'required data-validation-required-message' => 'Por favor, introduzca la longitud del punto.');
 		
-		$lng_label = array('name' => 'lng_label',
+		$lng_label = array(	
+							'name' => 'lng_label',
 							'class' => 'form-control',
-							'placeholder' => 'Longitud',
-							'id' => 'longitud',
+							'placeholder' => 'Longitud',							
 							'required data-validation-required-message' => 'Por favor, introduzca la longitud del punto.',
 							'readonly' => 'true');
 
@@ -206,6 +213,13 @@
                     <hr class="star-primary">
                 </div>
             </div>
+
+		        <article id="pu1">
+		                    <article id="mapa" style="width:95%; height:500px">
+		                        <?=$map['html']?>
+		                    </article>                
+		        </article>
+    	 
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->

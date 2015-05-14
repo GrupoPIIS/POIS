@@ -17,10 +17,10 @@
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
 
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
         <script type="text/javascript">
             var centreGot = false;
-            var activeMap=false;
+            var activeMap=false;          
         </script>
         <?=$map['js']?>        
 	</head>	
