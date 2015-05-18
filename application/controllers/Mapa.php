@@ -52,14 +52,31 @@ class Mapa extends CI_Controller{
 
 			} else {
 
-				if($radius){						
-						
-					$circle = array();
-					$circle['center'] = $lat.','.$lng;
-					$circle['radius'] = $radius*1000;
-					$this->googlemaps->add_circle($circle);
+				if($this->input->post('distancia')){						
+					
+					if($this->input->post('categoria')){
 
-					$markers = $this->pois_model->getPoisCloseTo($lat, $lng, $radius);
+						$categoria = $this->input->post('categ');
+						$circle = array();
+						$circle['center'] = $lat.','.$lng;
+						$circle['radius'] = $radius*1000;
+						$this->googlemaps->add_circle($circle);
+						$markers = $this->pois_model->getPoisDistTag($categoria, $lat, $lng, $radius);
+
+					}else{
+
+						$circle = array();
+						$circle['center'] = $lat.','.$lng;
+						$circle['radius'] = $radius*1000;
+						$this->googlemaps->add_circle($circle);
+
+						$markers = $this->pois_model->getPoisCloseTo($lat, $lng, $radius);
+					}
+
+				}else if($this->input->post('categoria')){
+
+					$categoria = $this->input->post('categ');
+					$markers = $this->pois_model->getPoisByTag($categoria);
 
 				} else $markers=null;
 			}
