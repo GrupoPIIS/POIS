@@ -375,7 +375,10 @@
                             </div>
                         </div>
 		
-			<?PHP } ?><br>
+			<?PHP }else{?>
+				<a href="<?php echo base_url();?>pois/pois_controller/extraPoi/<?= $id ?>">Añadir contenido extra</a>
+				<?php } ?>
+			<br>
 
 
 	<!-- MULTIMEDIA ------------------------------------------------------------------ -->

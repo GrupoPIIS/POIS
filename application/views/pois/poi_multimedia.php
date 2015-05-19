@@ -21,7 +21,9 @@
 	<label>Nombre: <?= form_input($nombre_recurso) ?></label><br>
 	<label>Ruta: <input type="file" name="userfile" multiple> </label><br>
 
-	<?= form_submit('','Añadir multimedia POI') ?>
+	<button type="submit" class="btn btn-success btn-lg" name="btnMultimedia" id="btnMultimedia">Añadir extras POI</button>
+    <button type="submit" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right">Añadir y continuar configurándolo</button>
+  
 
 	<?= form_close()?>
 </body>

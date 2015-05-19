@@ -33,23 +33,24 @@ class Pois_model extends CI_Model{
 
 	
 	//Hace un INSERT INTO pois VALUES datos = $data
-	function newPoi($data){
+	function newPoi($datos){
 		if($this->session->userdata('rol') == 0)
-			$id_usuario = $data['id_usuario'];
+			$id_usuario = $datos['id_usuario'];
 		else
 			$id_usuario = $this->session->userdata('id_usuario');
 
 		$this->db->insert('pois', array(
-										'lng' 		=> $data['lng'],
-										'lat' 		=> $data['lat'],
-										'nombre_poi'=> $data['nombre_poi'],
-										'txt_rep'	=> $data['txt_rep'],
-										'direccion'	=> $data['direccion'],
+										'lng' 		=> $datos['lng'],
+										'lat' 		=> $datos['lat'],
+										'nombre_poi'=> $datos['nombre_poi'],
+										'txt_rep'	=> $datos['txt_rep'],
+										'direccion'	=> $datos['direccion'],
 										'id_usuario'=> $id_usuario
 										)
 						);
 		$last = $this->db->insert_id();
 
+<<<<<<< HEAD
 		$this->db->insert('estadisticas', array(
 														'id_poi'	=> $last,
 														'num_visitas'=> '0'
@@ -59,6 +60,10 @@ class Pois_model extends CI_Model{
 
 		if($data['id_categoria']){
 			foreach ($data['id_categoria'] as $categoria){
+=======
+		if($datos['id_categoria']){
+			foreach ($datos['id_categoria'] as $categoria){
+>>>>>>> 4b43e77ecd86503f6e6b4543ce438c0c5458c921
 				
 				$this->db->insert('id_poi_id_cat', array(
 														'id_poi'	=> $last,
@@ -67,6 +72,7 @@ class Pois_model extends CI_Model{
 								);
 			}
 		}
+		return $last;
 	}
 
 	//Hace un UPDATE pois SET datos = $data WHERE id = $id

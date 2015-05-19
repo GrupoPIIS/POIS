@@ -123,6 +123,8 @@
                             'id' => 'nombre_categoria',
                             'required data-validation-required-message' => 'Por favor, seleccione la categoría que desee.',
                             'readonly' => 'true');
+
+        
 	?>
 
 
@@ -232,8 +234,8 @@
                         <div class="row">
                             <div class="form-group col-xs-12">
                             	<!--<?= form_submit('','Añadir POI') ?> -->
-                                <button type="submit" class="btn btn-success btn-lg">Crear punto de interés</button>
-                                
+                                <button type="submit" class="btn btn-success btn-lg" name="btnCrear" id="btnCrear">Crear punto de interés</button>
+                                <button type="submit" class="btn btn-success btn-lg" name="btnExtras" id="btnExtras" style="float:right">Crear y continuar configurándolo</button>
                             </div>
                         </div>
                     </form>
