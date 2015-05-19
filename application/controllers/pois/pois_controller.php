@@ -6,7 +6,6 @@ class Pois_controller extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('pois_model');
-		
 	}
 
 	//Lista todos los pois
@@ -76,8 +75,23 @@ class Pois_controller extends CI_Controller{
 
 				'id_categoria'=> $this->input->post('id_categoria')
 			);
-		$this->pois_model->newPoi($data);
-		$this->index();
+
+		$id['id'] = $this->pois_model->newPoi($data);
+
+		if(isset($_POST["btnExtras"]))
+          	$this->load->view('pois/poi_extras', $id);
+        else{
+        	$datos['pois'] = $this->pois_model->getPoi($id['id']);
+
+			$datos['extras'] = $this->pois_model->getExtraPoi($id['id']);
+
+	        $datos['multimedia'] = $this->pois_model->getMultimediaPoi($id['id']);
+
+	        $datos['social'] = $this->pois_model->getSocialAllPoi($id['id']);
+
+			$this->load->view('poicaracteristicas', $datos);
+        }
+		//$this->index();
 	}
 
 	//Lleva a la vista con el formulario para modificar los datos.
@@ -172,7 +186,24 @@ class Pois_controller extends CI_Controller{
 			);
 
 		$this->pois_model->extraPoi($this->uri->segment(4), $data);
-		$this->index();
+
+		$id['id'] = $this->uri->segment(4);
+
+		if(isset($_POST["btnMultimedias"]))
+          	$this->load->view('pois/poi_multimedia', $id);
+        else{
+        	$data['pois'] = $this->pois_model->getPoi($this->uri->segment(4));
+
+			$data['extras'] = $this->pois_model->getExtraPoi($this->uri->segment(4));
+
+	        $data['multimedia'] = $this->pois_model->getMultimediaPoi($this->uri->segment(4));
+
+	        $data['social'] = $this->pois_model->getSocialAllPoi($this->uri->segment(4));
+
+			$this->load->view('poicaracteristicas', $data);
+        }
+
+		//$this->index();
 	}
 
 	function multimediaPoi(){
@@ -193,7 +224,29 @@ class Pois_controller extends CI_Controller{
 		
         $subir = $this->pois_model->multimediaPoi($this->uri->segment(4), $this->input->post('tipo_recurso'),
         	$this->input->post('nombre_recurso'), $file_info['file_name']);
-        $this->index();
+
+        if(isset($_POST["btnRedes"])){
+
+        	$data['id'] = $this->uri->segment(4);
+
+			$this->load->model('redes_sociales_model');
+	        $data['redes'] = $this->redes_sociales_model->getSocials();
+
+			if($data['id'] != null)
+				$this->load->view('pois/poi_social', $data);
+        }else{
+        	$data['pois'] = $this->pois_model->getPoi($this->uri->segment(4));
+
+			$data['extras'] = $this->pois_model->getExtraPoi($this->uri->segment(4));
+
+	        $data['multimedia'] = $this->pois_model->getMultimediaPoi($this->uri->segment(4));
+
+	        $data['social'] = $this->pois_model->getSocialAllPoi($this->uri->segment(4));
+
+			$this->load->view('poicaracteristicas', $data);
+        }
+
+        //$this->index();
 	}
 
 	function updateMultimediaPoi(){
@@ -242,7 +295,16 @@ class Pois_controller extends CI_Controller{
 			);
 
 		$this->pois_model->socialPoi($this->uri->segment(4), $data);
-		$this->index();
+		
+		$data['pois'] = $this->pois_model->getPoi($this->uri->segment(4));
+
+		$data['extras'] = $this->pois_model->getExtraPoi($this->uri->segment(4));
+
+        $data['multimedia'] = $this->pois_model->getMultimediaPoi($this->uri->segment(4));
+
+        $data['social'] = $this->pois_model->getSocialAllPoi($this->uri->segment(4));
+
+		$this->load->view('poicaracteristicas', $data);
 	}
 
 	function deleteSocialPoi(){

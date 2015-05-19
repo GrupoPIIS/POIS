@@ -20,8 +20,8 @@
 	<label>Dirección Local: <?= form_input($direccion_local) ?></label><br>
 	<label>Horario: <?= form_input($horario) ?></label><br>
 
-	<?= form_submit('','Añadir extras POI') ?>
-
-	<?= form_close()?>
+	<button type="submit" class="btn btn-success btn-lg" name="btnExtra" id="btnExtra">Añadir extras POI</button>
+    <button type="submit" class="btn btn-success btn-lg" name="btnMultimedias" id="btnMultimedias" style="float:right">Añadir y continuar configurándolo</button>
+   <?= form_close()?>
 </body>
 </html>

@@ -91,31 +91,30 @@
 
 <!-- Indicators -->
 
-<ol class="carousel-indicators">
-<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-<?PHP for($i=1; $i<count($multimedia)+1; $i++){ ?>
-    <li data-target="#myCarousel" data-slide-to="<?= $i ?>"></li>
- <?php } ?>
 
-</ol>
-
-<div class="carousel-inner" role="listbox">
-
-<div class="item active">
 
 <?PHP if($multimedia){ ?>
+    <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <?PHP for($i=1; $i < count($multimedia)+1; $i++){ ?>
+        <li data-target="#myCarousel" data-slide-to="<?= $i ?>"></li>
+     <?php } ?>
 
-    <img src="<?php echo base_url();?>/uploads/<?=$multimedia->result()[0]->ruta_recurso?>" alt="First slide" style="width: 50%; margin-top: -10%;">
-    </div>
+    </ol>
 
-        <?PHP for($i = 1; $i < count($multimedia)+1; $i++){ ?>
+    <div class="carousel-inner" role="listbox">
 
-            <div class="item">
+    <div class="item active">
+        <img src="<?php echo base_url();?>/uploads/<?=$multimedia->result()[0]->ruta_recurso?>" alt="First slide" style="width: 50%; margin-top: -10%;">
+        </div>
+             <?php for($i = 1; $i < count($multimedia)+1; $i++){ ?>
 
-            <img src="<?php echo base_url();?>/uploads/<?= $multimedia->result()[$i]->ruta_recurso?>" alt="Second slide" style="width: 50%; margin-top: -10%;">
+                    <div class="item">
 
-            </div>
-        <?php }
+                    <img src="<?php echo base_url();?>/uploads/<?= $multimedia->result()[$i]->ruta_recurso?>" alt="Second slide" style="width: 50%; margin-top: -10%;">
+
+                    </div>
+                <?php }
     } ?>
 
 
