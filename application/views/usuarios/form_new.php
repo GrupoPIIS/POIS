@@ -218,6 +218,7 @@
                             <div class="form-group col-xs-12">
                             	<!--<?= form_submit('','Añadir usuario') ?> -->
                                 <button type="submit" class="btn btn-success btn-lg">Añadir usuario</button>
+                                 <a href="<?php echo base_url();?>/pois/pois_controller/newPoi" <button type="submit" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right">Añadir usuario y continuar con nuevo punto</button></a>
                                 
                             </div>
                         </div>
