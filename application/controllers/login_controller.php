@@ -82,5 +82,26 @@ class Login_controller extends CI_Controller{
  			$this->load->view('form_login', $message);
 		}
 	}
+
+	function contact(){
+		$this->load->view('contacto');
+	}
+
+	function sendEmail(){
+		$configuraciones['smpt'] = 'gmail';
+		$this->email->initialize($configuraciones);
+
+		$nombre = $this->input->post('nombre');
+		$email = $this->input->post('email');
+		$mensaje = $this->input->post('mensaje');
+
+		$this->email->from($email);
+		$this->email->to('dadcuentadeprueba@gmail.com');
+		$this->email->subject('Contacta '.$nombre);
+		$this->email->message($mensaje);
+		$this->email->send();
+		$this->email->print_debugger();
+		redirect(base_url());
+	}
 }
 ?>
