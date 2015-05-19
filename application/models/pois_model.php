@@ -50,7 +50,6 @@ class Pois_model extends CI_Model{
 						);
 		$last = $this->db->insert_id();
 
-<<<<<<< HEAD
 		$this->db->insert('estadisticas', array(
 														'id_poi'	=> $last,
 														'num_visitas'=> '0'
@@ -58,12 +57,9 @@ class Pois_model extends CI_Model{
 								);
 
 
-		if($data['id_categoria']){
-			foreach ($data['id_categoria'] as $categoria){
-=======
 		if($datos['id_categoria']){
 			foreach ($datos['id_categoria'] as $categoria){
->>>>>>> 4b43e77ecd86503f6e6b4543ce438c0c5458c921
+
 				
 				$this->db->insert('id_poi_id_cat', array(
 														'id_poi'	=> $last,

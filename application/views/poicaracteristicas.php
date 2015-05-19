@@ -25,7 +25,6 @@
 
     <script type="text/javascript">
         function updateVisits() {
-            alert('<?php echo base_url();?>pois_controller/updateVisits/<?=$pois->result()[0]->id_poi?>');
             $.post('<?php echo base_url();?>pois_controller/updateVisits/<?=$pois->result()[0]->id_poi?>');
             $.ajax({
                 type : 'POST',
