@@ -198,21 +198,22 @@
 							<label id="rol">Rol </label>
                            <?= form_input($rol_label) ?>
                            
-							<?PHP if( $valor_rol == 1 ){ ?>
-
-
-							<select name='rol' id='rol'>
-        						<option value=1 selected> Usuario </option>
-        						<option value=2> Cliente VIP </option>
-							</select>
-
-                            <?PHP }else{ ?>
-
+							<?PHP if( $rol == 2 ){ ?>
 
                             <select name='rol' id='rol'>
                                 <option value=2 selected> Cliente VIP </option>
                                 <option value=1> Usuario </option>
                             </select>
+
+							
+
+                            <?PHP }else{ ?>
+
+                                <select name='rol' id='rol'>
+                                    <option value=1 selected> Usuario </option>
+                                    <option value=2> Cliente VIP </option>
+                                 </select>
+                            
 
                             <?PHP }?>
 

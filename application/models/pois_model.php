@@ -98,6 +98,18 @@ class Pois_model extends CI_Model{
 	function deletePoi($id){
 		$this->db->where('id_poi', $id);
 		$this->db->delete('pois');
+
+		$this->db->where('id_poi', $id);
+		$this->db->delete('multimedia');
+
+		$this->db->where('id_poi', $id);
+		$this->db->delete('rrss_poi');
+
+		$this->db->where('id_poi', $id);
+		$this->db->delete('id_poi_id_cat');
+
+		$this->db->where('id_poi', $id);
+		$this->db->delete('extras_poi');
 	}
 
 	function getCategoriesFromPoi($id){
