@@ -16,6 +16,11 @@ class Pois_controller extends CI_Controller{
 		//$this->load->view('pois/pois', $data);
 	}
 
+	function updateVisits(){
+		$id = $this->uri->segment(4);
+		$this->pois_model->updateVisits($id);
+	}
+
 	//Lista un poi en concreto. Se pasa el id por parametro.
 	function getPoi(){
 		$data['id'] = $this->uri->segment(4);

@@ -50,6 +50,13 @@ class Pois_model extends CI_Model{
 						);
 		$last = $this->db->insert_id();
 
+		$this->db->insert('estadisticas', array(
+														'id_poi'	=> $last,
+														'num_visitas'=> '0'
+													)
+								);
+
+
 		if($data['id_categoria']){
 			foreach ($data['id_categoria'] as $categoria){
 				
@@ -208,6 +215,18 @@ class Pois_model extends CI_Model{
 					HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;');
 	 	if($query->num_rows() > 0) return $query;
 	 	else return NULL;
+	}
+
+	function updateVisits($id_poi){
+
+		$this->db->select('num_visitas');
+		$this->db->where('id_poi', $id_poi);
+		$query = $this->db->get('estadisticas');
+		$data = array(
+            'id_poi' => $id_poi,
+            'num_visitas' => $query+1
+        );
+		$this->db->update('estadisticas', $data);
 	}
 
 

@@ -21,8 +21,21 @@
     <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> 
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
     <script type="text/javascript">
+        function updateVisits() {
+            alert('<?php echo base_url();?>pois_controller/updateVisits/<?=$pois->result()[0]->id_poi?>');
+            $.post('<?php echo base_url();?>pois_controller/updateVisits/<?=$pois->result()[0]->id_poi?>');
+            $.ajax({
+                type : 'POST',
+                url : '<?php echo base_url();?>pois_controller/updateVisits/<?=$pois->result()[0]->id_poi?>'
+                
+            });
+          
+        }
+    </script> 
+   <!-- <script type="text/javascript">
         $(document).ready(function(){
             $('#back').click(function(){
                 parent.history.back();
@@ -30,7 +43,7 @@
             });
         });
     </script>	
-
+    -->
 </head>
 
 <body id="page-top" class="index">
@@ -57,7 +70,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a id="back" href="">Volver</a>
+                        <a id="back" href="<?php echo base_url();?>" onclick="updateVisits()">Volver</a>
                     </li>
                   
                 </ul>
