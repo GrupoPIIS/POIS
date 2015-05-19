@@ -37,9 +37,9 @@ class Api extends REST_Controller {
 			$this->response(NULL, 400);
 		}
 
-		$poi = $this->pois_model->get($id);
+		$poi = $this->api_model->get($id);
 
-		if (! is_null($pois)) 
+		if (!is_null($poi)) 
 		{
 			$this->response(array("response" => $poi), 200);
 		}
