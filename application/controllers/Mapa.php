@@ -207,7 +207,9 @@ class Mapa extends CI_Controller{
 			
 			$data['datos'] = $markers;
 				
-			$this->fillMarkers($markers);			
+			$this->fillMarkers($markers);
+
+			$data['visitados'] = $this->getMostVisited();			
 			
 	        //en data['map'] tenemos ya creado nuestro mapa para llamarlo en la vista
 			$data['map'] = $this->googlemaps->create_map();
@@ -283,6 +285,9 @@ class Mapa extends CI_Controller{
 
 		}
 
+		function getMostVisited(){
+			return $this->pois_model->getMostVisited();
+		}
 		
 
 

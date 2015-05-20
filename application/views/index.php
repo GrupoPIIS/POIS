@@ -190,64 +190,88 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                <div class="col-sm-4 portfolio-item">                   
+                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[0]->id_poi;?>" class="portfolio-link" data-toggle="modal">                                 
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="estilos/img/portfolio/catedral.jpg" class="img-responsive" alt="">
+                        <?php if($visitados->result()[0]->ruta_recurso!=null){ ?>
+                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[0]->ruta_recurso;?>" class="img-responsive" alt="">
+                        <?php } else{ ?>
+                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php } ?>
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">                   
+                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[1]->id_poi;?>" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                         <?php if($visitados->result()[1]->ruta_recurso!=null){ ?>
+                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[1]->ruta_recurso;?>" class="img-responsive" alt="">
+                        <?php } else{ ?>
+                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php } ?>
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[2]->id_poi;?>" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="estilos/img/portfolio/rinconpepe.jpg" class="img-responsive" alt="">
+                         <?php if($visitados->result()[2]->ruta_recurso!=null){ ?>
+                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[2]->ruta_recurso;?>" class="img-responsive" alt="">
+                        <?php } else{ ?>
+                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php } ?>
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[3]->id_poi;?>" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="estilos/img/portfolio/museo.jpg" class="img-responsive" alt="">
+                         <?php if($visitados->result()[3]->ruta_recurso!=null){ ?>
+                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[3]->ruta_recurso;?>" class="img-responsive" alt="">
+                        <?php } else{ ?>
+                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php } ?>
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[4]->id_poi;?>" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php if($visitados->result()[4]->ruta_recurso!=null){ ?>
+                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[4]->ruta_recurso;?>" class="img-responsive" alt="">
+                        <?php } else{ ?>
+                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php } ?>
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[5]->id_poi;?>" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php if($visitados->result()[5]->ruta_recurso!=null){ ?>
+                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[5]->ruta_recurso;?>" class="img-responsive" alt="">
+                        <?php } else{ ?>
+                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
+                        <?php } ?>
                     </a>
                 </div>
             </div>

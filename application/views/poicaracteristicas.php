@@ -24,17 +24,15 @@
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 
     <script type="text/javascript">
-        function updateVisits() {
-            $.post('<?php echo base_url();?>pois_controller/updateVisits/<?=$pois->result()[0]->id_poi?>');
-            $.ajax({
-                type : 'POST',
-                url : '<?php echo base_url();?>pois_controller/updateVisits/<?=$pois->result()[0]->id_poi?>'
-                
-            });
+
+    
+        function updateVisits(id) {
+            var id = id;           
+            $.post('http://localhost/pois/pois_controller/updateVisits',{id:id});           
           
         }
     </script> 
-   <!-- <script type="text/javascript">
+   <script type="text/javascript">
         $(document).ready(function(){
             $('#back').click(function(){
                 parent.history.back();
@@ -42,8 +40,7 @@
             });
         });
     </script>	
-    -->
-</head>
+    
 
 <body id="page-top" class="index">
 
@@ -69,7 +66,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a id="back" href="<?php echo base_url();?>" onclick="updateVisits()">Volver</a>
+                        <a id="back" href="" onclick="updateVisits(<?=$pois->result()[0]->id_poi?>)">Volver</a>
                     </li>
                   
                 </ul>

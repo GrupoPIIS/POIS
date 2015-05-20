@@ -16,7 +16,7 @@ class Pois_controller extends CI_Controller{
 	}
 
 	function updateVisits(){
-		$id = $this->uri->segment(4);
+		$id = $this->input->post('id');
 		$this->pois_model->updateVisits($id);
 	}
 
@@ -48,7 +48,6 @@ class Pois_controller extends CI_Controller{
 			$data['pois'] = $this->pois_model->getPoiUser($id_usuario);
 		}
 		
-		//$data['pois'] = $this->pois_model->getPoiUser(0);
 		$this->load->view('mis-pois', $data);
 	}
 	
@@ -353,9 +352,6 @@ class Pois_controller extends CI_Controller{
         $this->load->library('image_lib', $config); 
         $this->image_lib->resize();
     }
-
-
-
 
 
 	public function selectMap(){

@@ -225,10 +225,18 @@ class Pois_model extends CI_Model{
 		$this->db->where('id_poi', $id_poi);
 		$query = $this->db->get('estadisticas');
 		$data = array(
-            'id_poi' => $id_poi,
-            'num_visitas' => $query+1
+            'num_visitas' => $query->result()[0]->num_visitas + 1
         );
+        $this->db->where('id_poi', $id_poi);
 		$this->db->update('estadisticas', $data);
+	}
+
+	function getMostVisited(){
+		$query = $this->db->query('SELECT estadisticas.id_poi AS id_poi, multimedia.ruta_recurso AS ruta_recurso 
+									FROM multimedia RIGHT JOIN (estadisticas) ON (estadisticas.id_poi=multimedia.id_poi) 
+										GROUP BY estadisticas.id_poi ORDER BY estadisticas.num_visitas DESC');
+		if($query->num_rows() > 0) return $query;
+	 	else return NULL;
 	}
 
 
