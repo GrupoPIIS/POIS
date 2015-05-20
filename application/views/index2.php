@@ -58,7 +58,7 @@
                         <a href="#about">Preguntas frecuentes</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Contacto</a>
+                        <a href="<?php echo base_url();?>login_controller/contact">Contacto</a>
                     </li>
                     <li class="page-scroll">
                         <a href="login_controller">Acceso</a>

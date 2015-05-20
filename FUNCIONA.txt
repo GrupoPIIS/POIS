@@ -137,3 +137,9 @@ En esta versión funcion V13 (Alicia):
 		+	añadir botón de añadir red social (general)
 		*	pois_model.php (133)
 				$this->db->order_by("tipo_recurso", "ASC"); 
+
+En esta versión funciona V14 (Alicia):
+	-	Nuevo formulario para contacto que se accede desde la inicial, el usuario introduce
+		los datos y se envía un correo al administrador
+	-	Carrusel arreglado, el problema era la función count, que daba siempre 1
+	-	Nuevo flujo de insertar un poi

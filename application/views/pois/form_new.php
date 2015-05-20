@@ -167,6 +167,9 @@
 								</select><br>
 						
 						 <p class="help-block text-danger"></p>
+
+                         <a href="<?php echo base_url();?>/usuarios/usuarios_controller/newUser" <button type="button" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right">Añadir usuario</button></a>
+  
 						  </div>
                         </div>
                         <?PHP } ?>

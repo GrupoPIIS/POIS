@@ -121,13 +121,13 @@
     <div class="carousel-inner" role="listbox">
 
     <div class="item active">
-        <img src="<?php echo base_url();?>/uploads/<?=$multimedia->result()[0]->ruta_recurso?>" alt="First slide">
+        <img src="<?php echo base_url();?>/uploads/thumbs/<?=$multimedia->result()[0]->ruta_recurso?>" alt="First slide">
         </div>
              <?php for($i = 1; $i < $ind-1; $i++){ ?>
 
                     <div class="item">
 
-                    <img src="<?php echo base_url();?>/uploads/<?= $multimedia->result()[$i]->ruta_recurso?>" alt="Second slide" >
+                    <img src="<?php echo base_url();?>/uploads/thumbs/<?= $multimedia->result()[$i]->ruta_recurso?>" alt="Second slide" >
 
                     </div>
                 <?php }

@@ -347,8 +347,8 @@ class Pois_controller extends CI_Controller{
         $config['create_thumb'] = TRUE;
         $config['maintain_ratio'] = TRUE;
         $config['new_image']='uploads/thumbs/';
-        $config['width'] = 50;
-        $config['height'] = 50;
+        $config['width'] = 700;
+        $config['height'] = 500;
         $this->load->library('image_lib', $config); 
         $this->image_lib->resize();
     }

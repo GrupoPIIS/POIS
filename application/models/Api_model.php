@@ -11,7 +11,7 @@ class Api_model extends CI_Model {
 		
 	}
 
-	public function get($id=NULL)
+	public function get($id)
 	{
 		if (! is_null($id)) 
 		{
