@@ -9,6 +9,8 @@ class Api extends REST_Controller {
 		parent::__construct();
 		//cargamos el modelo cuando se llama al constructor
 		$this->load->model('api_model');
+	//	$this->load->model('pois_model');
+
 	}
 
 
@@ -48,6 +50,75 @@ class Api extends REST_Controller {
 			$this->response(array("error" => "No se encuentra el POI"), 404);
 		}
 	}
+
+
+	
+
+	//http://localhost/POIS/api/findclose/37.9958697/-1.177024/0
+
+	public function findclose_get($lat, $lng, $radius)
+	{
+		if (is_null($radius)||is_null($lat)|| is_null($lng)) 
+		{
+			$this->response(NULL, 400);
+		}
+
+		$pois = $this->api_model->getPoisCloseTo($lat, $lng, $radius);
+
+		if (!is_null($pois)) 
+		{
+			$this->response(array("response" => $pois), 200);
+		}
+		else
+		{
+			$this->response(array("error" => "No se encuentran POIs"), 404);
+		}
+	}
+
+
+	public function findByTag_get($tag)
+	{
+		if (is_null($tag)) 
+		{
+			$this->response(NULL, 400);
+		}
+
+		$pois = $this->api_model->getPoisByTag($tag);
+
+		if (!is_null($pois)) 
+		{
+			$this->response(array("response" => $pois), 200);
+		}
+		else
+		{
+			$this->response(array("error" => "No se encuentran POIs"), 404);
+		}
+	}
+
+
+
+
+	function getPoisDistTag($tag,$lat,$lng,$radius)
+	{
+		if (is_null($radius)||is_null($lat)|| is_null($lng)||is_null($tag)) 
+		{
+			$this->response(NULL, 400);
+		}
+
+		$pois = $this->api_model->getPoisDistTag($tag,$lat,$lng,$radius);
+
+		if (!is_null($pois)) 
+		{
+			$this->response(array("response" => $pois), 200);
+		}
+		else
+		{
+			$this->response(array("error" => "No se encuentran POIs"), 404);
+		}
+	}
+
+
+
 
 /*
 	//Este método sirve para enviar info y guardarla (en el servidor y/o la bdd)
