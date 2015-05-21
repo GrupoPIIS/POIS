@@ -244,9 +244,9 @@ class Pois_model extends CI_Model{
 	}
 
 	function getMostVisited(){
-		$query = $this->db->query('SELECT estadisticas.id_poi AS id_poi, multimedia.ruta_recurso AS ruta_recurso 
-									FROM multimedia RIGHT JOIN (estadisticas) ON (estadisticas.id_poi=multimedia.id_poi) 
-										GROUP BY estadisticas.id_poi ORDER BY estadisticas.num_visitas DESC');
+		$query = $this->db->query('SELECT estadisticas.id_poi AS id_poi,pois.nombre_poi AS nombre_poi 
+									FROM estadisticas JOIN (pois) ON (estadisticas.id_poi=pois.id_poi) 
+									ORDER BY estadisticas.num_visitas DESC');
 		if($query->num_rows() > 0) return $query;
 	 	else return NULL;
 	}

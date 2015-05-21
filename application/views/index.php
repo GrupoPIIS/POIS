@@ -93,7 +93,7 @@
                     <span class="icon-bar"></span>
                 </button>
            <!--     <a class="navbar-brand" href="#page-top">Start Bootstrap</a> -->
-            <a href="<?php echo base_url();?>"><img class="img-centic" src="estilos/img/centic.jpg" ></a>
+            <a href="<?php echo base_url();?>#page-top"><img class="img-centic" src="estilos/img/centic.jpg" ></a>
             
             </div>
 
@@ -101,7 +101,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="#page-top">Mapa</a>
                     </li>   
                     <li class="page-scroll">
                         <a href="#portfolio">Puntos m&aacute;s visitados</a>
@@ -189,92 +189,52 @@
                     <hr class="star-primary">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">                   
-                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[0]->id_poi;?>" class="portfolio-link" data-toggle="modal">                                 
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <?php if($visitados->result()[0]->ruta_recurso!=null){ ?>
-                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[0]->ruta_recurso;?>" class="img-responsive" alt="">
-                        <?php } else{ ?>
-                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
-                        <?php } ?>
+
+            <ul class="mas-visitados">
+                <li>
+                    <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[0]->id_poi;?>">
+                        <article class="mv-article golden">
+                            <h3>1. <?=$visitados->result()[0]->nombre_poi;?></h3>                           
+                        </article>
                     </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">                   
-                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[1]->id_poi;?>" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                         <?php if($visitados->result()[1]->ruta_recurso!=null){ ?>
-                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[1]->ruta_recurso;?>" class="img-responsive" alt="">
-                        <?php } else{ ?>
-                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
-                        <?php } ?>
+                </li>
+                 <li>
+                    <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[1]->id_poi;?>">
+                        <article class="mv-article silver">
+                            <h3>2. <?=$visitados->result()[1]->nombre_poi;?></h3>                           
+                        </article>
                     </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[2]->id_poi;?>" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                         <?php if($visitados->result()[2]->ruta_recurso!=null){ ?>
-                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[2]->ruta_recurso;?>" class="img-responsive" alt="">
-                        <?php } else{ ?>
-                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
-                        <?php } ?>
+                </li>
+                 <li>
+                    <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[2]->id_poi;?>">
+                        <article class="mv-article bronze">
+                            <h3>3. <?=$visitados->result()[2]->nombre_poi;?></h3>                       
+                        </article>
                     </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[3]->id_poi;?>" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                         <?php if($visitados->result()[3]->ruta_recurso!=null){ ?>
-                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[3]->ruta_recurso;?>" class="img-responsive" alt="">
-                        <?php } else{ ?>
-                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
-                        <?php } ?>
+                </li>
+                 <li>
+                    <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[3]->id_poi;?>">
+                        <article class="mv-article">
+                            <h3>4. <?=$visitados->result()[3]->nombre_poi;?></h3>                       
+                        </article>
                     </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[4]->id_poi;?>" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <?php if($visitados->result()[4]->ruta_recurso!=null){ ?>
-                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[4]->ruta_recurso;?>" class="img-responsive" alt="">
-                        <?php } else{ ?>
-                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
-                        <?php } ?>
+                </li>
+                 <li>
+                    <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[4]->id_poi;?>">
+                        <article class="mv-article">
+                            <h3>5. <?=$visitados->result()[4]->nombre_poi;?></h3>                            
+                        </article>
                     </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[5]->id_poi;?>" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <?php if($visitados->result()[5]->ruta_recurso!=null){ ?>
-                            <img src="<?php echo base_url();?>/uploads/<?=$visitados->result()[5]->ruta_recurso;?>" class="img-responsive" alt="">
-                        <?php } else{ ?>
-                            <img src="estilos/img/portfolio/poi.png" class="img-responsive" alt="">
-                        <?php } ?>
+                </li>
+                 <li>
+                    <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[5]->id_poi;?>">
+                        <article class="mv-article">
+                            <h3>6. <?=$visitados->result()[5]->nombre_poi;?></h3>                        
+                        </article>
                     </a>
-                </div>
-            </div>
+                </li>
+            </ul>        
+           
         </div>
     </section>
 
@@ -289,10 +249,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-2">
-                    <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse arcu elit, euismod id purus eu, pellentesque suscipit sapien. Praesent vitae nunc vel libero condimentum maximus vitae vitae dui. Phasellus sapien est, ornare eu justo sed, sollicitudin porttitor nibh. Proin vitae neque ut sapien volutpat varius. Etiam sollicitudin sit amet orci id dictum. </p>
                 </div>
                 <div class="col-lg-4">
-                    <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+                    <p>Duis mollis est diam, a euismod ante pretium at. Nulla a turpis semper, ullamcorper lorem sit amet, luctus velit.Pellentesque tincidunt faucibus pulvinar. Vestibulum sed lorem massa. Nulla pulvinar pellentesque quam et porttitor. Proin tempus velit metus, ac efficitur augue consectetur in. </p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="#" class="btn btn-lg btn-outline">

@@ -51,6 +51,10 @@
                     </li>
                     <li class="page-scroll">
                         <a href="#categorias">Categor&iacute;as</a>
+                    </li>
+                     <li class="page-scroll">
+                        <a href="#estadisticas">Estad&iacute;sticas</a>
+                    </li>
                     <li id="menu-usuario">
                         <a href="#" ><?=$this->session->userdata['nombre'];?></a>
                     </li>
