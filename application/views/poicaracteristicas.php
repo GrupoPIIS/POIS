@@ -104,16 +104,19 @@
 
 <?PHP if($multimedia){ ?>
     <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <?php if($multimedia->result()[0]->tipo_recurso == 'Imagen') ?>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 
     <?PHP 
     $ind = 1;
     foreach ($multimedia->result() as $multi) {
-        $ind++;
+        if($multi->tipo_recurso == 'Imagen')
+            $ind++;
     } 
 
-    for($i = 1; $i < $ind-1; $i++){ ?>
-        <li data-target="#myCarousel" data-slide-to="<?= $ind ?>"></li>
+    for($i = 1; $i < $ind-1; $i++){ 
+        if($multimedia->result()[$i]->tipo_recurso == 'Imagen')?>
+            <li data-target="#myCarousel" data-slide-to="<?= $ind ?>"></li>
     <?php } ?>
 
     </ol>
@@ -121,9 +124,12 @@
     <div class="carousel-inner" role="listbox">
 
     <div class="item active">
-        <img src="<?php echo base_url();?>/uploads/thumbs/<?=$multimedia->result()[0]->ruta_recurso?>" alt="First slide">
+        <?php if($multimedia->result()[0]->tipo_recurso == 'Imagen'){ ?>
+            <img src="<?php echo base_url();?>/uploads/thumbs/<?=$multimedia->result()[0]->ruta_recurso?>" alt="First slide">
+        <?php }?>
         </div>
-             <?php for($i = 1; $i < $ind-1; $i++){ ?>
+             <?php for($i = 1; $i < $ind-1; $i++){ 
+                if($multimedia->result()[$i]->tipo_recurso == 'Imagen')?>
 
                     <div class="item">
 
@@ -239,7 +245,7 @@
                                     <?php foreach ($multimedia->result() as $multi){ ?>
                                         <?php if($multi->tipo_recurso != 'Imagen'){ ?>
 
-                                        <video src="<?php echo base_url();?>/uploads/<?=$multi->ruta_recurso?>"></video> 
+                                        <video controls src="<?php echo base_url();?>/uploads/<?=$multi->ruta_recurso?>"></video> 
                                     
                                     <?php }
                                     } ?>
