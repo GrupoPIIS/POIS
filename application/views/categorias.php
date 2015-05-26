@@ -84,7 +84,7 @@
                                                     <img  src="<?php echo base_url();?>/estilos/img/trash.png">
                                                 </a>
                                                 <?php }else{ ?>
-                                                    <img class="categ-img" src="<?php echo base_url();?>/estilos/img/profile.png">
+                                                    <img class="categ-img" src="<?php echo base_url();?>/uploads/<?=$categoria->imagen?>">
                                                     <p class="categ-text"><?= $categoria->nombre_cat;?></p>
                                                 <?php } ?>
                                             </li>                                         
