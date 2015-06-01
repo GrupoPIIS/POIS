@@ -76,6 +76,8 @@ class Api extends REST_Controller {
 	}
 
 
+
+	//http://localhost/POIS/api/findByTag/restaurante
 	public function findByTag_get($tag)
 	{
 		if (is_null($tag)) 
@@ -97,8 +99,8 @@ class Api extends REST_Controller {
 
 
 
-
-	function getPoisDistTag($tag,$lat,$lng,$radius)
+	//http://localhost/POIS/api/findPoisDistTag/restaurante/37.9960367/-1.1701612/5
+	function findPoisDistTag_get($tag,$lat,$lng,$radius)
 	{
 		if (is_null($radius)||is_null($lat)|| is_null($lng)||is_null($tag)) 
 		{
