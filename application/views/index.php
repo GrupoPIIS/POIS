@@ -49,17 +49,26 @@
         }
         
         jQuery(document).ready(function(){
-            $('#buscar').hide();
+            $('#buscar').hide();            
             $('#categ').hide();
+            $('#km').hide();
             $('#boton-buscar').hide();
 
             jQuery('#hideshow').on('click', function(event) {
         
                 $('#buscar').toggle('show');
+
                 if($('#hideshow').is(':checked') || $('#hideshow2').is(':checked') )
                     $('#boton-buscar').show(500);  
                 else
-                    $('#boton-buscar').hide(500);              
+                    $('#boton-buscar').hide(500);
+
+                if($('#hideshow').is(':checked')){
+                    $('#km').show(500);
+                }else{
+                     $('#km').hide(500);
+                }
+              
             });
 
             jQuery('#hideshow2').on('click', function(event) {                       
@@ -143,7 +152,7 @@
                 <span>Buscar por categor&iacute;a</span>                
                 <div id="distancia">
                     <input id="buscar" type="range" name="sitio" min="0" max="100"  oninput="showVal(this.value)" onchange="showVal(this.value)">
-                    <span id="km"></span>
+                    <span id="km">kms</span>
                 </div>
                 <input id="categ" type="text" name="categ" placeholder="Introduzca categor&iacute;a, ejemplo: Restaurante">            
                 <input id="latitud" type="hidden" name="lat">
@@ -244,21 +253,35 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Preguntas frecuentes</h2>
-                    <hr class="star-secundary">
+                     <hr class="star-secundary">
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse arcu elit, euismod id purus eu, pellentesque suscipit sapien. Praesent vitae nunc vel libero condimentum maximus vitae vitae dui. Phasellus sapien est, ornare eu justo sed, sollicitudin porttitor nibh. Proin vitae neque ut sapien volutpat varius. Etiam sollicitudin sit amet orci id dictum. </p>
-                </div>
-                <div class="col-lg-4">
-                    <p>Duis mollis est diam, a euismod ante pretium at. Nulla a turpis semper, ullamcorper lorem sit amet, luctus velit.Pellentesque tincidunt faucibus pulvinar. Vestibulum sed lorem massa. Nulla pulvinar pellentesque quam et porttitor. Proin tempus velit metus, ac efficitur augue consectetur in. </p>
-                </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Ver más
-                    </a>
-                </div>
+                <div class="faqs">
+                    <p class="pregunta">¿C&oacute;mo puedo realizar una búsqueda?</p>
+                    <p class="respuesta">
+                        Para realizar un b&uacute;squeda, lo que hay que hacer es seccionar una de las opciones de búsqueda: distancia, categor&iacute;a o ambas.
+                        Una vez seleccionado el criterio de b&uacute;squeda, hay que seleccionar la distancia moviendo la barra de kil&oacute;metros o insertar una categoía en el campo de texto.
+                        Finalmente, seleccionamos el bot&oacute;n buscar y nos aparecer&aacute;n los puntos de inter&eacute;s disponibles.
+                    </p>
+                    <p class="pregunta">¿C&oacute;mo puedo hacer zoom en el mapa para interactuar manualmente?</p>
+                    <p class="respuesta">
+                        Para interactuar con el mapa y hacer zoom con el scroll del rat&oacute;n, hay que hacer click primero en el mapa y tras esto, ya podemos hacer scroll con normalidad.
+                        Si queremos volver a bloquearlo, debemos de volver a hacer click.
+                   </p>
+                   <p class="pregunta">¿C&oacute;mo puedo crear un nuvo Punto de Inter&eacute;s?</p>
+                   <p class="respuesta">
+                        Para crear un nuevo POI, debemos de ser un usuario registrado. 
+                        Si es así, lo primero que tenemos que hacer es acceder con nuestra cuenta de usuario y contraseña, y un vez en el menú principal, hacer click sobre el botón &quot;Crear Nuevo POI&quot;.
+                        Ua vez hecho esto, debemos de rellenar los datos en las siguientes pasos que nos vaya indicando.
+                   </p>
+                   <p class="pregunta">¿C&oacute;mo puedo tener una cuenta de usuario?</p>
+                   <p class="respuesta">
+                        Para tener una cuenta de usuario, hay que contactar con el Administrador de la p&aacute;gina mediante el formulario de acceso, al que podemos llegar mediante la opción del men&uacute; superior &quot;CONTACTO&quot;.
+                        Tendremos que rellenar dicho formulario y enviarlo con nuestra petici&oacute;n.
+                        El administrador, nos contestar&aacute; con un e-mail.
+                   </p>
+                </div>                
             </div>
         </div>
     </section>

@@ -160,12 +160,18 @@ class Mapa extends CI_Controller{
 						position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
 					});	
 				}
-							
-		
+				
+
 				usermarker=marker_0;
 
 				var userlat = usermarker.position.lat();
                 var userlng = usermarker.position.lng();
+
+
+				if(radius){
+					map.setZoom(14);
+					map.panTo(usermarker.position);
+				}
               
 				document.getElementById("latitud").value = userlat;
                 document.getElementById("longitud").value = userlng;		

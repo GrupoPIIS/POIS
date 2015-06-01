@@ -478,22 +478,40 @@ vertical-align: top;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dfe5d7', endColorstr='#b3bead',GradientType=0 );
 
 
-
-
-
 }
 
 .bronze{
 	background: #fac695;
-background: -moz-linear-gradient(top,  #fac695 0%, #f5ab66 47%, #ef8d31 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fac695), color-stop(47%,#f5ab66), color-stop(100%,#ef8d31));
-background: -webkit-linear-gradient(top,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
-background: -o-linear-gradient(top,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
-background: -ms-linear-gradient(top,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
-background: linear-gradient(to bottom,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fac695', endColorstr='#ef8d31',GradientType=0 );
+	background: -moz-linear-gradient(top,  #fac695 0%, #f5ab66 47%, #ef8d31 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fac695), color-stop(47%,#f5ab66), color-stop(100%,#ef8d31));
+	background: -webkit-linear-gradient(top,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
+	background: -o-linear-gradient(top,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
+	background: -ms-linear-gradient(top,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
+	background: linear-gradient(to bottom,  #fac695 0%,#f5ab66 47%,#ef8d31 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fac695', endColorstr='#ef8d31',GradientType=0 );
+}
 
+.faqs{
+	margin-top: 2%;
+	padding: 2%;
+	border-radius: 25px;
+	border:3px solid #bef230;
+	background-color: #fff;
+	color:#000;
 
+}
+
+.pregunta{
+	margin-top: 1%;
+	margin-bottom: 1%;
+	text-align: left;
+	font-weight: bold;
+
+}
+
+.respuesta{
+	padding: 1%;
+	text-align: justify;
 }
 
 
