@@ -87,41 +87,33 @@
                             'name' => 'lng',
 							'class' => 'form-control',
 							'placeholder' => 'Longitud',
-							'id' => 'longitud',
-							'required data-validation-required-message' => 'Por favor, introduzca la longitud del punto.');
+							'id' => 'longitud');
 		$lat		= array( 
                             'name' => 'lat',
 							'class' => 'form-control',
 							'placeholder' => 'Latitud',
-							'id' => 'latitud',
-							'required data-validation-required-message' => 'Por favor, introduzca la latitud del punto.');
+							'id' => 'latitud');
 		$nombre_poi	= array('name' => 'nombre_poi',
 							'class' => 'form-control',
 							'placeholder' => 'Nombre del punto',
-							'id' => 'nombre_poi',
-							'required data-validation-required-message' => 'Por favor, introduzca el nombre del punto.');
+							'id' => 'nombre_poi');
 		$txt_rep	= array('name' => 'txt_rep',
 							'class' => 'form-control',
-							'placeholder' => 'Texto representativo',
-							'id' => 'txt_rep',
-							'required data-validation-required-message' => 'Por favor, introduzca un texto representativo.');
+							'placeholder' => 'Texto representativo');
 		$direccion	= array('name' => 'direccion',
 							'class' => 'form-control',
 							'placeholder' => 'Dirección',
-							'id' => 'direccion',
-							'required data-validation-required-message' => 'Por favor, introduzca la dirección del punto.');
+							'id' => 'direccion');
 		$id_usuario	= array('name' => 'id_usuario',
 							'class' => 'form-control',
 							'placeholder' => 'Nombre de usuario',
 							'id' => 'nombre_usuario',
-							'required data-validation-required-message' => 'Por favor, seleccione su nombre de usuario.',
 							'readonly' => 'true');
 
 		$id_categoria= array('name' => 'id_categoria',
                             'class' => 'form-control',
                             'placeholder' => 'Nombre de la Categoría',
                             'id' => 'nombre_categoria',
-                            'required data-validation-required-message' => 'Por favor, seleccione la categoría que desee.',
                             'readonly' => 'true');
 
         

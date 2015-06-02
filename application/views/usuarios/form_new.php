@@ -13,6 +13,16 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
 
 
+
+<script type="text/javascript">
+    function submitForm(action)
+    {
+        document.getElementById('contactForm').action = action;
+        document.getElementById('contactForm').submit();
+    }
+</script>
+
+
 </head>
 <body id="page-top" class="index">
 
@@ -217,8 +227,8 @@
                         <div class="row">
                             <div class="form-group col-xs-12">
                             	<!--<?= form_submit('','Añadir usuario') ?> -->
-                                <button type="submit" class="btn btn-success btn-lg">Añadir usuario</button>
-                                 <a href="<?php echo base_url();?>/pois/pois_controller/newPoi" <button type="submit" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right">Añadir usuario y continuar con nuevo punto</button></a>
+                                <button type="submit" class="btn btn-success btn-lg" onclick="submitForm('')">Añadir usuario</button>
+                                <button type="submit" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right" onclick="submitForm('<?php echo base_url();?>/pois/pois_controller/newPoi')">Añadir usuario y continuar con nuevo punto</button>
                                 
                             </div>
                         </div>
@@ -314,44 +324,3 @@
 
 
 
-
-
-
-
-<html>
-<head>
-	<title>Nuevo Usuario</title>
-	<meta charset='utf-8'>
-</head>
-<body>
-	<?= form_open("/usuarios/usuarios_controller/getNewUser")?>
-	<?php
-		$rol 		= array('name' => 'rol');
-		$nombre		= array('name' => 'nombre');
-		$empresa	= array('name' => 'empresa');
-		$direccion	= array('name' => 'direccion');
-		$tel 		= array('name' => 'tel');
-		$cif 		= array('name' => 'cif');
-		$mail 		= array('name' => 'mail');
-		$password	= array('name' => 'password');
-	?>
-	
-	<label>Rol: </label>
-	<select name='rol' id='rol'>
-        <option value=1> Usuario </option>
-        <option value=2> Cliente VIP </option>
-	</select><br>
-
-	<label>Nombre: <?= form_input($nombre) ?></label><br>
-	<label>Empresa: <?= form_input($empresa) ?></label><br>
-	<label>Dirección: <?= form_input($direccion) ?></label><br>
-	<label>Teléfono: <?= form_input($tel) ?></label><br>
-	<label>CIF: <?= form_input($cif) ?></label><br>
-	<label>Correo: <?= form_input($mail) ?></label><br>
-	<label>Contraseña: <?= form_input($password) ?></label><br>
-
-	<?= form_submit('','Añadir usuario') ?>
-
-	<?= form_close()?>
-</body>
-</html>
