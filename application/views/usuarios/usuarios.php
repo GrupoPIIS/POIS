@@ -16,52 +16,55 @@
         <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>/estilos/js/jquery-1.11.2.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>/estilos/js/jquery.combinedScroll.js" type="text/javascript"></script>
+        <script type="text/javascript">
+           
+            jQuery(document).ready(function($){
+            
+                $('.page-navigation').onePageNav(); 
 
-        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
+
+                $(function(){
+                    $('.page-navigation').data('size','big');
+                });
+
+                $(window).scroll(function(){
+                    var $nav = $('.page-navigation');
+                    if ($('body').scrollTop() > 0) {
+                        if ($nav.data('size') == 'big') {
+                            $nav.data('size','small').stop().animate({
+                                padding:'0 0.2%'
+                            }, 600);
+                        }
+                    } else {
+                        if ($nav.data('size') == 'small') {
+                            $nav.data('size','big').stop().animate({
+                                padding:'1%'
+                            }, 600);
+                        }  
+                    }
+                });            
+
+            });
+        </script>
+ 
         
 	</head>	
 
 	<body class="index" id="page-top">
 
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                <img class="img-centic" src="<?php echo base_url();?>/estilos/img/centic.jpg" alt="" id ="centic">
-                
-                </div>
+        <nav class="page-navigation">
+            <a href="#" onclick="javascript:location.href='<?php echo base_url();?>'"><img src="<?php echo base_url();?>estilos/img/centic.jpg"></a>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">  
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="hidden">
-                            <a href="#page-top"></a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="<?php echo base_url();?>mapa#pois-usuario">Mis Puntos de Interés</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="<?php echo base_url();?>mapa#categorias">Categor&iacute;as</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="<?php echo base_url();?>mapa#estadisticas">Estad&iacute;sticas</a>
-                        <li id="menu-usuario">
-                            <a href="#" ><?=$this->session->userdata['nombre'];?></a>
-                        </li>
-                        <li >
-                            <a href="<?php echo base_url();?>login_controller/closeSession" >Salir</a>
-                        </li>
-                    </ul>                    
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-           <!--  /.container-fluid -->
+                <ul class="menu">
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>'">PUNTOS DE INTER&Eacute;S</a></li>
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>#categorias'">CATEGOR&Iacute;AS</a></li>
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>#estadisticas'">ESTAD&Iacute;STICAS</a></li>
+                    <li><a href="#" ><?=$this->session->userdata['nombre'];?></a></li>
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>login_controller/closeSession'">SALIR</a></li>                    
+                </ul>           
         </nav>
 
 		<section id="list-users">  

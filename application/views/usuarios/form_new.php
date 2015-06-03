@@ -11,78 +11,60 @@
         <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
+        <script src="<?php echo base_url();?>/estilos/js/jquery-1.11.2.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>/estilos/js/jquery.combinedScroll.js" type="text/javascript"></script>
+        <script type="text/javascript">
+                   
+            function changeValue(){
+                
+                document.getElementById('crearPoi').value='true';
+            }
+        
+           
+            jQuery(document).ready(function($){
 
 
+            
+                $('.page-navigation').onePageNav(); 
 
-<script type="text/javascript">
-    function submitForm(action)
-    {
-        document.getElementById('contactForm').action = action;
-        document.getElementById('contactForm').submit();
-    }
-</script>
+
+                $(function(){
+                    $('.page-navigation').data('size','big');
+                });
+
+                $(window).scroll(function(){
+                    var $nav = $('.page-navigation');
+                    if ($('body').scrollTop() > 0) {
+                        if ($nav.data('size') == 'big') {
+                            $nav.data('size','small').stop().animate({
+                                padding:'0 0.2%'
+                            }, 600);
+                        }
+                    } else {
+                        if ($nav.data('size') == 'small') {
+                            $nav.data('size','big').stop().animate({
+                                padding:'1%'
+                            }, 600);
+                        }  
+                    }
+                });            
+
+            });
+        </script>
+
 
 
 </head>
 <body id="page-top" class="index">
-
-	 <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-           <!--     <a class="navbar-brand" href="#page-top">Start Bootstrap</a> -->
-            <img class="img-centic" src="<?php echo base_url();?>/estilos/img/centic.jpg" alt="">
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               
-                 
-                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#">Nuevo usuario</a>
-                    </li>
-                  
-                </ul>
-
-				<ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                      <a> >  </a>
-                    </li>
-                  
-                </ul>
-
-                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="<?php echo base_url();?>usuarios/usuarios_controller">Todos los usuarios</a>
-                    </li>
-                  
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
+    <nav class="page-navigation">
+            <a href="#" onclick="javascript:location.href='<?php echo base_url();?>'"><img src="<?php echo base_url();?>estilos/img/centic.jpg"></a>
+                <ul class="menu">                    
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>usuarios/usuarios_controller'">Usuarios</a></li>
+                    <li>></li>
+                    <li><a href="">Nuevo Usuario</a></li>                                                        
+                </ul> 
     </nav>
 
-        
-        
-      
 
 
 	<?= form_open("/usuarios/usuarios_controller/getNewUser")?>
@@ -217,7 +199,7 @@
                             </div>
                         </div>
 
-                        
+                        <input type="hidden" id="crearPoi" name="crearPoi" value="">
                        
                         <br>
 
@@ -228,7 +210,7 @@
                             <div class="form-group col-xs-12">
                             	<!--<?= form_submit('','Añadir usuario') ?> -->
                                 <button type="submit" class="btn btn-success btn-lg" onclick="submitForm('')">Añadir usuario</button>
-                                <button type="submit" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right" onclick="submitForm('<?php echo base_url();?>/pois/pois_controller/newPoi')">Añadir usuario y continuar con nuevo punto</button>
+                                <button type="submit" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right" onclick="changeValue();">Añadir usuario y crear nuevo POI</button>
                                 
                             </div>
                         </div>

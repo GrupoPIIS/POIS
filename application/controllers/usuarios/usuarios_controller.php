@@ -14,7 +14,13 @@ class Usuarios_controller extends CI_Controller{
 	//Lista todos los usuarios
 	function index(){
 		$data['usuarios'] = $this->usuarios_model->getUsers();
-		$this->load->view('usuarios/usuarios', $data);
+
+		if($this->input->post('crearPoi')=='true'){
+			redirect('pois/pois_controller/newPoi', 'refresh');
+		}else{
+			$this->load->view('usuarios/usuarios', $data);
+		}
+		
 	}
 
 	//Lista un usuario en concreto. Se pasa el id por parametro.

@@ -28,54 +28,33 @@
     
         function updateVisits(id) {
             var id = id;           
-            $.post('http://localhost/pois/pois_controller/updateVisits',{id:id});           
-          
+            $.post('http://localhost/pois/pois_controller/updateVisits',{id:id});
         }
     </script> 
-   <script type="text/javascript">
-        $(document).ready(function(){
-            $('#back').click(function(){
-                parent.history.back();
-                return false;
-            });
-        });
-    </script>	
+   	
     
 
 <body id="page-top" class="index">
+    <nav class="page-navigation">
+            <a href="#" onclick="javascript:location.href='<?php echo base_url();?>'"><img src="<?php echo base_url();?>estilos/img/centic.jpg"></a>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-           <!--     <a class="navbar-brand" href="#page-top">Start Bootstrap</a> -->
-            <img class="img-centic" src="<?php echo base_url();?>estilos/img/centic.jpg" alt="">
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
+                <ul class="menu">
                     <li class="page-scroll">
-                        <a id="back" href="" onclick="updateVisits(<?=$pois->result()[0]->id_poi?>)">Volver</a>
-                    </li>
-                  
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
+                    <?php  
+                        if(isset($this->session->userdata['habilitado'])){
+                    ?>                    
+                        <a href="<?php echo base_url();?>pois/pois_controller" onclick="updateVisits(<?=$pois->result()[0]->id_poi?>)">Volver</a>
+                    <?php  
+                        } else{ 
+                    ?>
+                        <a href="<?php echo base_url();?>" onclick="updateVisits(<?=$pois->result()[0]->id_poi?>)">Volver</a>
+                    <?php  
+                        }  
+                    ?>
+                    </li>                    
+                </ul>           
+        </nav>
+    
     <!-- Header -->
     
    
@@ -137,37 +116,29 @@
 
                     </div>
                 <?php }
-    } ?>
+        } ?>
 
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 
-<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="sr-only">Previous</span>
 
-<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </a>
 
-<span class="sr-only">Previous</span>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
 
-</a>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 
-<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="sr-only">Next</span>
 
-<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </a>
 
-<span class="sr-only">Next</span>
-
-</a>
-
-</div><!-- /.carousel -->
-
-
-
+                        </div><!-- /.carousel -->
                     </div>
                 </div>
             </div>
         </div>
-
-    
-
      
     </header>
 

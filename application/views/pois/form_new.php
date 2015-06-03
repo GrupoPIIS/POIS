@@ -4,82 +4,64 @@
 	<meta charset='utf-8'>
 
 		<link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
-        <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
+         <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
         <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
         <!-- Custom Fonts -->
         <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
-
         <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>/estilos/js/jquery-1.11.2.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>/estilos/js/jquery.combinedScroll.js" type="text/javascript"></script>
         <script type="text/javascript">
             var centreGot = false;
-            var activeMap=false;          
+            var activeMap=false;
+
+            jQuery(document).ready(function($){
+            
+                $('.page-navigation').onePageNav(); 
+
+
+                $(function(){
+                    $('.page-navigation').data('size','big');
+                });
+
+                $(window).scroll(function(){
+                    var $nav = $('.page-navigation');
+                    if ($('body').scrollTop() > 0) {
+                        if ($nav.data('size') == 'big') {
+                            $nav.data('size','small').stop().animate({
+                                padding:'0 0.2%'
+                            }, 600);
+                        }
+                    } else {
+                        if ($nav.data('size') == 'small') {
+                            $nav.data('size','big').stop().animate({
+                                padding:'1%'
+                            }, 600);
+                        }  
+                    }
+                });            
+
+            });
         </script>
+        
         <?=$map['js']?>        
 
 
 </head>
 <body id="page-top" class="index">
 
-	 <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-           <!--     <a class="navbar-brand" href="#page-top">Start Bootstrap</a> -->
-            <img class="img-centic" src="<?php echo base_url();?>/estilos/img/centic.jpg" alt="">
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               
-                 
-                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#">Nuevo punto de interés</a>
-                    </li>
-                  
-                </ul>
-
-				<ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                      <a> >  </a>
-                    </li>
-                  
-                </ul>
-
-                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="<?php echo base_url();?>pois/pois_controller">Mis puntos de interés</a>
-                    </li>
-                  
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-    
-        
-      
-
+        <nav class="page-navigation">
+            <a href="#" onclick="javascript:location.href='<?php echo base_url();?>'"><img src="<?php echo base_url();?>estilos/img/centic.jpg"></a>
+                <ul class="menu">                    
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>pois/pois_controller'">Mis puntos de inter&eacute;s</a></li>
+                    <li>></li>
+                    <li><a href="#" onclick="javascript:location.href='#'">Nuevo punto de inter&eacute;s</a></li>                                                        
+                </ul> 
+        </nav> 
+     
 
 	<?= form_open("/pois/pois_controller/getNewPoi")?>
 	<?php
@@ -87,23 +69,28 @@
                             'name' => 'lng',
 							'class' => 'form-control',
 							'placeholder' => 'Longitud',
-							'id' => 'longitud');
+							'id' => 'longitud',
+                            'required data-validation-required-message' => 'Por favor, introduzca longitud.');
 		$lat		= array( 
                             'name' => 'lat',
 							'class' => 'form-control',
 							'placeholder' => 'Latitud',
-							'id' => 'latitud');
+							'id' => 'latitud',
+                            'required data-validation-required-message' => 'Por favor, introduzca latitud.');
 		$nombre_poi	= array('name' => 'nombre_poi',
 							'class' => 'form-control',
 							'placeholder' => 'Nombre del punto',
-							'id' => 'nombre_poi');
+							'id' => 'nombre_poi',
+                            'required data-validation-required-message' => 'Por favor, introduzca un nombre.');
 		$txt_rep	= array('name' => 'txt_rep',
 							'class' => 'form-control',
-							'placeholder' => 'Texto representativo');
+							'placeholder' => 'Texto representativo',
+                            'required data-validation-required-message' => 'Por favor, introduzca un texto.');
 		$direccion	= array('name' => 'direccion',
 							'class' => 'form-control',
 							'placeholder' => 'Dirección',
-							'id' => 'direccion');
+							'id' => 'direccion',
+                            'required data-validation-required-message' => 'Por favor, introduzca direccion.');
 		$id_usuario	= array('name' => 'id_usuario',
 							'class' => 'form-control',
 							'placeholder' => 'Nombre de usuario',
@@ -145,24 +132,24 @@
                     	<?PHP if($this->session->userdata('rol') == 0){?>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-						
-							<label id="usuario_nombre">Usuario: </label>
-								<?= form_input($id_usuario) ?>
+                        
+                            <label id="usuario_nombre">Usuario: </label>
+                                <?= form_input($id_usuario) ?>
 
-								<select name='id_usuario' id='id_usuario'>
-								<option>--- Escoge un Usuario ---</option>
-								<?PHP if($usuarios){
-								foreach ($usuarios->result() as $usuario){ ?>
-								<option value=<?= $usuario->id_usuario; ?>> <?= $usuario->nombre; ?> </option>
-								<?PHP }
-								}else echo 'No hay datos.';?>
-								</select><br>
-						
-						 <p class="help-block text-danger"></p>
+                                <select name='id_usuario' id='id_usuario'>
+                                <option>--- Escoge un Usuario ---</option>
+                                <?PHP if($usuarios){
+                                foreach ($usuarios->result() as $usuario){ ?>
+                                <option value=<?= $usuario->id_usuario; ?>> <?= $usuario->nombre; ?> </option>
+                                <?PHP }
+                                }else echo 'No hay datos.';?>
+                                </select><br>
+                        
+                         <p class="help-block text-danger"></p>
 
                          <a href="<?php echo base_url();?>/usuarios/usuarios_controller/newUser" <button type="button" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right">Añadir usuario</button></a>
   
-						  </div>
+                          </div>
                         </div>
                         <?PHP } ?>
                         
@@ -227,8 +214,7 @@
 
                         <div id="success"></div>
                         <div class="row">
-                            <div class="form-group col-xs-12">
-                            	<!--<?= form_submit('','Añadir POI') ?> -->
+                            <div class="form-group col-xs-12">                            	
                                 <button type="submit" class="btn btn-success btn-lg" name="btnCrear" id="btnCrear">Crear punto de interés</button>
                                 <button type="submit" class="btn btn-success btn-lg" name="btnExtras" id="btnExtras" style="float:right">Crear y continuar configurándolo</button>
                             </div>
@@ -243,15 +229,14 @@
 <?= form_close()?>
 
 
-    <!-- Footer -->
-    <footer class="text-center">
+<footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
                         <h3>Localización</h3>
                         <p>Calle Condes de Barcelona, 5, 30007 Murcia
-						<br>968 96 44 00</p>
+                        <br>968 96 44 00</p>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>Redes sociales</h3>
@@ -290,33 +275,28 @@
             </div>
         </div>
     </footer>
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+        <div class="scroll-top page-scroll visible-xs visble-sm">
+            <a class="btn btn-primary" href="#page-top">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>  
+       <script src="<?php echo base_url();?>/estilos/js/jquery.js"></script>
 
-    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll visible-xs visble-sm">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
-    </div>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<?php echo base_url();?>/estilos/js/bootstrap.min.js"></script>
 
-                  
+        <!-- Plugin JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/classie.js"></script>
+        <script src="<?php echo base_url();?>/estilos/js/cbpAnimatedHeader.js"></script>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+        <!-- Contact Form JavaScript -->
+        <script src="<?php echo base_url();?>/estilos/js/jqBootstrapValidation.js"></script>
+        <!--  <script src="<?php echo base_url();?>/estilos/js/contact_me.js"></script>-->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/freelancer.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="<?php echo base_url();?>/estilos/js/freelancer.js"></script>
 
 
 </body>

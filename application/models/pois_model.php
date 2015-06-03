@@ -72,7 +72,7 @@ class Pois_model extends CI_Model{
 	}
 
 	//Hace un UPDATE pois SET datos = $data WHERE id = $id
-	function updatePoi($id, $data, $categorias, $extras, $multimedia, $social){
+	function updatePoi($id, $data, $categorias, $extras){
 		$this->db->where('id_poi', $id);
 		$query = $this->db->update('pois', $data);
 

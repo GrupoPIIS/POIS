@@ -158,7 +158,7 @@ class Pois_controller extends CI_Controller{
 				'horario'			=> $this->input->post('horario')
 			);
 
-		$this->pois_model->updatePoi($this->uri->segment(4), $data, $categorias, $extras, $multimedia, $social);
+		$this->pois_model->updatePoi($this->uri->segment(4), $data, $categorias, $extras);
 		$this->index();
 	}
 
