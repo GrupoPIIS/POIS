@@ -169,7 +169,7 @@ class Mapa extends CI_Controller{
 
 
 				if(radius){
-					map.setZoom(14);
+					map.setZoom(11);
 					map.panTo(usermarker.position);
 				}
               

@@ -223,7 +223,7 @@ class Pois_model extends CI_Model{
 
 	function getPoisDistTag($tag,$lat,$lng,$radius){
 
-		$query = $this->db->query('SELECT id_poi, nombre_poi, lat, lng, ( 6.371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) ) AS distance 
+		$query = $this->db->query('SELECT id_poi, nombre_poi, lat, lng, ( 6371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) ) AS distance 
 			FROM pois WHERE id_poi IN (SELECT id_poi FROM id_poi_id_cat 
 				WHERE id_cat IN (SELECT id_cat FROM categorias WHERE nombre_cat = "'.$tag.'")) 
 					HAVING distance < '.$radius.' ORDER BY distance LIMIT 0 , 20;');

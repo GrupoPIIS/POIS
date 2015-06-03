@@ -51,4 +51,9 @@ class Categorias_model extends CI_Model{
 		$this->db->where('id_cat', $id);
 		$this->db->delete('categorias');
 	}
+
+	function search($nombre){
+		$this->db->like('nombre_cat',$nombre,'both');
+		return $this->db->get('categorias')->result();
+	}
 }

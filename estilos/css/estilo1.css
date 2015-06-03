@@ -563,6 +563,9 @@ vertical-align: top;
 	text-align: justify;
 }
 
+.green-border input{
+	border: 1px solid #bef230;
+}
 
 @media all and (max-width:1200px){
 	nav.page-navigation {	  

@@ -106,5 +106,18 @@ class Categorias_controller extends CI_Controller{
         $this->load->library('image_lib', $config); 
         $this->image_lib->resize();
     }
+
+    public function search(){
+    	if(isset($_GET['term'])){
+    		$result= $this->categorias_model->search($_GET['term']);
+	    	if(count($result) >0){
+	    		foreach ($result as $cat)
+	    			$arr_result[] = $cat->nombre_cat;
+	    		
+	    		echo json_encode($arr_result);
+	    	}
+    	}
+    	
+    }
 }
 ?>

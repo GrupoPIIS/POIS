@@ -85,7 +85,7 @@
 
 
 	
- <!-- Contact Section -->
+ 
     <section id="contact">
         <div class="container">
             <div class="row">
