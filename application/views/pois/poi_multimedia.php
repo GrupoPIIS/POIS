@@ -50,7 +50,7 @@
     <nav class="page-navigation">
             <a href="#" onclick="javascript:location.href='<?php echo base_url();?>'"><img src="<?php echo base_url();?>estilos/img/centic.jpg"></a>
                 <ul class="menu">                    
-                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>pois/pois_controller/newPoi'">Volver sin guardar</a></li>
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>pois/pois_controller'">Volver sin guardar</a></li>
                     <li>></li>
                     <li><a href="#" onclick="javascript:location.href='#'">Añadir multimedia</a></li>                                                        
                 </ul> 
@@ -82,7 +82,7 @@
 					<label>Nombre: <?= form_input($nombre_recurso) ?></label><br>
 					<label>Ruta: <input type="file" name="userfile" multiple> </label><br>
 
-					<button type="submit" class="btn btn-success btn-lg" name="btnMultimedia" id="btnMultimedia">Añadir extras POI</button>
+					<button type="submit" class="btn btn-success btn-lg" name="btnMultimedia" id="btnMultimedia">Añadir y finalizar</button>
 				    <button type="submit" class="btn btn-success btn-lg" name="btnRedes" id="btnRedes" style="float:right">Añadir y continuar configurándolo</button>
 				  
 

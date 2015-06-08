@@ -148,28 +148,23 @@
 			$slogan		= array('name' => 'slogan', 'value'=> $extras->result()[0]->slogan,
 							'class' => 'form-control',
 							'placeholder' => 'Eslogan',
-							'id' => 'slogan',
-							'required data-validation-required-message' => 'Por favor, introduzca el eslogan.' 		);
+							'id' => 'slogan');
 			$telefono1	= array('name' => 'telefono1', 'value'	=> $extras->result()[0]->telefono1,
 							'class' => 'form-control',
 							'placeholder' => 'Teléfono',
-							'id' => 'telefono1',
-							'required data-validation-required-message' => 'Por favor, introduzca un teléfono.' 	);
+							'id' => 'telefono1');
 			$telefono2	= array('name' => 'telefono2', 'value'		=> $extras->result()[0]->telefono2,
 							'class' => 'form-control',
 							'placeholder' => 'Teléfono secundario',
-							'id' => 'telefono2',
-							'required data-validation-required-message' => 'Por favor, introduzca un teléfono secundario.'  );
+							'id' => 'telefono2');
 			$direccion_local= array('name' => 'direccion_local', 'value'=> $extras->result()[0]->direccion_local,
 							'class' => 'form-control',
 							'placeholder' => 'Dirección local',
-							'id' => 'direccion_local',
-							'required data-validation-required-message' => 'Por favor, introduzca la dirección local.' );
+							'id' => 'direccion_local');
 			$horario	= array('name' => 'horario', 'value'		=> $extras->result()[0]->horario,
 							'class' => 'form-control',
 							'placeholder' => 'Horario',
-							'id' => 'horario',
-							'required data-validation-required-message' => 'Por favor, introduzca el horario.'  );
+							'id' => 'horario');
 		}
 
 		if($multimedia){
@@ -393,10 +388,10 @@
 	<?PHP if($social){ ?>
 		<?php foreach ($social->result() as $red){ ?>
 			<li class="poi-enlace">
-				<img src="<?php echo base_url();?>/uploads/thumbs/<?= $red->icono_red?>">
+				 <img src="<?php echo base_url();?>uploads/thumbs/<?=$red->icono_red?>" >
 				<a href="<?=$red->enlace?>"> <?=$red->nombre_red?> </a>
 				<a href="<?php echo base_url();?>pois/pois_controller/deleteSocialPoi/<?= $id ?>/<?=$red->id_rrss?>" class="poi-boton">
-	           	<img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
+	           	<img src="<?php echo base_url();?>estilos/img/trash.png" alt="Eliminar">
 	        	</a> 
 			</li>
 		<?php } ?>

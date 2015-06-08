@@ -50,7 +50,7 @@
     <nav class="page-navigation">
             <a href="#" onclick="javascript:location.href='<?php echo base_url();?>'"><img src="<?php echo base_url();?>estilos/img/centic.jpg"></a>
                 <ul class="menu">                    
-                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>pois/pois_controller/newPoi'">Volver sin guardar</a></li>
+                    <li><a href="#" onclick="javascript:location.href='<?php echo base_url();?>pois/pois_controller'">Volver sin guardar</a></li>
                     <li>></li>
                     <li><a href="#" onclick="javascript:location.href='#'">Añadir Redes Sociales</a></li>                                                        
                 </ul> 
@@ -83,7 +83,7 @@
 
 					<label>Enlace: <?= form_input($enlace) ?></label><br>
 
-					<button type="submit" class="btn btn-success btn-lg" name="btnSocial" id="btnSocial">Añadir Redes Sociales</button>
+					<button type="submit" class="btn btn-success btn-lg" name="btnSocial" id="btnSocial">Añadir y finalizar</button>
 
 					<?= form_close()?>
 				</div>

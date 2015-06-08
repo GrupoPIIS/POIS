@@ -25,7 +25,7 @@ class Autocomplete_controller extends CI_Controller {
 	            
     			$this->db->where('id_cat!=0');
 	            $this->db->select('id_cat, nombre_cat as value');
-	            $this->db->like('nombre_cat', $buscar); 
+	            $this->db->like('nombre_cat', $buscar,'after'); 
 	            $query=$this->db->get('categorias');
 	            if($query->num_rows() > 0){
 	                foreach ($query->result_array() as $row){

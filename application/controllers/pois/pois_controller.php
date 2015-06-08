@@ -193,9 +193,11 @@ class Pois_controller extends CI_Controller{
 
 		$id['id'] = $this->uri->segment(4);
 
-		if(isset($_POST["btnMultimedias"]))
+		if(isset($_POST["btnMultimedias"])){
           	$this->load->view('pois/poi_multimedia', $id);
+		}
         else{
+
         	$data['pois'] = $this->pois_model->getPoi($this->uri->segment(4));
 
 			$data['extras'] = $this->pois_model->getExtraPoi($this->uri->segment(4));
@@ -207,7 +209,7 @@ class Pois_controller extends CI_Controller{
 			$this->load->view('poicaracteristicas', $data);
         }
 
-		//$this->index();
+		
 	}
 
 	function multimediaPoi(){
@@ -221,13 +223,20 @@ class Pois_controller extends CI_Controller{
 
 	function getMultimediaPoi(){
 
-		if($this->input->post('tipo_recurso') == 'Imagen')
+		if($this->input->post('tipo_recurso') == 'Imagen' && $this->input->post('nombre_recurso')!=""){
 			$file_info = $this->_create_image();
-		else
-			$file_info = $this->_create_video();
-		
-        $subir = $this->pois_model->multimediaPoi($this->uri->segment(4), $this->input->post('tipo_recurso'),
-        	$this->input->post('nombre_recurso'), $file_info['file_name']);
+			$this->pois_model->multimediaPoi($this->uri->segment(4), $this->input->post('tipo_recurso'),
+        		$this->input->post('nombre_recurso'), $file_info['file_name']);
+
+		}
+		else{
+			if($this->input->post('nombre_recurso')!=""){
+				$file_info = $this->_create_video();
+				$this->pois_model->multimediaPoi($this->uri->segment(4), $this->input->post('tipo_recurso'),
+        			$this->input->post('nombre_recurso'), $file_info['file_name']);
+			}
+		}		
+        	
 
         if(isset($_POST["btnRedes"])){
 
@@ -250,7 +259,7 @@ class Pois_controller extends CI_Controller{
 			$this->load->view('poicaracteristicas', $data);
         }
 
-        //$this->index();
+        
 	}
 
 	function updateMultimediaPoi(){
@@ -269,15 +278,17 @@ class Pois_controller extends CI_Controller{
 		else
 			$file_info = $this->_create_video();
 		
-        $subir = $this->pois_model->updateMultimediaPoi($this->uri->segment(4), $this->uri->segment(5), $this->input->post('tipo_recurso'),
+        $this->pois_model->updateMultimediaPoi($this->uri->segment(4), $this->uri->segment(5), $this->input->post('tipo_recurso'),
         	$this->input->post('nombre_recurso'), $file_info['file_name']);
         $this->index();
 	}
 
 	function deleteMultimediaPoi(){
 		
-        $subir = $this->pois_model->deleteMultimediaPoi($this->uri->segment(4), $this->uri->segment(5));
-        $this->index();
+        $this->pois_model->deleteMultimediaPoi($this->uri->segment(4),$this->uri->segment(5));        
+        	redirect(base_url().'/pois/pois_controller/updatePoi/'.$this->uri->segment(4), 'refresh');
+        
+        
 	}
 
 	function socialPoi(){
@@ -297,24 +308,36 @@ class Pois_controller extends CI_Controller{
 				'id_rrss' 	=> $this->input->post('id_rrss'),
 				'enlace'	=> $this->input->post('enlace')
 			);
+		if($this->input->post('enlace')!=""){
 
-		$this->pois_model->socialPoi($this->uri->segment(4), $data);
-		
-		$data['pois'] = $this->pois_model->getPoi($this->uri->segment(4));
+			if( strpos($this->input->post('enlace'), "http://") || strpos($this->input->post('enlace'), "https://")){
 
-		$data['extras'] = $this->pois_model->getExtraPoi($this->uri->segment(4));
+				$this->pois_model->socialPoi($this->uri->segment(4), $data);
 
-        $data['multimedia'] = $this->pois_model->getMultimediaPoi($this->uri->segment(4));
+			}else{
 
-        $data['social'] = $this->pois_model->getSocialAllPoi($this->uri->segment(4));
+				$data['enlace'] = "http://".$this->input->post('enlace');
+				$this->pois_model->socialPoi($this->uri->segment(4), $data);
+			}
+			
+			$data['pois'] = $this->pois_model->getPoi($this->uri->segment(4));
 
-		$this->load->view('poicaracteristicas', $data);
+			$data['extras'] = $this->pois_model->getExtraPoi($this->uri->segment(4));
+
+	        $data['multimedia'] = $this->pois_model->getMultimediaPoi($this->uri->segment(4));
+
+	        $data['social'] = $this->pois_model->getSocialAllPoi($this->uri->segment(4));
+
+			$this->load->view('poicaracteristicas', $data);
+		}else{
+			redirect(base_url().'/pois/pois_controller/getPoi/'.$this->uri->segment(4), 'refresh');
+		}
 	}
 
 	function deleteSocialPoi(){
 		
-        $subir = $this->pois_model->deleteSocialPoi($this->uri->segment(4), $this->uri->segment(5));
-        $this->index();
+        $this->pois_model->deleteSocialPoi($this->uri->segment(4), $this->uri->segment(5));
+        redirect(base_url().'/pois/pois_controller/updatePoi/'.$this->uri->segment(4), 'refresh');
 	}
 
 	function _create_video(){

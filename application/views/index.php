@@ -209,6 +209,7 @@
             </div>
 
             <ul class="mas-visitados">
+            <?php if($visitados){ ?>
                 <li>
                     <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[0]->id_poi;?>">
                         <article class="mv-article golden">
@@ -216,34 +217,43 @@
                         </article>
                     </a>
                 </li>
-                 <li>
-                    <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[1]->id_poi;?>">
-                        <article class="mv-article silver">
-                            <h3>2. <?=$visitados->result()[1]->nombre_poi;?></h3>                           
-                        </article>
-                    </a>
-                </li>
+                <?php if($visitados->result()[1]->nombre_poi){?>
+                    <li>
+                        <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[1]->id_poi;?>">
+                            <article class="mv-article silver">                        
+                                <h3>2. <?=$visitados->result()[1]->nombre_poi;?></h3>                                                
+                            </article>
+                        </a>
+                    </li>
+                <?php } 
+                 if($visitados->result()[2]->nombre_poi){?> 
                  <li>
                     <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[2]->id_poi;?>">
-                        <article class="mv-article bronze">
+                        <article class="mv-article bronze">                        
                             <h3>3. <?=$visitados->result()[2]->nombre_poi;?></h3>                       
                         </article>
                     </a>
                 </li>
+                <?php } 
+                if($visitados->result()[3]->nombre_poi){?> 
                  <li>
                     <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[3]->id_poi;?>">
-                        <article class="mv-article">
+                        <article class="mv-article">                        
                             <h3>4. <?=$visitados->result()[3]->nombre_poi;?></h3>                       
                         </article>
                     </a>
                 </li>
+                <?php } 
+                if($visitados->result()[4]->nombre_poi){?> 
                  <li>
                     <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[4]->id_poi;?>">
-                        <article class="mv-article">
+                        <article class="mv-article">                       
                             <h3>5. <?=$visitados->result()[4]->nombre_poi;?></h3>                            
                         </article>
                     </a>
                 </li>
+                <?php } 
+                if($visitados->result()[5]->nombre_poi){?> 
                  <li>
                     <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$visitados->result()[5]->id_poi;?>">
                         <article class="mv-article">
@@ -251,6 +261,12 @@
                         </article>
                     </a>
                 </li>
+                <?php
+                }
+            }
+            else{
+                echo "No hay Puntos de Interés Registrados";
+            } ?>
             </ul>        
            
         </div>

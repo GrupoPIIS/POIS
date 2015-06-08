@@ -311,6 +311,9 @@ vertical-align: top;
 	width:70%;
 	margin-left: 10%;
 	margin-right: 5%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+  	overflow: hidden;
 }
 
 .poi-boton{
@@ -338,8 +341,6 @@ vertical-align: top;
 .poi-enlace:hover{
 	background-color: #b0b0b0;
 }
-
-
 
 
 .sec-img-text article{
@@ -596,5 +597,10 @@ vertical-align: top;
 
 	.menu{
 		width: 80%;
-	}	
+	}
+
+	#lado article h3{
+		font-size: 90%;
+	}
+
 }

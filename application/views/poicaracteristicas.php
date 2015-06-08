@@ -171,10 +171,7 @@
                                 <p><?=$pois->result()[0]->direccion?></p>
                              </article>
                 
-                             <!--<article class="campo-poi">
-                                <h4>FECHA DE ALTA:</h4>
-                                 <p><?=$pois->result()[0]->creado?></p>
-                             </article> -->        
+                                  
                             <?PHP if($extras){ ?>
                                  <article class="campo-poi">
                                     <h4>SLOGAN:</h4>
@@ -203,7 +200,7 @@
                                     <h4>REDES SOCIALES:</h4>
                                     <?php foreach ($social->result() as $red){ ?>
 
-                                        <img src="<?php echo base_url();?>/uploads/thumbs/<?=$red->icono_red?>" >
+                                        <img src="<?php echo base_url();?>uploads/thumbs/<?=$red->icono_red?>" >
                                         <a href="<?=$red->enlace?>"> <p><?=$red->nombre_red?></p> </a>
                                     
                                     <?php } ?>
@@ -216,7 +213,7 @@
                                     <?php foreach ($multimedia->result() as $multi){ ?>
                                         <?php if($multi->tipo_recurso != 'Imagen'){ ?>
 
-                                        <video controls src="<?php echo base_url();?>/uploads/<?=$multi->ruta_recurso?>"></video> 
+                                        <video controls src="<?php echo base_url();?>uploads/<?=$multi->ruta_recurso?>"></video> 
                                     
                                     <?php }
                                     } ?>
