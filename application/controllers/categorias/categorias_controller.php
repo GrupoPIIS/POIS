@@ -5,16 +5,34 @@ class Categorias_controller extends CI_Controller{
 	//Constructor de la clase. Carga el modelo correspondiente.
 	function __construct(){
 		parent::__construct();
+		$this->load->database();
+		$this->load->helper('url');
 		$this->load->model('categorias_model');
-		!isset($this->session->userdata['habilitado'])?   
-	   		redirect('login_controller', 'refresh') : '';
+		
 	}
 
 	//Lista todas las categorias, excepto la default.
 	function index(){
+		!isset($this->session->userdata['habilitado'])?   
+	   		redirect('login_controller', 'refresh') : '';
 		$data['categorias'] = $this->categorias_model->getCategories();
 		$this->load->view('categorias', $data);
 	}
+
+	public function search($buscar){		
+    	
+    		if($buscar = $this->input->get('term')){
+	            $this->db->select('id_cat, nombre_cat as value');
+	            $this->db->like('nombre_cat', $buscar); 
+	            $query=$this->db->get('categorias');
+	            if($query->num_rows() > 0){
+	                foreach ($query->result_array() as $row){
+	                    $result[]= $row;
+	                }
+	            }
+	            echo json_encode($result);
+        	}  	
+    }
 
 	//Lista una categoria en concreto. Se pasa el id por parametro.
 	function getCategory(){
@@ -107,17 +125,6 @@ class Categorias_controller extends CI_Controller{
         $this->image_lib->resize();
     }
 
-    public function search(){
-    	if(isset($_GET['term'])){
-    		$result= $this->categorias_model->search($_GET['term']);
-	    	if(count($result) >0){
-	    		foreach ($result as $cat)
-	    			$arr_result[] = $cat->nombre_cat;
-	    		
-	    		echo json_encode($arr_result);
-	    	}
-    	}
-    	
-    }
+    
 }
 ?>

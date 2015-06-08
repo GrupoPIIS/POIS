@@ -21,6 +21,21 @@
         <script src="<?php echo base_url();?>/estilos/js/jquery.combinedScroll.js" type="text/javascript"></script>
         <script type="text/javascript">
            
+            function hovertrash(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/trashred.png');
+            }
+            function hoveredit(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/editgreen.png');
+            }
+
+            function unhovertrash(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/trash.png');
+            } 
+
+            function unhoveredit(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/edit.png');
+            }          
+
             jQuery(document).ready(function($){
             
                 $('.page-navigation').onePageNav(); 
@@ -85,10 +100,10 @@
                                 <p class="poi-text"><?=$user->nombre?></p>
                             </a>
                             <a href="<?php echo base_url();?>usuarios/usuarios_controller/updateUser/<?=$user->id_usuario?>" class="poi-boton">
-                                    <img src="<?php echo base_url();?>estilos/img/edit.png" alt="Editar">                    
+                                    <img src="<?php echo base_url();?>estilos/img/edit.png" alt="Editar" onmouseover="hoveredit(this);" onmouseout="unhoveredit(this);">                    
                             </a>
                             <a href="<?php echo base_url();?>usuarios/usuarios_controller/deleteUser/<?=$user->id_usuario?>" class="poi-boton">
-                                <img src="<?php echo base_url();?>estilos/img/trash.png" alt="Eliminar">
+                                <img src="<?php echo base_url();?>estilos/img/trash.png" alt="Eliminar" onmouseover="hovertrash(this);" onmouseout="unhovertrash(this);">
                             </a>                            
                         </li>
                     <?php endforeach ?>

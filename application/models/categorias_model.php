@@ -53,7 +53,18 @@ class Categorias_model extends CI_Model{
 	}
 
 	function search($nombre){
-		$this->db->like('nombre_cat',$nombre,'both');
-		return $this->db->get('categorias')->result();
+		
+
+		$this->db->select('*');
+		 $this->db->like('nombre_cat', $q,'both');
+		 $query = $this->db->get('categorias');
+		 if($query->num_rows > 0){
+		  foreach ($query->result_array() as $row){
+		  	$new_row['id'] = htmlentities(stripslashes($row['id_cat']));
+		   $new_row['value'] = utf8_encode($row['nombre_cat']);
+		   $row_set[] = $new_row;
+		  }
+		  return $row_set;
+		 }
 	}
 }

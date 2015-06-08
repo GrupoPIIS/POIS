@@ -10,18 +10,19 @@
 
     <title>Inicio</title>
 
-    <link rel="stylesheet" href="<?php echo base_url();?>/estilos/css/estilo1.css">
-    <link href="<?php echo base_url();?>/estilos/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url();?>estilos/css/estilo1.css">
+    <link href="<?php echo base_url();?>estilos/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
-    <link href="<?php echo base_url();?>/estilos/css/freelancer.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>estilos/css/freelancer.css" rel="stylesheet">
         <!-- Custom Fonts -->
-    <link href="<?php echo base_url();?>/estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url();?>/estilos/css/jquery.ui.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>estilos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>estilos/css/jquery.ui.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >
-    <script src="<?php echo base_url();?>/estilos/js/jquery-1.11.2.js" type="text/javascript"></script>
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" >    
     <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
-    <script src="<?php echo base_url();?>/estilos/js/jquery.combinedScroll.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>estilos/js/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>estilos/js/jquery.combinedScroll.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>estilos/js/jquery.ui.js" type="text/javascript"></script>
     
     <script type="text/javascript">
         var centreGot = false;
@@ -110,14 +111,16 @@
                     }
                 });            
 
-        }); 
-        
+        });   
+       
+    </script>
+
+    <script type="text/javascript">
         $(document).ready(function(){
             $('#categ').autocomplete({
-                source:"<?php echo site_url('categorias_controller/search/?'); ?>"
+                source:'<?php echo site_url('Autocomplete_controller/search'); ?>'
             });
         });
-
     </script>
     <?=$map['js']?> 
 
@@ -352,7 +355,7 @@
 
    
     <!-- jQuery -->
-    <script src="estilos/js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="estilos/js/bootstrap.min.js"></script>
@@ -368,7 +371,7 @@
 
     Custom Theme JavaScript -->
     <script src="estilos/js/freelancer.js"></script>
-    <script src="estilos/js/jquery.ui.js" type="text/javascript"></script>
+    
 </body>
 
 </html>

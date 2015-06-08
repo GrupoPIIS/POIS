@@ -21,7 +21,22 @@
         <script src="<?php echo base_url();?>/estilos/js/jquery.combinedScroll.js" type="text/javascript"></script>
         <script type="text/javascript">
             var centreGot = false;
-            var activeMap=false;          
+            var activeMap=false; 
+
+            function hovertrash(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/trashred.png');
+            }
+            function hoveredit(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/editgreen.png');
+            }
+
+            function unhovertrash(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/trash.png');
+            } 
+
+            function unhoveredit(element) {
+                element.setAttribute('src', '<?php echo base_url();?>estilos/img/edit.png');
+            }          
         
             jQuery(document).ready(function($){
             
@@ -97,14 +112,14 @@
                         
                     <?php if($pois){ foreach ($pois->result() as $poi): ?>
                         <li class="poi-enlace">
-                            <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$poi->id_poi ?>" >
-                                <p class="poi-text"><?= $poi->nombre_poi?></p>
+                            <a href="<?php echo base_url();?>pois/pois_controller/getPoi/<?=$poi->id_poi ?>" class="poi-text" >
+                                <p ><?= $poi->nombre_poi?></p>
                             </a>
                             <a href="<?php echo base_url();?>pois/pois_controller/updatePoi/<?=$poi->id_poi ?>" class="poi-boton">
-                                    <img src="<?php echo base_url();?>/estilos/img/edit.png" alt="Editar">                    
+                                    <img src="<?php echo base_url();?>/estilos/img/edit.png" alt="Editar" onmouseover="hoveredit(this);" onmouseout="unhoveredit(this);">                    
                             </a>
                             <a href="<?php echo base_url();?>pois/pois_controller/deletePoi/<?=$poi->id_poi ?>" class="poi-boton">
-                                <img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar">
+                                <img src="<?php echo base_url();?>/estilos/img/trash.png" alt="Eliminar" onmouseover="hovertrash(this);" onmouseout="unhovertrash(this);">
                             </a>                            
                         </li>
                     <?php endforeach; } ?>
