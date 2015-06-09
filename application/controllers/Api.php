@@ -121,6 +121,48 @@ class Api extends REST_Controller {
 
 
 
+	//Devuelve 
+	public function findPoiMedia_get($id)
+	{
+		if (! $id) 
+		{
+			$this->response(NULL, 400);
+		}
+
+		$poi = $this->api_model->getMultimediaPoi($id);
+
+		if (!is_null($poi)) 
+		{
+			$this->response(array("response" => $poi), 200);
+		}
+		else
+		{
+			$this->response(array("error" => "No se encuentra el POI"), 404);
+		}
+	}
+
+
+
+	public function findPoiExtras_get($id)
+	{
+		if (! $id) 
+		{
+			$this->response(NULL, 400);
+		}
+
+		$poi = $this->api_model->getExtras($id);
+
+		if (!is_null($poi)) 
+		{
+			$this->response(array("response" => $poi), 200);
+		}
+		else
+		{
+			$this->response(array("error" => "No se encuentra el POI"), 404);
+		}
+	}
+
+
 
 /*
 	//Este método sirve para enviar info y guardarla (en el servidor y/o la bdd)

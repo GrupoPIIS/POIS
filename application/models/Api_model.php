@@ -60,6 +60,22 @@ class Api_model extends CI_Model {
 	}
 
 
+	function getExtras($id){
+		$this->db->where('id_poi', $id);
+		$query = $this->db->get('extras_poi');
+		if($query->num_rows() > 0) return $query->result_array();
+		else return NULL;
+	}
+
+	function getMultimediaPoi($id){
+		$this->db->where('id_poi', $id);
+		$this->db->order_by("tipo_recurso", "ASC"); 
+		$query = $this->db->get('multimedia');
+		if($query->num_rows() > 0) return $query->result_array();
+		else return NULL;
+	}
+
+
 	/*public function save($poi)
 	{
 		$this->db->set(
